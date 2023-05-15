@@ -1,3 +1,5 @@
+### commit할 때마다 변경사항 commit message로 써놓기!!!
+
 # 사전 준비
 
 ## 1) Back-End(Django)
