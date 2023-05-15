@@ -2,7 +2,7 @@
 
 ## 1) Back-End(Django)
 
-1.    final-pjt-back 폴더 이동 후 venv 설치 및  활성화
+1.   final-pjt-back 폴더 이동 후 venv 설치 및  활성화
 
      ```bash
      (폴더 미이동 시) cd final-pjt-back
@@ -17,7 +17,7 @@
      (작업 중 설치 파일 추가 시) pip freeze > requirements.txt
      ```
 
-3.    (필요 시) migrate 진행
+3.   (필요 시) migrate 진행
 
      ```bash
      python manage.py makemigrations
