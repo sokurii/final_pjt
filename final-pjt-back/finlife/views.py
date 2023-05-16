@@ -25,6 +25,7 @@ def deposit_products(request):
     DepositProducts.objects.all().delete()
     for b in base:
         deposit = DepositProducts()
+        deposit.dcls_month = b.get('dcls_month')
         deposit.fin_prdt_cd = b.get('fin_prdt_cd')
         deposit.kor_co_nm = b.get('kor_co_nm')
         deposit.fin_prdt_nm = b.get('fin_prdt_nm')

@@ -2,6 +2,7 @@ from django.db import models
 
 # Create your models here.
 class DepositProducts(models.Model):
+    dcls_month = models.IntegerField()
     fin_prdt_cd = models.TextField(unique=True)
     kor_co_nm = models.TextField()
     fin_prdt_nm = models.TextField()
