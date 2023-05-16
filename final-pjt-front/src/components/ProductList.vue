@@ -1,12 +1,12 @@
 <template>
   <div>
-    <p>CommunityView</p>
+    <p>productlist</p>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'CommunityView',
+  name: 'ProductList',
 }
 </script>
 
