@@ -22,31 +22,30 @@ def deposit_products(request):
     base = response.get('result')['baseList']
     options = response.get('result')['optionList']
     
-    query = DepositProducts.objects.all()
-    if not query.exists():
-        for b in base:
-            deposit = DepositProducts()
-            deposit.fin_prdt_cd = b.get('fin_prdt_cd')
-            deposit.kor_co_nm = b.get('kor_co_nm')
-            deposit.fin_prdt_nm = b.get('fin_prdt_nm')
-            deposit.etc_note = b.get('etc_note')
-            deposit.join_deny = b.get('join_deny')
-            deposit.join_member = b.get('join_member')
-            deposit.join_way = b.get('join_way')
-            deposit.spcl_cnd = b.get('spcl_cnd')
-            
-            deposit.save()
-            
-        for o in options:
-            fin_prdt_cd = DepositProducts.objects.get(fin_prdt_cd=o.get('fin_prdt_cd'))
-            option = DepositOptions()
-            option.fin_prdt_cd = fin_prdt_cd
-            option.intr_rate_type_nm = o.get('intr_rate_type_nm')
-            option.intr_rate = o.get('intr_rate')
-            option.intr_rate2 = o.get('intr_rate2')
-            option.save_trm = o.get('save_trm')
-            
-            option.save()
+    DepositProducts.objects.all().delete()
+    for b in base:
+        deposit = DepositProducts()
+        deposit.fin_prdt_cd = b.get('fin_prdt_cd')
+        deposit.kor_co_nm = b.get('kor_co_nm')
+        deposit.fin_prdt_nm = b.get('fin_prdt_nm')
+        deposit.etc_note = b.get('etc_note')
+        deposit.join_deny = b.get('join_deny')
+        deposit.join_member = b.get('join_member')
+        deposit.join_way = b.get('join_way')
+        deposit.spcl_cnd = b.get('spcl_cnd')
+        
+        deposit.save()
+        
+    for o in options:
+        fin_prdt_cd = DepositProducts.objects.get(fin_prdt_cd=o.get('fin_prdt_cd'))
+        option = DepositOptions()
+        option.fin_prdt_cd = fin_prdt_cd
+        option.intr_rate_type_nm = o.get('intr_rate_type_nm')
+        option.intr_rate = o.get('intr_rate')
+        option.intr_rate2 = o.get('intr_rate2')
+        option.save_trm = o.get('save_trm')
+        
+        option.save()
     
     # return Response({'message': 'Okay'})
     
