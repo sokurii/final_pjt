@@ -1,17 +1,21 @@
 <template>
   <div id="app">
-    <nav>
-      <div class='menu'>
-        <router-link to="/">홈</router-link> |
-        <router-link to="/finance">금융상품비교</router-link> |
-        <router-link to="/map">지도</router-link> |
+    <nav class = 'navbar'>
+      <div class='menu'>       
+        <router-link to="/">
+          <img src="./assets/ex.png" alt="" width="50">
+        </router-link>
+        <router-link to="/">홈</router-link> 
+        <router-link to="/finance">금융상품비교</router-link> 
+        <router-link to="/map">지도</router-link> 
         <router-link to="/community">게시판</router-link>
       </div>
       <div class='account'>
-        <router-link to="/profile">프로필</router-link> |
         <router-link to="/login">로그인</router-link>
+        <router-link to="/profile">프로필</router-link> 
       </div>
     </nav>
+  
     <router-view/>
     <footer id="a" class="b">
       &copy; 2023. Lee Jin Hyeong, Park Jin Hee. All right reserved.
@@ -26,6 +30,27 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  background-color: #F3F2E9;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: #F3F2E9;
+  height: 90px;
+}
+
+.menu{
+  display : flex;
+  /* justify-content: space-between; */
+  gap:20px;
+  padding-left: 200px;
+}
+
+.account{
+  display:flex;
+  gap:20px;
+  padding-right: 200px;
 }
 
 nav {
@@ -34,17 +59,22 @@ nav {
 
 nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: black;
+  text-decoration: none;
 }
 
 nav a.router-link-exact-active {
-  color: #42b983;
+  color: #e98f1a;
 }
 
 footer {
+  position : fixed;
+  left:0;
+  bottom: 0;
+  width: 100%;
   padding: 10px;
   color: white;
-  background-color: black;
+  background-color: #6d6b6b;
   display: flex;
   justify-content: center;
   align-content: center;
