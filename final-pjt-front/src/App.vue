@@ -1,26 +1,10 @@
 <template>
   <div id="app">
     <nav-bar></nav-bar>
-    <!-- <nav class = 'navbar'>
-      <div class='menu'>       
-        <router-link to="/">
-          <img src="./assets/mmop.png" alt="" style="max-width:150px">
-        </router-link>
-        <router-link to="/">홈</router-link> 
-        <router-link to="/finance">금융상품비교</router-link> 
-        <router-link to="/map">지도</router-link> 
-        <router-link to="/community">게시판</router-link>
-      </div>
-      <div class='account'>
-        <router-link to="/login">로그인</router-link>
-        <router-link to="/profile">프로필</router-link> 
-      </div>
-    </nav> -->
+    <div class="content">
+      <router-view></router-view>
+    </div>
     <foot-bar></foot-bar>
-    <router-view/>
-    <!-- <footer id="a" class="b">
-      &copy; 2023. Lee Jin Hyeong, Park Jin Hee. All right reserved.
-    </footer> -->
   </div>
 </template>
 
@@ -47,8 +31,11 @@
   text-align: center;
   color: #000000;
   background-color: #F3F2E9;
-  
+  position: relative; /* 추가 */
+  height: 100vh;
 }
+
+
 /* 
 .navbar {
   display: flex;
@@ -85,23 +72,11 @@ nav a.router-link-exact-active {
   color: #e98f1a;
 }
 
-/* footer {
-  position : fixed;
-  left:0;
-  bottom: 0;
-  width: 100%;
-  padding: 10px;
-  color: white;
-  background-color: #6d6b6b;
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  font-size: 1rem;
-} */
 
-@media (max-width:768px) {
+
+/* @media (max-width:768px) {
     footer {
         font-size: 0.5rem;
     }
-}
+} */
 </style>

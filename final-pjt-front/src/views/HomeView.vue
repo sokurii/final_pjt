@@ -89,7 +89,7 @@
       <div class="section-3">
         <div class="inner">
           <div class="col-md-6 d-flex justify-content-center align-items-center">
-            <img src="../assets/bank.png" alt="" class="img-fluid mx-auto d-block" style="max-width: 50%; max-height: 50%;">>
+            <img src="../assets/bank.png" alt="" class="img-fluid mx-auto d-block" style="max-width: 50%; max-height: 50%;">
           </div>
           <div class="col-md-6 d-flex justify-content-center align-items-center">
             <div class="copy-box">
@@ -121,10 +121,13 @@ export default {
 
 <style>
 
+
+
 .section-1{
   display:flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
   height: 500px;
   background-color: #F3F2E9;
   /* background-color: #adbeae; */

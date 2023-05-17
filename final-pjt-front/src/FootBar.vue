@@ -18,7 +18,7 @@ export default {
     width: 100%;
     padding: 10px;
     color: white;
-    background-color: #6d6b6b;
+    background-color: #d0c297;
     display: flex;
     justify-content: center;
     align-content: center;

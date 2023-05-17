@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class=sign-in>
     <p>ProfileView</p>
   </div>
 </template>
@@ -12,5 +12,10 @@ export default {
 </script>
 
 <style>
-
+.sign-in{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:center;
+}
 </style>

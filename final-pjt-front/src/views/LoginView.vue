@@ -1,12 +1,12 @@
 <template>
 
   <div class='loginview'>
-    <h2>배경이 있었으면 좋겠음, 사이즈도 고민</h2>
     <form class="loginform" @submit.prevent="login">
       <div class="login-container">
           <div class="login-img">
-            <span class=log-text>지금 로그인하고<br>ㅇㅇ한 환경을<br>경험하세요</span>
-            <img src="../assets/login.png" alt="" class='log-img'>
+            <div class=log-text>Welcome🎉<br>모프가 알려주는<br>금융 정보를<br>무료로 즐기세요!</div>
+            <div class=log-txt>My Monitoring Planner, MMoP</div>
+            <img src="../assets/loginn.png" alt="" class='log-img'>
           </div>
 
           <div class = 'logininput'>
@@ -62,22 +62,36 @@ export default {
 </script>
 
 <style>
-.loginview{
+.content {
+  /* position: absolute; */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* background-color: rgba(0, 0, 0, 0.5); */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:center;
+}
+/* .loginview{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items:center;
   height: 100vh;
 
-}
+} */
 
 .loginform{
+
+  
   width: 760px;
   height: 450px;
-  margin-bottom: 200px;
+  /* margin-bottom: 200px; */
   background-color: #fff;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-
+  border-radius: 20px;
 }
 
 .login-container{
@@ -85,43 +99,55 @@ export default {
   justify-content: space-between;
   height: 100%;
   
+  
 
 }
 
 .login-img{
   width: 50%;
-  background-color: #F8D479;
+  background-color: #f8d57b;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
 }
 
-.login-img > span{
+.login-img > div{
   position:absolute;
 }
 
 .log-img{
-  width: 100%;
-  opacity : 0.4;
-  margin-top: 50px;
-  margin-right: 30px;
+  width: 80%;
+  opacity : 0.7;
+  margin-top: 100px;
+  margin-left: 10px;
   
 }
 
 .log-text{
-  font-size: 36px;
-  font-weight: bold;
+  font-size: 27px;
+  font-weight: 800;
   z-index: 1;
   text-align: left;
-  margin-top: 40px;
-  margin-left: 30px;
+  margin-top: 50px;
+  margin-left: 40px;
+}
+
+.log-txt{
+  font-size:16px;
+  font-weight: 400;
+  z-index:1;
+  margin-top: 215px;
+  margin-left: 45px;
 }
 .logininput{
   width: 50% ;
+  
 } 
 
 .mmop{
-  width:30%;
-  margin-top: 60px;
+  width:25%;
+  margin-top: 50px;
   margin-bottom: 20px;
-  margin-right: 200px;
+  margin-right: 220px;
 }
 
 .input-container{
@@ -129,7 +155,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items:center;
-  height: 60%;
+  height: 70%;
 }
 
 .id-save{

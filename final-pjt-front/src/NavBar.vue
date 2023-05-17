@@ -45,10 +45,10 @@ export default {
 
     .navbar {
     display: flex;
-    /* position : fixed; 여기 고정되게 ... 고민해보기 */
     justify-content: space-between;
     background-color: #F3F2E9;
-    height: 90px;
+    width: 100%;
+    height: 120px;
     }
 
     .menu{
