@@ -70,5 +70,7 @@
 *   정기예금, 정기적금, 환율 model 생성 및 api 데이터 요청
 *   정기예금, 정기적금 json 파일에 Nested Relationship 적용(Depositoptions, SavingOptions)
 *   환율계산기 View 구현(최소한의 화면만 구현, 기능은 아직 X)
-*   로그인, 회원가입 기능 구현(예정) -> 오늘 안에 무조건!!!!
-*   기타 CSS 약간 수정(예정)
+*   로그인, 회원가입 기능 구현
+     *   회원가입 기능, 비밀번호 변경은 토큰이 잘 받아지는 것 확인
+     *   로그인은 현재 axioserror가 발생하여 원인을 찾아봐야함
+     *   AllowAny상태에서 게시물 전체 조회, 게시물 생성에 대해 permission IsAuthenticated 데코레이터를 적용하여 headers에 Token을 정상적으로 기입했음에도 인증이 되지 않는 문제 발생
