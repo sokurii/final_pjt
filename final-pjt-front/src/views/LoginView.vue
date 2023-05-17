@@ -17,7 +17,11 @@
       </div>
       <button class="btn btn-success" type="submit">Login</button>
     </form>
-    <router-link id="signup" to="/signup">회원가입</router-link>
+    <router-link id="signup" to="/signup">
+      <button class="btn btn-primary">
+        회원가입
+      </button>
+    </router-link>
   </div>
 </template>
 

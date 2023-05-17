@@ -34,8 +34,26 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'articles',
     'finlife',
+    
     'rest_framework',
+    
+    # CORS policy
+    "corsheaders",
+
+    # Auth
+    'rest_framework.authtoken',
+    'dj_rest_auth',
+
+    # # registration
+    # 'django.contrib.sites',
+    # 'allauth',
+    # 'allauth.account',
+    # 'allauth.socialaccount',
+    # 'dj_rest_auth.registration',
+    
+    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,6 +61,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+# AUTH_USER_MODEL = 'accounts.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -136,3 +156,4 @@ environ.Env.read_env(
 )
 
 API_KEY = env('API_KEY')
+EXCHANGE_API_KEY = env('EXCHANGE_API_KEY')
