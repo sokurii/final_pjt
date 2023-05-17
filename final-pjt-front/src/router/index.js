@@ -5,6 +5,7 @@ import LoginView from '../views/LoginView.vue'
 import SignupView from '../views/SignupView.vue'
 import FinanceView from '../views/FinanceView.vue'
 import MapView from '../views/MapView.vue'
+import ExchangeView from '../views/ExchangeView.vue'
 import CommunityView from '../views/CommunityView.vue'
 import ProfileView from '../views/ProfileView.vue'
 
@@ -35,6 +36,11 @@ const routes = [
     path: '/map',
     name: 'map',
     component: MapView
+  },
+  {
+    path: '/exchange',
+    name: 'exchange',
+    component: ExchangeView
   },
   {
     path: '/community',

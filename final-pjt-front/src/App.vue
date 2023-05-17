@@ -5,6 +5,7 @@
         <router-link to="/">홈</router-link> |
         <router-link to="/finance">금융상품비교</router-link> |
         <router-link to="/map">지도</router-link> |
+        <router-link to="/exchange">환율</router-link> |
         <router-link to="/community">게시판</router-link>
       </div>
       <div class='account'>
