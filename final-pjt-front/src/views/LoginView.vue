@@ -1,19 +1,14 @@
 <template>
   <div>
     <h2>로그인</h2>
-    <form class="loginform">
-    <!-- <form @submit.prevent="login"> -->
+    <form class="loginform" @submit.prevent="login">
       <div>
-        <label>
-          ID:
-          <input type="text" v-model="form.id" required>
-        </label>
+        <label for="id">ID:</label>
+        <input type="text" id="id" v-model="id">
       </div>
       <div>
-        <label>
-          Password:
-          <input type="password" v-model="form.password" required>
-        </label>
+        <label for="password">Password:</label>
+          <input type="password" id="password" v-model="password">
       </div>
       <button class="btn btn-success" type="submit">Login</button>
     </form>
@@ -30,18 +25,21 @@ export default {
   name: 'LoginView',
   data() {
     return {
-      form: {
         id: '',
         password: ''
-      }
     };
   },
-  // methods: {
-  //   login() {
-  //     // 로그인 로직을 처리하는 함수
-  //     // Vue.js에서는 이 부분에서 Django에서 사용하는 csrf 토큰이 필요하지 않습니다.
-  //   }
-  // }
+  methods: {
+    login() {
+      const id = this.id
+      const password = this.password
+
+      const payload = {
+        id, password
+      }
+      this.$store.dispatch('logIn', payload)
+    }
+  }
 };
 </script>
 

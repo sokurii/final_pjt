@@ -1,8 +1,7 @@
 <template>
   <div>
     <h2>회원가입</h2>
-    <form class="signupform">
-    <!-- <form @submit.prevent="signUp"> -->
+    <form class="signupform" @submit.prevent="signUp">
       <label for="username">username : </label>
       <input type="text" id="username" v-model="username"><br>
 
@@ -29,6 +28,18 @@ export default {
       password2: null,
     }
   },
+  methods: {
+    signUp() {
+      const username = this.username
+      const password1 = this.password1
+      const password2 = this.password2
+
+      const payload = {
+        username, password1, password2
+      }
+      this.$store.dispatch('signUp', payload)
+    }
+  }
 }
 </script>
 
