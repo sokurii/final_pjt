@@ -1,0 +1,27 @@
+<template>
+    <footer id="a" class="b">
+      &copy; 2023. Lee Jin Hyeong, Park Jin Hee. All right reserved.
+    </footer>
+</template>
+
+<script>
+export default {
+
+}
+</script>
+
+<style>
+    footer {
+    position : fixed;
+    left:0;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+    color: white;
+    background-color: #6d6b6b;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    font-size: 1rem;
+    }
+</style>

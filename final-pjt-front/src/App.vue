@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <nav class = 'navbar'>
+    <nav-bar></nav-bar>
+    <!-- <nav class = 'navbar'>
       <div class='menu'>       
         <router-link to="/">
           <img src="./assets/mmop.png" alt="" style="max-width:150px">
@@ -14,14 +15,29 @@
         <router-link to="/login">로그인</router-link>
         <router-link to="/profile">프로필</router-link> 
       </div>
-    </nav>
-  
+    </nav> -->
+    <foot-bar></foot-bar>
     <router-view/>
-    <footer id="a" class="b">
+    <!-- <footer id="a" class="b">
       &copy; 2023. Lee Jin Hyeong, Park Jin Hee. All right reserved.
-    </footer>
+    </footer> -->
   </div>
 </template>
+
+<script>
+  import NavBar from './NavBar.vue';
+  import FootBar from './FootBar.vue';
+
+  export default {
+    name:'App',
+    components :{
+      NavBar,
+      FootBar,
+    }
+    }
+  
+</script>
+
 
 <style>
 #app {
@@ -33,32 +49,31 @@
   background-color: #F3F2E9;
   
 }
-
+/* 
 .navbar {
   display: flex;
   justify-content: space-between;
   background-color: #F3F2E9;
   height: 90px;
-}
+} */
 
-.menu{
+/* .menu{
   display : flex;
   justify-content: center;
   align-items: center;
-  /* justify-content: space-between; */
   gap:20px;
   padding-left: 200px;
-}
+} */
 
-.account{
+/* .account{
   display:flex;
   gap:20px;
   padding-right: 200px;
-}
+} */
 
-nav {
+/* nav {
   padding: 30px;
-}
+} */
 
 nav a {
   font-weight: bold;
@@ -70,7 +85,7 @@ nav a.router-link-exact-active {
   color: #e98f1a;
 }
 
-footer {
+/* footer {
   position : fixed;
   left:0;
   bottom: 0;
@@ -82,7 +97,7 @@ footer {
   justify-content: center;
   align-content: center;
   font-size: 1rem;
-}
+} */
 
 @media (max-width:768px) {
     footer {
