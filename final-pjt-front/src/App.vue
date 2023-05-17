@@ -3,7 +3,7 @@
     <nav class = 'navbar'>
       <div class='menu'>       
         <router-link to="/">
-          <img src="./assets/ex.png" alt="" width="50">
+          <img src="./assets/mmop.png" alt="" style="max-width:150px">
         </router-link>
         <router-link to="/">홈</router-link> 
         <router-link to="/finance">금융상품비교</router-link> 
@@ -29,8 +29,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #000000;
   background-color: #F3F2E9;
+  
 }
 
 .navbar {
@@ -42,6 +43,8 @@
 
 .menu{
   display : flex;
+  justify-content: center;
+  align-items: center;
   /* justify-content: space-between; */
   gap:20px;
   padding-left: 200px;

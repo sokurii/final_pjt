@@ -60,7 +60,7 @@
           </div>
           <div class="col-md-6 d-flex justify-content-center align-items-center">
             <div class="copy-box">
-              <div class="title">예/적금금리비교</div>
+              <div class="title">예/적금 금리비교</div>
               <div class="copy">전국 금융기관의 예금, 적금 정보를<br>한 눈에 알려 드려요!</div>
               <router-link to="/finance" class="btn btn-secondary">금융상품비교하기</router-link> 
             </div>
