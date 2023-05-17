@@ -99,18 +99,6 @@ def saving_products(request):  # 정기적금 데이터 저장 및 전체 조회
     serializer = SavingProductsSerializer(savings, many=True)
     return Response(serializer.data)
 
-@api_view(['GET'])  # 특정 정기예금 옵션 조회
-def deposit_product_options(request, fin_prdt_cd):
-    deposit_product = get_object_or_404(DepositProducts, fin_prdt_cd=fin_prdt_cd)
-    serializer = DepositOptionsSerializer(deposit_product.depositoptions.all(), many=True)
-    return Response(serializer.data)
-
-@api_view(['GET'])  # 특정 정기적금 옵션 조회
-def saving_product_options(request, fin_prdt_cd):
-    saving_product = get_object_or_404(SavingProducts, fin_prdt_cd=fin_prdt_cd)
-    serializer = SavingOptionsSerializer(saving_product.savingoptions.all(), many=True)
-    return Response(serializer.data)
-
 @api_view(['GET'])  # 오늘의 환율 정보 불러오기
 def exchangeinfo(request):
     date_today = datetime.today().strftime('%Y%m%d')
