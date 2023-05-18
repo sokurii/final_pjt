@@ -8,46 +8,52 @@ import MapView from '../views/MapView.vue'
 import ExchangeView from '../views/ExchangeView.vue'
 import CommunityView from '../views/CommunityView.vue'
 import ProfileView from '../views/ProfileView.vue'
+import ProductDetailView from '../views/ProductDetailView.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
-  {
+  { // 메인 페이지
     path: '/',
     name: 'home',
     component: HomeView
   },
-  {
+  { // 로그인 페이지
     path: '/login',
     name: 'login',
     component: LoginView
   },
-  {
+  { // 회원가입 페이지
     path: '/signup',
     name: 'signup',
     component: SignupView
   },
-  {
+  { // 금융상품조회 페이지
     path: '/finance',
     name: 'finance',
     component: FinanceView
   },
-  {
+  { // 금융상품 상세 조회 페이지
+    path: '/finance/:fin_prdt_cd',
+    name: 'productDetail',
+    component: ProductDetailView
+  },
+  { // 지도 페이지
     path: '/map',
     name: 'map',
     component: MapView
   },
-  {
+  { // 환율 페이지
     path: '/exchange',
     name: 'exchange',
     component: ExchangeView
   },
-  {
+  { // 게시판 페이지
     path: '/community',
     name: 'community',
     component: CommunityView
   },
-  {
+  { // 프로필 페이지
     path: '/profile',
     name: 'profile',
     component: ProfileView
