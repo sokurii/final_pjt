@@ -1,6 +1,6 @@
 <template>
 
-    <form class="signupform mx-auto" @submit.prevent="login">
+    <form class="signupform mx-auto" @submit.prevent="signup">
       <div class="signup-container">
         <!-- login-container 왼쪽 요소 -->
           <div class="signup-left">
@@ -14,20 +14,20 @@
             <div class="input-container">
               <div> 
                 <div class="label-text" style="width: 120px;">아이디</div>
-                <input type="text"  name="userId" required style="display: inline-block; ">
+                <input type="text"  v-model="username" required style="display: inline-block; ">
                 <!-- 아이디 <b-form-input v-model="username" placeholder="👤 아이디를 입력하세요" id="username" style="width: 300px; height: 50px;"></b-form-input> -->
               </div>
 
               <div class="mt-2">
                 <div class="label-text" style="width: 120px;">비밀번호</div>
-                <input type="text" name="password1" required>
+                <input type="text" v-model="password1" required>
               </div>
               <!-- <div style="margin-top: 10px;">
                 <b-form-input type="password" v-model="password1" placeholder="🔑 비밀번호를 입력하세요" id="password1" style="width: 300px; height: 50px;"></b-form-input>
               </div> -->
               <div class="mt-2">
                 <div class="label-text" style="width: 120px;">비밀번호 확인</div>
-                <input type="text" name="password2" required>
+                <input type="text" v-model="password2" required>
               </div>
               <!-- <div style="margin-top: 10px; margin-bottom:20px;">
                 <b-form-input type="password" v-model="password2" placeholder="✅ 비밀번호를 확인하세요" id="password2" style="width: 300px; height: 50px;"></b-form-input>
@@ -107,6 +107,22 @@ export default {
           '전라남도',
           '제주특별자치도',
       ]
+    }
+  },
+  methods:{
+    signUp(){
+      const id = this.id
+      const password1 = this.password1
+      const password2 = this.password2
+      const selectedGender = this.selectedGender
+      const selectedAge =this.selectedAge
+      const selectedResidence = this.selectedResidence
+
+      const payload = {
+        id, password1, password2, selectedGender, selectedAge, selectedResidence
+      }
+      this.$store.dispatch('signUp',payload)
+      
     }
   }
 }
