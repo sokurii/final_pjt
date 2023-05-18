@@ -82,6 +82,7 @@
      * 게시물 전체 조회, 게시물 생성(해결완료) -> settings에서 'DEFAULT_AUTHENTICATION_CLASSES'를 추가하지 않아 발생한 문제였음
      * 로그인, 회원가입(해결완료) -> 교안을 참고한 결과 payload후 mutations에서 id 변수명을 username으로 해야 정상적으로 진행되는 걸 알게 됨
      * 커뮤니티 게시판 진입 시 로그인되지 않으면 팝업이 생기게 하고 싶지만 뜨지 않음(해결중)
+     * User model 성별(gender), 나이(age), 거주지(residence) 속성 추가
 
 *   금융상품비교 화면 구현
      *   axios 요청으로 전체 금융상품 조회하여 화면에 올리기는 성공
