@@ -6,6 +6,7 @@ import SignupView from '../views/SignupView.vue'
 import FinanceView from '../views/FinanceView.vue'
 import MapView from '../views/MapView.vue'
 import CommunityView from '../views/CommunityView.vue'
+import WriteView from '../views/WriteView.vue'
 import ProfileView from '../views/ProfileView.vue'
 
 Vue.use(VueRouter)
@@ -40,6 +41,11 @@ const routes = [
     path: '/community',
     name: 'community',
     component: CommunityView
+  },
+  {
+    path: '/write',
+    name: 'write',
+    component: WriteView
   },
   {
     path: '/profile',

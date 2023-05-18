@@ -65,8 +65,8 @@ export default {
 <style>
 
 .loginform{
-  width: 760px;
-  height: 450px;
+  width: 50%;
+  height: 70%;
   position: fixed;
   top: 50%;
   left: 50%;

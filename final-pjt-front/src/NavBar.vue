@@ -10,7 +10,7 @@
       <router-link to="/community">게시판</router-link>
       </div>
       <div class='account'>
-      <router-link to="/login">로그인</router-link>
+      <router-link to="/login">로그인/회원가입</router-link>
       <router-link to="/profile">프로필</router-link> 
       </div>
   </nav>  
