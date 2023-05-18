@@ -73,6 +73,7 @@ def saving_products(request):  # 정기적금 데이터 저장 및 전체 조회
         for b in base:
             saving = SavingProducts()
             saving.fin_prdt_cd = b.get('fin_prdt_cd')
+            saving.dcls_month = b.get('dcls_month')
             saving.kor_co_nm = b.get('kor_co_nm')
             saving.fin_prdt_nm = b.get('fin_prdt_nm')
             saving.etc_note = b.get('etc_note')
@@ -118,4 +119,16 @@ def exchangeinfo(request):
         
     exchangeinfos = ExchangeInfos.objects.all()
     serializer = ExchangeInfosSerializer(exchangeinfos, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])  # 특정 정기예금 상세 조회
+def deposit_product_detail(request, fin_prdt_cd):
+    deposit_product = get_object_or_404(DepositProducts, fin_prdt_cd=fin_prdt_cd)
+    serializer = DepositProductsSerializer(deposit_product)
+    return Response(serializer.data)
+
+@api_view(['GET'])  # 특정 정기적금 상세 조회
+def saving_product_detail(request, fin_prdt_cd):
+    saving_product = get_object_or_404(SavingProducts, fin_prdt_cd=fin_prdt_cd)
+    serializer = SavingProductsSerializer(saving_product)
     return Response(serializer.data)

@@ -15,7 +15,10 @@ export default new Vuex.Store({
   ],
   state: {
     articles: [],
-    token: null
+    token: null,
+
+    products: [
+    ],
   },
   getters: {
     isLogin(state) {
@@ -27,6 +30,9 @@ export default new Vuex.Store({
       state.token = token
       router.push({ name : 'home' })
     },
+    GET_DEPOSIT_PRODUCTS(state, products) {
+      state.products = products
+    }
 
   },
   actions: {
@@ -78,6 +84,17 @@ export default new Vuex.Store({
           )
           .catch(err => {console.log(err)})
       })
+    },
+
+    getDepositProducts(context) {
+      axios({
+        method: 'get',
+        url: `${API_URL}/finlife/deposit-products/`
+      })
+        .then(res => 
+          context.commit('GET_DEPOSIT_PRODUCTS', res.data)
+        )
+        .catch(err => console.log(err))
     }
   },
   modules: {
