@@ -121,7 +121,9 @@ export default {
 
 <style>
 
-
+.home{
+  width: 100%;
+}
 
 .section-1{
   display:flex;

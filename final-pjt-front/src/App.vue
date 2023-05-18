@@ -1,9 +1,7 @@
 <template>
   <div id="app">
     <nav-bar></nav-bar>
-    <div class="content">
-      <router-view></router-view>
-    </div>
+    <router-view></router-view>
     <foot-bar></foot-bar>
   </div>
 </template>
@@ -31,10 +29,14 @@
   text-align: center;
   color: #000000;
   background-color: #F3F2E9;
-  position: relative; /* 추가 */
+  position: relative;
+  min-height: 100vh;
   height: 100vh;
 }
 
+.content {
+  padding-bottom: 60px; /* FootBar의 높이와 같은 값으로 설정 */
+}
 
 /* 
 .navbar {

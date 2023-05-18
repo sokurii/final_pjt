@@ -1,14 +1,15 @@
 <template>
-
-  <div class='loginview'>
-    <form class="loginform" @submit.prevent="login">
+<!-- 
+  <div class='loginview'> -->
+    <form class="loginform mx-auto" @submit.prevent="login">
       <div class="login-container">
+        <!-- login-container 왼쪽 요소 -->
           <div class="login-img">
-            <div class=log-text>Welcome🎉<br>모프가 알려주는<br>금융 정보를<br>무료로 즐기세요!</div>
+            <div class=log-text>HELLO🍀<br>모프가 알려주는<br>금융 정보를<br>무료로 즐기세요!</div>
             <div class=log-txt>My Monitoring Planner, MMoP</div>
             <img src="../assets/loginn.png" alt="" class='log-img'>
           </div>
-
+        <!-- login-container 오른쪽 요소 -->
           <div class = 'logininput'>
             <img src="../assets/mmop.png" alt="" class='mmop'>
             <div class="input-container">
@@ -17,7 +18,7 @@
                 <b-form-input v-model="form.id" placeholder="👤 아이디를 입력하세요" style="width: 300px; height:50px;" ></b-form-input>
               </div>
               <div style="margin-top: 10px; margin-bottom:20px;">
-                <!-- <b-form-input v-model="text" placeholder="🔑 비밀번호를 입력하세요" style="width: 300px; height:50px;"></b-form-input> -->
+                <!-- <b-form-input v-model="text" placeholder="👤 비밀번호를 입력하세요" style="width: 300px; height:50px;"></b-form-input> -->
                 <b-form-input type="password" v-model="form.password" placeholder="🔑 비밀번호를 입력하세요" style="width: 300px; height: 50px;"></b-form-input>
               </div>
 
@@ -36,7 +37,7 @@
           </div>
       </div>
     </form>
-  </div>
+  <!-- </div> -->
 
 </template>
 
@@ -49,7 +50,7 @@ export default {
         id: '',
         password: ''
       },
-      remmerberId:false
+      rememberId:false
     };
   },
   methods: {
@@ -62,45 +63,22 @@ export default {
 </script>
 
 <style>
-.content {
-  /* position: absolute; */
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  /* background-color: rgba(0, 0, 0, 0.5); */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items:center;
-}
-/* .loginview{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items:center;
-  height: 100vh;
-
-} */
 
 .loginform{
-
-  
   width: 760px;
   height: 450px;
-  /* margin-bottom: 200px; */
-  background-color: #fff;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-  border-radius: 20px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .login-container{
   display: flex;
   justify-content: space-between;
   height: 100%;
-  
-  
-
+  background-color: #fff;
+  border-radius: 20px ;
 }
 
 .login-img{
