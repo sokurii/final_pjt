@@ -25,8 +25,8 @@ export default {
   name: 'LoginView',
   data() {
     return {
-        id: '',
-        password: ''
+        id: null,
+        password: null
     };
   },
   methods: {

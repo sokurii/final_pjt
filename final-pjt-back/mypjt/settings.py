@@ -75,9 +75,9 @@ AUTH_USER_MODEL = 'accounts.User'
 # Authentication
 REST_FRAMEWORK = {
     # 토큰 있을 때에만 가능하게
-    # 'DEFAULT_AUTHENTICATION_CLASSES': [
-    #     'rest_framework.authentication.TokenAuthentication',
-    # ]
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
     # 모든 유저들에게 허용
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',

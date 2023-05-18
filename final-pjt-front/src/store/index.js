@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+import router from '../router'
 
 import createPersistedState from 'vuex-persistedstate'
 
@@ -13,19 +14,24 @@ export default new Vuex.Store({
     createPersistedState(),
   ],
   state: {
+    articles: [],
     token: null
   },
   getters: {
+    isLogin(state) {
+      return state.token ? true : false
+    }
   },
   mutations: {
     SAVE_TOKEN(state, token) {
       state.token = token
+      router.push({ name : 'home' })
     },
 
   },
   actions: {
     signUp(context, payload) {
-      const username = payload.username
+      const username = payload.id
       const password1 = payload.password1
       const password2 = payload.password2
 
@@ -42,14 +48,15 @@ export default new Vuex.Store({
         })
         .catch(err => console.log(err))
     },
+
     logIn(context, payload) {
-      const id = payload.id
+      const username = payload.id
       const password = payload.password
       axios({
         method: 'post',
         url: `${API_URL}/accounts/login/`,
         data: {
-          id, password
+          username, password
         }
       })
         .then(res => {
@@ -57,6 +64,20 @@ export default new Vuex.Store({
         })
         .catch(err => console.log(err))
 
+    },
+
+    getArticles(context) {
+      axios({
+        method: 'get',
+        url: `${API_URL}/api/v1/articles/`,
+        headers: {
+          Authorization: `Token ${ context.state.token }`
+        }
+          .then(res =>
+            { context.commit('GET_ARTICLES', res.data) }
+          )
+          .catch(err => {console.log(err)})
+      })
     }
   },
   modules: {
