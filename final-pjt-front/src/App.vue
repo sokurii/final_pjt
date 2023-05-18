@@ -1,24 +1,24 @@
 <template>
   <div id="app">
-    <nav>
-      <div class='menu'>
-        <router-link to="/">홈</router-link> |
-        <router-link to="/finance">금융상품조회</router-link> |
-        <router-link to="/map">지도</router-link> |
-        <router-link to="/exchange">환율</router-link> |
-        <router-link to="/community">게시판</router-link>
-      </div>
-      <div class='account'>
-        <router-link to="/profile">프로필</router-link> |
-        <router-link to="/login">로그인</router-link>
-      </div>
-    </nav>
-    <router-view/>
-    <footer id="a" class="b">
-      &copy; 2023. Lee Jin Hyeong, Park Jin Hee. All right reserved.
-    </footer>
+    <nav-bar></nav-bar>
+    <router-view></router-view>
+    <foot-bar></foot-bar>
   </div>
 </template>
+
+<script>
+  import NavBar from './NavBar.vue';
+  import FootBar from './FootBar.vue';
+
+  export default {
+    name:'App',
+    components :{
+      NavBar,
+      FootBar,
+    }
+    }
+  
+</script>
 
 <style>
 #app {
@@ -26,35 +26,58 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  /* 추가 */
+  color: #000000;
+  background-color: #F3F2E9;
+  position: relative;
+  min-height: 100vh;
+  height: 100vh;
 }
 
-nav {
-  padding: 30px;
+.content {
+  padding-bottom: 60px; /* FootBar의 높이와 같은 값으로 설정 */
 }
+
+/* 
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: #F3F2E9;
+  height: 90px;
+} */
+
+/* .menu{
+  display : flex;
+  justify-content: center;
+  align-items: center;
+  gap:20px;
+  padding-left: 200px;
+} */
+
+/* .account{
+  display:flex;
+  gap:20px;
+  padding-right: 200px;
+} */
+
+/* nav {
+  padding: 30px;
+} */
 
 nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: black;
+  text-decoration: none;
 }
 
 nav a.router-link-exact-active {
-  color: #42b983;
+  color: #e98f1a;
 }
 
-footer {
-  padding: 10px;
-  color: white;
-  background-color: black;
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  font-size: 1rem;
-}
 
-@media (max-width:768px) {
+/* @media (max-width:768px) {
     footer {
         font-size: 0.5rem;
     }
-}
+} */
 </style>
