@@ -97,4 +97,4 @@
      * api로 받은 환율 데이터 목록 화면에 구현하기(예정)
 
 *   기타
-     * 진희가 만든 코드랑 일부분 합치기 -> App.vue(NavBar, FootBar 적용 포함), HomeView.vue merge 완료
+     * 진희가 만든 코드랑 일부분 합치기 -> App.vue(NavBar, FootBar 적용 포함), HomeView.vue, LoginView.vue merge 완료
