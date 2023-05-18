@@ -1,22 +1,41 @@
 <template>
   <div>
-    <h2>로그인</h2>
-    <form class="loginform" @submit.prevent="login">
-      <div>
-        <label for="id">ID:</label>
-        <input type="text" id="id" v-model="id">
+    <form class="loginform mx-auto" @submit.prevent="login">
+      <div class="login-container">
+        <!-- login-container 왼쪽 요소 -->
+        <div class="login-img">
+          <div class=log-text>HELLO🍀<br>모프가 알려주는<br>금융 정보를<br>무료로 즐기세요!</div>
+          <div class=log-txt>My Monitoring Planner, MMoP</div>
+          <img src="../assets/loginn.png" alt="" class='log-img'>
+        </div>
+        <!-- login-container 오른쪽 요소 -->
+        <div class = 'logininput'>
+          <img src="../assets/mmop.png" alt="" class='mmop'>
+          <div class="input-container">
+            <div> 
+              <!-- <b-form-input v-model="text" placeholder="👤 아이디를 입력하세요" style="width: 300px; height:50px;" ></b-form-input> -->
+              <b-form-input v-model="id" placeholder="👤 아이디를 입력하세요" style="width: 300px; height:50px;" ></b-form-input>
+            </div>
+            <div style="margin-top: 10px; margin-bottom:20px;">
+              <!-- <b-form-input v-model="text" placeholder="👤 비밀번호를 입력하세요" style="width: 300px; height:50px;"></b-form-input> -->
+              <b-form-input type="password" v-model="password" placeholder="🔑 비밀번호를 입력하세요" style="width: 300px; height: 50px;"></b-form-input>
+            </div>
+
+            <div class="id-save" style="margin-top: -10px; margin-bottom:20px; width:300px ">
+              <b-form-checkbox v-model="rememberId">
+                <span style="margin-left: 5px;">아이디 저장</span>
+              </b-form-checkbox>
+              <!-- <input type="checkbox" v-model="rememberId">
+              <label for="remember">아이디 저장</label> -->
+            </div>
+            <!-- <b-form-checkbox v-model="saveId">아이디 저장</b-form-checkbox> -->
+            <b-button class="btn btn-success" type="submit" style="width: 300px; height:50px;">Login</b-button><br>
+            <router-link id="signup" to="/signup">회원가입</router-link>
+
+          </div>
+        </div>
       </div>
-      <div>
-        <label for="password">Password:</label>
-          <input type="password" id="password" v-model="password">
-      </div>
-      <button class="btn btn-success" type="submit">Login</button>
     </form>
-    <router-link id="signup" to="/signup">
-      <button class="btn btn-primary">
-        회원가입
-      </button>
-    </router-link>
   </div>
 </template>
 
@@ -26,7 +45,8 @@ export default {
   data() {
     return {
         id: null,
-        password: null
+        password: null,
+        rememberId:false
     };
   },
   methods: {
@@ -44,8 +64,79 @@ export default {
 </script>
 
 <style scoped>
-.loginform {
-  border: solid;
-  /* border-radius: ; */
+.loginform{
+  width: 50%;
+  height: 70%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.login-container{
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+  background-color: #fff;
+  border-radius: 20px ;
+}
+
+.login-img{
+  width: 50%;
+  background-color: #f8d57b;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+.login-img > div{
+  position:absolute;
+}
+
+.log-img{
+  width: 80%;
+  opacity : 0.7;
+  margin-top: 100px;
+  margin-left: 10px;
+  
+}
+
+.log-text{
+  font-size: 27px;
+  font-weight: 800;
+  z-index: 1;
+  text-align: left;
+  margin-top: 50px;
+  margin-left: 40px;
+}
+
+.log-txt{
+  font-size:16px;
+  font-weight: 400;
+  z-index:1;
+  margin-top: 215px;
+  margin-left: 45px;
+}
+.logininput{
+  width: 50% ;
+  
+} 
+
+.mmop{
+  width:25%;
+  margin-top: 50px;
+  margin-bottom: 20px;
+  margin-right: 220px;
+}
+
+.input-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:center;
+  height: 70%;
+}
+
+.id-save{
+  text-align: left;
 }
 </style>
