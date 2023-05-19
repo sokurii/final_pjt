@@ -106,15 +106,19 @@
 </div>
 </template>
 
+
+
 <script>
 export default {
   name: 'App',
 };
 </script>
 
+
+
 <style>
 .material-icons {
-  font-family: 'Material Icons';
+  /* font-family: 'Material Icons'; */
   font-weight: normal;
   font-style: normal;
   font-size: 24px;
@@ -197,7 +201,7 @@ export default {
     min-height: 32px;
     color: black;
     font-weight: 700;
-    font-family: "Roboto Slab","Times New Roman",serif;
+    /* font-family: "Roboto Slab","Times New Roman",serif; */
 }
 
 .profile-page .description {
@@ -386,7 +390,7 @@ img.rounded {
 .card-title{
     font-size: 2.25rem !important;
     font-weight: 700 !important;
-    font-family: Roboto Slab,Times New Roman,serif;
+    /* font-family: Roboto Slab,Times New Roman,serif; */
     color: #3c4858;
 
 }
