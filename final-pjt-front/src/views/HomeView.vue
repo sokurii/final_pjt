@@ -23,8 +23,8 @@
         ></b-carousel-slide>
       </b-carousel>
     </div>
-
-     <div class="section-1">
+    <div>
+      <div class="section-1">
         <div class="inner">
           <div class="col-md-6 d-flex justify-content-center align-items-center">
             <img src="../assets/coin.png" alt="">
@@ -39,14 +39,13 @@
         </div>
       </div>
 
-
       <div class="section-2">
         <div class="inner">
           <div class="col-md-6 d-flex justify-content-center align-items-center">
             <div class="copy-box">
               <div class="title">환율계산기</div>
               <div class="copy">내게 꼭 필요했던 환율,<br>ㅇㅇ에게 맡겨 보세요!</div>
-              <router-link to="/finance" class="btn btn-secondary">환율계산하러가기</router-link> 
+              <router-link to="/exchange" class="btn btn-secondary">환율계산하러가기</router-link> 
             </div>
           </div>
           <div class="col-md-6 d-flex justify-content-center align-items-center">
@@ -54,7 +53,6 @@
           </div>
         </div>
       </div>
-
 
 
       <div class="section-3">
@@ -66,40 +64,32 @@
             <div class="copy-box">
               <div class="title">우리동네은행</div>
               <div class="copy">마음에 드는 상품을 어디서 가입할까?<br>주변 은행을 찾아보세요!</div>
-              <router-link to="/finance" class="btn btn-secondary">우리동네은행찾기</router-link> 
+              <router-link to="/map" class="btn btn-secondary">우리동네은행찾기</router-link> 
             </div>
           </div>
         </div>
       </div>
 
     </div>
-
+  </div>
 </template>
 
 <script>
+import { BCarousel, BCarouselSlide } from 'bootstrap-vue'
+
 // @ is an alias to /src
 export default {
   name: 'HomeView',
   components: {
-  },
-  data() {
-    return {
-      slide: 0,
-      sliding: null
-    }
-  },
-  methods: {
-    onSlideStart(slide) {
-      this.sliding = true
-    },
-    onSlideEnd(slide) {
-      this.sliding = false
-    }
+    BCarousel,
+    BCarouselSlide
   }
 }
 </script>
 
-<style scoped>
+
+<style>
+
 .home{
   width: 100%;
 }
@@ -111,6 +101,9 @@ export default {
   width: 100%;
   height: 500px;
   background-color: #F3F2E9;
+  /* background-color: #adbeae; */
+  
+  /* background-color: #FFAD3A; */
 }
 
 .section-2{
@@ -127,14 +120,19 @@ export default {
   align-items: center;
   height: 500px;
   background-color: #F3F2E9;;
+  /* background-color: #ebb262; */
 }
 
 .inner{
   width: 1060px;
   height: 500px;
   display: flex;
-}
+  /* flex-direction: column;
+  justify-content: center;
+  align-items: center; */
+  /* background-color: #fff; */
 
+}
 .img{
   max-width: 50%;
   max-height: 50%;
