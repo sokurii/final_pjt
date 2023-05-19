@@ -1,102 +1,91 @@
 <template>
-  <body class="profile-page sidebar-collapse">
+  <div class="profile-page">
 
   <div class="page-header header-filter" data-parallax="true" style="background-image:url('https://demos.creative-tim.com/bs3/material-kit/assets/img/examples/city.jpg');"></div>
-  <div class="main main-raised">
-    <div class="profile-content">
+  <div class="main main-container">
+    <div class="profile-content ">
       <div class="container">
-        <div class="row">
-          <div class="col-md-6 ml-auto mr-auto">
-            <div class="profile">
+        <!-- 프로필 이미지, 유저 이름, 소개글 -->
+        <div class="row d-flex justify-content-center align-items-center">
+          <div class="col-md-6 ml-auto mr-auto ">
+            <div class="profile ">
               <div class="avatar">
-                <img src="https://www.livelingua.com/img/profilesTeachers/103/Guillaume-Deneufbourg-Square_Profile_S.jpg" alt="Circle Image" class="img-raised rounded-circle img-fluid">
+                <img src="../assets/profile.png" alt="Circle Image" class="img-raised rounded-circle img-fluid">
               </div>
               <div class="name">
-                <h3 class="title">사용자 이름</h3>
+                <h3 class="title">담곰이</h3>
               </div>
             </div>
-            <div class="follow">
-            <button class="btn btn-fab btn-primary btn-round" rel="tooltip" title="" data-original-title="Follow this user">
-              <i class="material-icons">팔로우</i></button>
-          </div>
           </div>
         </div>
         <div class="description text-center">
-          <p>자기소개 or 상태 메시지 소개</p>
+          <p>이 편지는 영국에서 최초로 시작되어 일년에 한바퀴를 돌면서 받는 사람에게 행운을 주었고 지금은 당신에게로 옮겨진 이 편지는 4일 안에 당신 곁을 떠나야 합니다. 이 편지를 포함해서 7통을 행운이 필요한 사람에게 보내 주셔야 합니다. 복사를 해도 좋습니다. 혹 미신이라 하실지 모르지만 사실입니다. 영국에서 HGXWCH이라는 사람은 1930년에 이 편지를 받았습니다. 그는 비서에게 복사해서 보내라고 했습니다. 며칠 뒤에 복권이 당첨되어 20억을 받았습니다. 어떤 이는 이 편지를 받았으나 96시간 이내 자신의 손에서 떠나야 한다는 사실을 잊었습니다. 그는 곧 사직되었습니다. 나중에야 이 사실을 알고 7통의 편지를 보냈는데 다시 좋은 직장을 얻었습니다. 미국의 케네디 대통령은 이 편지를 받았지만 그냥 버렸습니다. 결국 9일 후 그는 암살당했습니다. 기억해 주세요. 이 편지를 보내면 7년의 행운이 있을 것이고 그렇지 않으면 3년의 불행이 있을 것입니다. 그리고 이 편지를 버리거나 낙서를 해서는 절대로 안됩니다. 7통입니다. 이 편지를 받은 사람은 행운이 깃들것입니다. 힘들겠지만 좋은게 좋다고 생각하세요. 7년의 행운을 빌면서...</p>
         </div>
-        <div class="row">
-          <div class="col-md-6 ml-auto mr-auto">
-            <div class="profile-tabs">
+
+      <!-- 여기 구분선 하나 넣고 싶네  -->
+
+        <!-- 작성한 게시글, 찜해둔 금융 상품 -->
+        <div class="row d-flex justify-content-center align-items-center">
+          <div class="col-md-6 ml-auto mr-auto ">
+            <div class="profile-tabs ">
+              <!-- 선택 버튼 2개 -->
               <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
+                <!-- 게시글 버튼 (보라색) -->
                 <li class="nav-item">
                   <a class="nav-link active" href="#work" role="tab" data-toggle="tab">
-                    <i class="material-icons">palette</i> Work
+                    <i class="material-icons">작성한 게시글</i>Articles
                   </a>
                 </li>
+                <!-- 찜해둔 상품 버튼(보라색) -->
                 <li class="nav-item">
                   <a class="nav-link" href="#favorite" role="tab" data-toggle="tab">
-                    <i class="material-icons">favorite</i> Favorite
+                    <i class="material-icons">찜한 금융상품</i> Favorite
                   </a>
                 </li>
               </ul>
             </div>
           </div>
         </div>
+       
         <div class="tab-content tab-space">
           <div class="tab-pane work active show" id="work">
-            <div class="row">
+            <div class="row d-flex justify-content-center align-items-center">
               <div class="col-md-7 ml-auto mr-auto ">
-                <h4 class="title">Latest Collections</h4>
+                <h4 class="title">총 n개의 글이 있습니다</h4>
+                <!-- 여기에 게시글 목록 불러와서 붙이기 !!!! -->
                 <div class="row collections">
-
+                  <!-- 게시글 1 -->
                   <div class="col-md-6">
-                    <div class="card card-background" style="background-image: url('http://www.ansa.it/webimages/img_457x/2018/1/9/2b87dfb4328e8a6f1dc643aa69af5fc9.jpg')">
+                    <!-- asset에 있는 사진으로 바꾸고 싶은데 왜 안되냐...  -->
+                    <div class="card card-background" style="background-image: url('../assets/article1.png')">
                       <a href="#pablo"></a>
                       <div class="card-body">
-                        <label class="badge badge-warning">Spring 2016</label>
+                        <label class="badge">작성 날짜</label>
                         <a href="#pablo">
-                          <h2 class="card-title">Stilleto</h2>
+                          <h2 class="card-title">게시글 제목</h2>
                         </a>
                       </div>
                     </div>
                   </div>
 
-                  
+                  <!-- 게시글 2 -->
                   <div class="col-md-6">
                     <div class="card card-background" style="background-image: url('http://www.backdownsouth.com/wp-content/uploads/2016/11/sockfancy004.jpg')">
                       <a href="#pablo"></a>
                       <div class="card-body">
-                        <label class="badge badge-success">Winter 2015</label>
+                        <label class="badge">작성 날짜</label>
                         <a href="#pablo">
-                          <h2 class="card-title">Men's Sneakers</h2>
+                          <h2 class="card-title">게시글 제목</h2>
                         </a>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-
-              <div class="col-md-2 mr-auto ml-auto stats">
-                <h4 class="title">Stats</h4>
-                <ul class="list-unstyled">
-                  <li><b>60</b> Products</li>
-                  <li><b>4</b> Collections</li>
-                  <li><b>331</b> Influencers</li>
-                  <li><b>1.2K</b> Likes</li>
-                </ul>
-                <hr>
-                <h4 class="title">About his Work</h4>
-                <p class="description">French luxury footwear and fashion. The footwear has incorporated shiny, red-lacquered soles that have become his signature.</p>
-                <hr>
-                <h4 class="title">Focus</h4>
-                <span class="badge badge-primary">Footwear</span>
-                <span class="badge badge-rose">Luxury</span>
-              </div>
-
             </div>
           </div>
           
-          <div class="tab-pane text-center gallery" id="favorite">
+          <div class="tab-pane text-center gallery" id="favorite">ㅇㅇ
             <div class="row">
               <div class="col-md-3 ml-auto">
                 <img src="http://www.globalfashionstreet.com/wp-content/uploads/2018/03/the-different-kinds-of-womens-street-fashion-style-1.jpg" class="rounded">
@@ -114,7 +103,7 @@
     </div>
   </div>
 
-</body>
+</div>
 </template>
 
 <script>
@@ -136,57 +125,9 @@ export default {
   white-space: nowrap;
   word-wrap: normal;
   direction: ltr;
-  -webkit-font-smoothing: antialiased;
-}
-
-html *{
-    -webkit-font-smoothing: antialiased;
 }
 
 /* typography */
-
-h1,
-.h1 {
-  font-size: 3.3125rem;
-  line-height: 1.15em;
-}
-
-h2,
-.h2 {
-  font-size: 2.25rem;
-  line-height: 1.5em;
-}
-
-h3,
-.h3 {
-  font-size: 1.5625rem;
-  line-height: 1.4em;
-}
-
-h4 {
-  font-size: 1.125rem;
-  line-height: 1.5em;
-}
-
-h5,
-.h5 {
-  font-size: 1.0625rem;
-  line-height: 1.55em;
-  margin-bottom: 15px;
-}
-
-h6,
-.h6 {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  font-weight: 500;
-}
-
-p {
-  font-size: 14px;
-  margin: 0 0 10px;
-}
-
 
 
 .profile-page .page-header {
@@ -200,7 +141,8 @@ p {
     align-items: center;
 }
 
-.header-filter:before {
+/* 로그인이랑 회원가입 창에 적용해보기  */
+/* .header-filter:before {
     position: absolute;
     z-index: 1;
     width: 100%;
@@ -210,9 +152,9 @@ p {
     top: 0;
     content: "";
     background: rgba(0,0,0,.5);
-}
+} */
 
-.main-raised {
+.main-container {
     margin: -60px 30px 0;
     border-radius: 6px;
     box-shadow: 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12), 0 8px 10px -5px rgba(0,0,0,.2);
@@ -228,15 +170,16 @@ p {
     text-align: center;
 }
 
+/* 프로필 이미지 */
 .profile-page .profile img {
     max-width: 160px;
     width: 100%;
     margin: 0 auto;
-    -webkit-transform: translate3d(0,-50%,0);
-    -moz-transform: translate3d(0,-50%,0);
-    -o-transform: translate3d(0,-50%,0);
-    -ms-transform: translate3d(0,-50%,0);
     transform: translate3d(0,-50%,0);
+    /* -webkit-transform: translate3d(0,-50%,0); */
+    /* -moz-transform: translate3d(0,-50%,0); */
+    /* -o-transform: translate3d(0,-50%,0); */
+    /* -ms-transform: translate3d(0,-50%,0); */
 }
 
 .img-raised {
@@ -247,19 +190,20 @@ p {
     border-radius: 50%!important;
 }
 
-
+/* 게시글 문구 */
 .title {
     margin-top: 30px;
     margin-bottom: 25px;
     min-height: 32px;
-    color: #3C4858;
+    color: black;
     font-weight: 700;
     font-family: "Roboto Slab","Times New Roman",serif;
 }
 
 .profile-page .description {
     margin: 1.071rem auto 0;
-    max-width: 600px;
+    /* max-width: 600px; */
+    max-width: 800px;
     color: #999;
     font-weight: 300;
 }
@@ -272,7 +216,7 @@ p {
     margin-top: 4.284rem;
 }
 
-.nav-pills, .nav-tabs {
+.nav-pills {
     border: 0;
     border-radius: 3px;
     padding: 0 15px;
@@ -289,8 +233,8 @@ p {
 
 .nav-pills .nav-item .nav-link.active {
     color: #fff;
-    background-color: #9c27b0;
-    box-shadow: 0 5px 20px 0 rgba(0,0,0,.2), 0 13px 24px -11px rgba(156,39,176,.6);
+    background-color: #6da36f;
+    box-shadow: 0 5px 20px 0 rgba(0,0,0,.2), 0 13px 24px -11px rgba(#6da36f,.6);
 }
 
 .nav-pills .nav-item .nav-link {
@@ -317,7 +261,7 @@ p {
 }
 
 .tab-space {
-    padding: 20px 0 50px;
+    padding: 40px 0 50px;
 }
 
 .profile-page .gallery {
@@ -397,17 +341,7 @@ img.rounded {
     border-radius:.25rem;
 }
 
-.badge.badge-warning {
-    background-color: #ff9800;
-}
 
-.badge.badge-primary {
-    background-color: #9c27b0;
-}
-
-.badge.badge-rose {
-    background-color: #e91e63;
-}
 
 .back-background .card-title, .card-background .card-title, .front-background .card-title {
     color: #fff;
@@ -438,14 +372,14 @@ img.rounded {
     box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
 }
 
-.profile-page .tab-content .collections .card .card-body {
+.profile-page .tab-content .card .card-body {
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
 
-.profile-page .connections {
+.profile-page  {
     padding: 40px 0;
 }
 
@@ -461,21 +395,8 @@ h4.card-title{
     font-size: 1.125rem !important;
 }
 
-.card-plain{
-  background: transparent;
-  box-shadow: none;
-}
 
-.card-plain .card-body {
-    padding-left: 5px;
-    padding-right: 5px;
-}
-
-.card-plain .card-header-image {
-    margin: 0!important;
-    border-radius: 6px;
-}
-.card .card-header.card-header-image {
+.card {
     position: relative;
     padding: 0;
     z-index: 1;
@@ -485,13 +406,11 @@ h4.card-title{
     border-radius: 6px;
 }
 
-
-.card .card-header.card-header-image a {
+.card  a {
     display: block;
 }
 
-
-.card .card-header.card-header-image img {
+.card  img {
     width: 100%;
     border-radius: 6px;
     pointer-events: none;
@@ -499,7 +418,7 @@ h4.card-title{
 }
 
 
-.card .card-header.card-header-image .colored-shadow {
+.card .colored-shadow {
     transform: scale(.94);
     top: 12px;
     filter: blur(12px);
@@ -522,110 +441,8 @@ h4.card-title{
   font-weight: 300;
 }
 
-footer{
-  padding: 1.9375rem 0;
-}
-
-footer p{
- color: #3e4857;
- font-weight: 300;
- margin-bottom: 0px;
-}
-
-footer p a {
-    color: #4c4854;
-    font-weight: 400;
-}
-
-footer p a:hover{
-  color: #8f37aa;
-  text-decoration: none;
-}
-/* buttons */
-.btn {
-    position: relative;
-    padding: 12px 30px;
-    margin: .3125rem 1px;
-    font-size: .75rem;
-    font-weight: 400;
-    line-height: 1.428571;
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 0;
-    cursor: pointer;
-    background-color: transparent;
-    border: 0;
-    border-radius: .2rem;
-    outline: 0;
-    transition: box-shadow .2s cubic-bezier(.4,0,1,1),background-color .2s cubic-bezier(.4,0,.2,1);
-    will-change: box-shadow,transform;
-}
 
 
-.btn.btn-primary {
-    color: #fff;
-    background-color: #9c27b0;
-    border-color: #9c27b0;
-    box-shadow: 0 2px 2px 0 rgba(156,39,176,.14), 0 3px 1px -2px rgba(156,39,176,.2), 0 1px 5px 0 rgba(156,39,176,.12);
-}
-
-.btn.btn-fab.btn-round, .btn.btn-just-icon.btn-round{
-  border-radius: 50%;
-}
-
-.btn.btn-fab, .btn.btn-just-icon {
-    font-size: 24px;
-    height: 41px;
-    min-width: 41px;
-    width: 41px;
-    padding: 0;
-    overflow: hidden;
-    position: relative;
-    line-height: 41px;
-}
-
-.btn.btn-fab .fa, .btn.btn-fab .material-icons, .btn.btn-just-icon .fa, .btn.btn-just-icon .material-icons {
-    margin-top: 0;
-    position: absolute;
-    width: 100%;
-    transform: none;
-    left: 0;
-    top: 0;
-    height: 100%;
-    line-height: 41px;
-    font-size: 20px;
-    }
-
-.btn.btn-primary:focus{
-    color: #fff;
-    background-color: #9124a3;
-    border-color: #701c7e;
-}
-
-.btn.btn-primary:hover {
-    color: #fff;
-    background-color: #9124a3;
-    box-shadow: 0 14px 26px -12px rgba(156,39,176,.42), 0 4px 23px 0 rgba(0,0,0,.12), 0 8px 10px -5px rgba(156,39,176,.2);
-}
-
-/* social buttons */
-
-
-.btn.btn-dribbble.btn-link, .btn.btn-dribbble.btn-link:active, .btn.btn-dribbble.btn-link:focus, .btn.btn-dribbble.btn-link:hover {
-    background-color: transparent;
-    color: #ea4c89;
-}
-
-.btn.btn-twitter.btn-link, .btn.btn-twitter.btn-link:active, .btn.btn-twitter.btn-link:focus, .btn.btn-twitter.btn-link:hover {
-    background-color: transparent;
-    color: #55acee;
-}
-
-
-.btn.btn-pinterest.btn-link, .btn.btn-pinterest.btn-link:active, .btn.btn-pinterest.btn-link:focus, .btn.btn-pinterest.btn-link:hover {
-    background-color: transparent;
-    color: #cc2127;
-}
 
 @media screen and (min-width: 767px){
   .card-profile .card-header-image {

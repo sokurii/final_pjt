@@ -13,20 +13,20 @@
             <!-- <div class="sign-head">회원가입</div> -->
             <div class="input-container">
               <div> 
-                <div class="label-text" style="width: 120px;">아이디</div>
+                <label class="label-text" style="width: 120px;">아이디</label>
                 <input type="text"  v-model="username" required style="display: inline-block; ">
                 <!-- 아이디 <b-form-input v-model="username" placeholder="👤 아이디를 입력하세요" id="username" style="width: 300px; height: 50px;"></b-form-input> -->
               </div>
 
               <div class="mt-2">
-                <div class="label-text" style="width: 120px;">비밀번호</div>
+                <label class="label-text" style="width: 120px;">비밀번호</label>
                 <input type="text" v-model="password1" required>
               </div>
               <!-- <div style="margin-top: 10px;">
                 <b-form-input type="password" v-model="password1" placeholder="🔑 비밀번호를 입력하세요" id="password1" style="width: 300px; height: 50px;"></b-form-input>
               </div> -->
               <div class="mt-2">
-                <div class="label-text" style="width: 120px;">비밀번호 확인</div>
+                <label class="label-text" style="width: 120px;">비밀번호 확인</label>
                 <input type="text" v-model="password2" required>
               </div>
               <!-- <div style="margin-top: 10px; margin-bottom:20px;">
@@ -34,7 +34,7 @@
               </div> -->
 
               <div class="mt-2">
-                <div class="label-text" style="width: 120px;">성별</div>
+                <label class="label-text" style="width: 120px;">성별</label>
                 <div class="radio-buttons">
                   <b-form-group>
                     <b-form-radio v-model="selectedGender" name="gender" value="male">남성</b-form-radio>
@@ -44,14 +44,14 @@
               </div>
 
               <div class='mt-2'>
-                <div class="label-text" style="width: 120px;">나이</div>
+                <label class="label-text" style="width: 120px;">나이</label>
                 <select id="age" v-model="selectedAge">
                   <option v-for="age in ages" :key='age' :value="age">{{ age }}</option>
                 </select>
               </div>   
 
               <div class="mt-2">
-                <div class="label-text" style="width: 120px;">거주지</div>
+                <label class="label-text" style="width: 120px;">거주지</label>
                 <select id='region' v-model="selectedResidence">
                   <option v-for="region in regions" :key="region" :value="region">{{ region }}</option>
                 </select>
@@ -63,7 +63,7 @@
   
 
 
-              <b-button class="btn btn-warning" type="submit" style="width: 300px; height:50px;">회원가입</b-button>
+              <b-button class="btn btn-warning" type="submit" style="width: 300px; height:50px;">회원가입</b-button><br>
               <router-link id="login" to="/login"  class="mt-3">로그인으로 돌아가기</router-link>
             </div>
           </div>
