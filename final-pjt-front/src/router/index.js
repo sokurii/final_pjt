@@ -21,7 +21,7 @@ const routes = [
   { // 로그인 페이지
     path: '/login',
     name: 'login',
-    component: LoginView
+    component: LoginView,
   },
   { // 회원가입 페이지
     path: '/signup',

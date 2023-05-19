@@ -70,7 +70,7 @@ REST_AUTH = {
 
 SITE_ID = 1
 
-AUTH_USER_MODEL = 'accounts.User'
+AUTH_USER_MODEL = 'accounts.CustomUser'
 
 # Authentication
 REST_FRAMEWORK = {

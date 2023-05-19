@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>
+    <form class="m-1" @submit.prevent="searchBanks({province, city, bank})">
       <b-form-group label="광역시/도" label-for="province" label-cols-md="auto" class="mb-3">
         <b-form-select id="province" v-model="province" :options="provinces"></b-form-select>
       </b-form-group>
@@ -10,8 +10,8 @@
       <b-form-group label="은행명" label-for="bank" label-cols-md="auto" class="mb-3">
         <b-form-select id="bank" v-model="bank" :options="banks"></b-form-select>
       </b-form-group>
-      <button class="btn btn-primary">이동</button>
-    </div>
+      <button type="submit" class="btn btn-primary">이동</button>
+    </form>
   </div>
 </template>
 
@@ -83,6 +83,11 @@ export default {
           '주식회사 카카오뱅크',
           '토스뱅크 주식회사',
         ],
+      }
+    },
+    methods: {
+      searchBanks(data) {
+        this.$emit('search-banks', data)
       }
     }
 

@@ -14,11 +14,10 @@ export default new Vuex.Store({
     createPersistedState(),
   ],
   state: {
-    articles: [],
     token: null,
-
-    products: [
-    ],
+    articles: [],
+    products: [],
+    exchanges: [],
   },
   getters: {
     isLogin(state) {
@@ -32,8 +31,10 @@ export default new Vuex.Store({
     },
     GET_DEPOSIT_PRODUCTS(state, products) {
       state.products = products
-    }
-
+    },
+    GET_EXCHANGES(state, exchanges) {
+      state.exchanges = exchanges
+    },
   },
   actions: {
     signUp(context, payload) {
@@ -55,8 +56,11 @@ export default new Vuex.Store({
         .then(res => {
           // context.commit('SIGN_UP', res.data.key)
           context.commit('SAVE_TOKEN', res.data.key)
+          alert('회원가입이 완료되었습니다!')
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+          alert('잘못 입력하셨습니다. 다시 입력하세요.')
+        })
     },
 
     logIn(context, payload) {
@@ -73,7 +77,9 @@ export default new Vuex.Store({
           context.commit('SAVE_TOKEN', res.data.key)
           alert('로그인 되었습니다!')
         })
-        .catch(err => console.log(err))
+        .catch(()=> {
+          alert('잘못 입력하셨습니다. 다시 입력하세요.')
+        })
 
     },
     getArticles(context) {
@@ -97,6 +103,17 @@ export default new Vuex.Store({
       })
         .then(res => 
           context.commit('GET_DEPOSIT_PRODUCTS', res.data)
+        )
+        .catch(err => console.log(err))
+    },
+
+    getExchanges(context) {
+      axios({
+        method: 'get',
+        url: `${API_URL}/finlife/exchangeinfo/`
+      })
+        .then(res =>
+          context.commit('GET_EXCHANGES', res.data)
         )
         .catch(err => console.log(err))
     }

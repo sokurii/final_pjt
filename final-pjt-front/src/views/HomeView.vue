@@ -33,7 +33,7 @@
             <div class="copy-box">
               <div class="title">예/적금 금리비교</div>
               <div class="copy">전국 금융기관의 예금, 적금 정보를<br>한 눈에 알려 드려요!</div>
-              <router-link to="/finance" class="btn btn-secondary">금융상품비교하기</router-link> 
+              <button @click="goToFinance" to="/finance" class="btn btn-secondary">금융상품비교하기</button> 
             </div>
           </div>
         </div>
@@ -46,7 +46,7 @@
             <div class="copy-box">
               <div class="title">환율계산기</div>
               <div class="copy">내게 꼭 필요했던 환율,<br>ㅇㅇ에게 맡겨 보세요!</div>
-              <router-link to="/exchange" class="btn btn-secondary">환율계산하러가기</router-link> 
+              <button @click="goToExchange" to="/exchange" class="btn btn-secondary">환율계산하러가기</button> 
             </div>
           </div>
           <div class="col-md-6 d-flex justify-content-center align-items-center">
@@ -66,7 +66,7 @@
             <div class="copy-box">
               <div class="title">우리동네은행</div>
               <div class="copy">마음에 드는 상품을 어디서 가입할까?<br>주변 은행을 찾아보세요!</div>
-              <router-link to="/map" class="btn btn-secondary">우리동네은행찾기</router-link> 
+              <button @click="goToMap" to="/map" class="btn btn-secondary">우리동네은행찾기</button> 
             </div>
           </div>
         </div>
@@ -85,7 +85,39 @@ export default {
   components: {
     BCarousel,
     BCarouselSlide
-  }
+  },
+  computed: {
+    isLogin() {
+      return this.$store.getters.isLogin
+    },
+  },
+  methods: {
+    goToFinance() {
+      console.log(this.isLogin)
+      if (this.isLogin) {
+        this.$router.push({ name: 'finance' })
+      } else {         
+        alert('로그인이 필요한 서비스입니다.')
+        this.$router.push({ name: 'login' })
+      }
+    },
+    goToExchange() {
+      if (this.isLogin) {
+        this.$router.push({ name: 'exchange' })
+      } else {         
+        alert('로그인이 필요한 서비스입니다.')
+        this.$router.push({ name: 'login' })
+      }
+    },
+    goToMap() {
+      if (this.isLogin) {
+        this.$router.push({ name: 'map' })
+      } else {         
+        alert('로그인이 필요한 서비스입니다.')
+        this.$router.push({ name: 'login' })
+      }
+    },
+  },
 }
 </script>
 

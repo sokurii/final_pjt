@@ -119,14 +119,10 @@ export default {
       const selectedAge =this.selectedAge  // 나이
       const selectedResidence = this.selectedResidence  // 거주지
 
-      console.log(id, password1, password2, selectedGender, selectedAge, selectedResidence)
-
       const payload = {
         id, password1, password2, selectedGender, selectedAge, selectedResidence,
       }
       this.$store.dispatch('signUp', payload)
-
-      alert('회원가입이 완료되었습니다!')
       
     }
   }

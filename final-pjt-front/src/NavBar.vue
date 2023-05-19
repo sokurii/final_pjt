@@ -41,7 +41,7 @@ export default {
     },
     computed: {
       isLogin() {
-        return this.$store.getters.isLogin;
+        return this.$store.getters.isLogin
       },
     },
     methods: {
