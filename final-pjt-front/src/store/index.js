@@ -40,12 +40,16 @@ export default new Vuex.Store({
       const username = payload.id
       const password1 = payload.password1
       const password2 = payload.password2
+      const gender = payload.selectedGender
+      const age = payload.selectedAge
+      const residence = payload.selectedResidence
+
 
       axios({
         method: 'post',
         url: `${API_URL}/accounts/signup/`,
         data: {
-          username, password1, password2
+          username, password1, password2, gender, age, residence,
         }
       })
         .then(res => {
@@ -67,11 +71,11 @@ export default new Vuex.Store({
       })
         .then(res => {
           context.commit('SAVE_TOKEN', res.data.key)
+          alert('로그인 되었습니다!')
         })
         .catch(err => console.log(err))
 
     },
-
     getArticles(context) {
       axios({
         method: 'get',
