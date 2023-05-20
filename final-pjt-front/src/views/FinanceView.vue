@@ -1,14 +1,20 @@
 <template>
   <div>
     <h1 class="d-flex m-4">금융상품조회</h1>
-    <div class="d-flex m-4">
-      <DepositProductSearchInput @search-bank="getSearchBankD"/>
-      <DepositProductList :bankD="bankD"/>
-    </div>
-    <div class="d-flex m-4">
-      <SavingProductSearchInput @search-bank="getSearchBankS"/>
-      <SavingProductList :bankS="bankS"/>
-    </div>
+    <b-tabs content-class="mt-3">
+      <b-tab title="정기예금" active>
+        <div class="d-flex m-4">
+          <DepositProductSearchInput @search-bank="getSearchBankD"/>
+          <DepositProductList :bankD="bankD"/>
+        </div>
+      </b-tab>
+      <b-tab title="정기적금">
+        <div class="d-flex m-4">
+          <SavingProductSearchInput @search-bank="getSearchBankS"/>
+          <SavingProductList :bankS="bankS"/>
+        </div>
+      </b-tab>
+    </b-tabs>
   </div>
 </template>
 
