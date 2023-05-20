@@ -5,7 +5,7 @@
     <p>금융상품명 : 
       <router-link
       :to="{
-        name: 'productDetail',
+        name: 'depositDetail',
         params: { fin_prdt_cd: product.fin_prdt_cd }
       }"
       >
@@ -21,7 +21,7 @@
 
 <script>
 export default {
-  name: 'ProductListItem',
+  name: 'DepositProductListItem',
   props: {
     product: Object,
   },

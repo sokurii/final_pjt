@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ProductListItem 
+    <DepositProductListItem 
       v-for="product in filteredProducts"
       :key="product.id"
       :product="product"
@@ -9,26 +9,26 @@
 </template>
 
 <script>
-import ProductListItem from './ProductListItem.vue'
+import DepositProductListItem from './DepositProductListItem.vue'
 
 export default {
-  name: 'ProductList',
+  name: 'DepositProductList',
   components: {
-    ProductListItem,
+    DepositProductListItem,
   },
   props: {
-    bank: String,
+    bankD: String,
   },
   computed: {
-    products() {
-      return this.$store.state.products
+    depositProducts() {
+      return this.$store.state.depositProducts
     },
     filteredProducts() {
-      if (this.bank === '전체') {
-        return this.products
+      if (this.bankD === '전체') {
+        return this.depositProducts
       }
-      return this.products.filter(
-        (product) => product.kor_co_nm === this.bank
+      return this.depositProducts.filter(
+        (depositProduct) => depositProduct.kor_co_nm === this.bankD
       )
     }
   },

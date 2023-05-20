@@ -8,7 +8,8 @@ import MapView from '../views/MapView.vue'
 import ExchangeView from '../views/ExchangeView.vue'
 import CommunityView from '../views/CommunityView.vue'
 import ProfileView from '../views/ProfileView.vue'
-import ProductDetailView from '../views/ProductDetailView.vue'
+import DepositProductDetailView from '../views/DepositProductDetailView.vue'
+import SavingProductDetailView from '../views/SavingProductDetailView.vue'
 
 Vue.use(VueRouter)
 
@@ -33,10 +34,15 @@ const routes = [
     name: 'finance',
     component: FinanceView
   },
+  { // 정기예금 상품 상세 조회 페이지
+    path: '/finance/deposit/:fin_prdt_cd',
+    name: 'depositDetail',
+    component: DepositProductDetailView
+  },
   { // 금융상품 상세 조회 페이지
-    path: '/finance/:fin_prdt_cd',
-    name: 'productDetail',
-    component: ProductDetailView
+    path: '/finance/saving/:fin_prdt_cd',
+    name: 'savingDetail',
+    component: SavingProductDetailView
   },
   { // 지도 페이지
     path: '/map',
