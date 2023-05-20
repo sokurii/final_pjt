@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: 'ProductSearchInput',
+  name: 'SavingProductSearchInput',
   data() {
     return {
       bank: '전체',

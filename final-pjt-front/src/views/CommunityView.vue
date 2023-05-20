@@ -1,12 +1,17 @@
 <template>
   <div>
-    <p>CommunityView</p>
+    <ArticleList />
   </div>
 </template>
 
 <script>
+import ArticleList from '@/components/ArticleList.vue'
+
 export default {
   name: 'CommunityView',
+  components: {
+    ArticleList,
+  },
   computed: {
     isLogin() {
       return this.$store.getters.isLogin

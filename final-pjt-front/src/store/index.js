@@ -16,7 +16,8 @@ export default new Vuex.Store({
   state: {
     token: null,
     articles: [],
-    products: [],
+    depositProducts: [],
+    savingProducts: [],
     exchanges: [],
   },
   getters: {
@@ -29,12 +30,19 @@ export default new Vuex.Store({
       state.token = token
       router.push({ name : 'home' })
     },
-    GET_DEPOSIT_PRODUCTS(state, products) {
-      state.products = products
+    GET_DEPOSIT_PRODUCTS(state, depositProducts) {
+      state.depositProducts = depositProducts
+    },
+    GET_SAVING_PRODUCTS(state, savingProducts) {
+      state.savingProducts = savingProducts
     },
     GET_EXCHANGES(state, exchanges) {
       state.exchanges = exchanges
     },
+
+    GET_ARTICLES(state, articles) {
+      state.articles = articles
+    }
   },
   actions: {
     signUp(context, payload) {
@@ -88,12 +96,12 @@ export default new Vuex.Store({
         url: `${API_URL}/api/v1/articles/`,
         headers: {
           Authorization: `Token ${ context.state.token }`
-        }
-          .then(res =>
-            { context.commit('GET_ARTICLES', res.data) }
-          )
-          .catch(err => {console.log(err)})
+        },
       })
+        .then(res =>
+          { context.commit('GET_ARTICLES', res.data) }
+        )
+        .catch(err => {console.log(err)})
     },
 
     getDepositProducts(context) {
@@ -103,6 +111,17 @@ export default new Vuex.Store({
       })
         .then(res => 
           context.commit('GET_DEPOSIT_PRODUCTS', res.data)
+        )
+        .catch(err => console.log(err))
+    },
+
+    getSavingProducts(context) {
+      axios({
+        method: 'get',
+        url: `${API_URL}/finlife/saving-products/`
+      })
+        .then(res => 
+          context.commit('GET_SAVING_PRODUCTS', res.data)
         )
         .catch(err => console.log(err))
     },
