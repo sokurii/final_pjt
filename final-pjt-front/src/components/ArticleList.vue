@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>게시글 목록</h1>
+    <!-- <h3 v-if="noArticles">생성된 게시글이 없습니다.</h3> -->
     <router-link :to="{ name: 'CreateArticle' }" class="btn btn-primary">게시글 작성하기</router-link>
     <ArticleListItem 
       v-for="article in articles"
@@ -21,8 +22,11 @@ export default {
     articles() {
       return this.$store.state.articles
     },
+    noArticles() {
+      return this.$store.state.articles && this.$store.state.articles.length === 0
+    },
   },
-  mounted() {
+  created() {
     this.getArticles()
   },
   methods: {

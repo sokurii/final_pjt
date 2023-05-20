@@ -12,6 +12,7 @@ import DepositProductDetailView from '../views/DepositProductDetailView.vue'
 import SavingProductDetailView from '../views/SavingProductDetailView.vue'
 import CreateArticleView from '../views/CreateArticleView.vue'
 import DetailArticleView from '../views/DetailArticleView.vue'
+import UpdateArticleView from '../views/UpdateArticleView.vue'
 
 Vue.use(VueRouter)
 
@@ -70,6 +71,11 @@ const routes = [
     path: '/community/:id',
     name: 'DetailArticle',
     component: DetailArticleView
+  },
+  { // 게시글 수정 페이지
+    path: '/community/:id/update',
+    name: 'UpdateArticle',
+    component: UpdateArticleView
   },
   { // 프로필 페이지
     path: '/profile',

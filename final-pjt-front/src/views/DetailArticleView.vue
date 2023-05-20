@@ -2,7 +2,14 @@
   <div>
     <h1>게시글 상세 정보</h1>
     <div class="mb-5 d-flex">
-      <button class="btn btn-light">수정하기</button>
+      <router-link
+      :to="{
+        name: 'UpdateArticle',
+        params: { id: article.id, title: article.title, content: article.content },
+      }"
+      >
+        <button class="btn btn-light">수정하기</button>
+      </router-link>
       <button class="btn btn-danger" @click="deleteArticle">삭제하기</button>
     </div>
     <div>
@@ -23,10 +30,10 @@ export default {
   name: 'DetailArticleView',
   data() {
     return {
-      article: null
+      article: {}
     }
   },
-  created() {
+  mounted() {
     this.getArticleDetail()
   },
   methods: {
@@ -52,7 +59,7 @@ export default {
         .catch(err => console.log(err))
     },
     goBack() {
-      this.$router.go(-1)
+      this.$router.push({ name: 'community' })
     }
   }
 }
