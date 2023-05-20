@@ -10,6 +10,8 @@ import CommunityView from '../views/CommunityView.vue'
 import ProfileView from '../views/ProfileView.vue'
 import DepositProductDetailView from '../views/DepositProductDetailView.vue'
 import SavingProductDetailView from '../views/SavingProductDetailView.vue'
+import CreateArticleView from '../views/CreateArticleView.vue'
+import DetailArticleView from '../views/DetailArticleView.vue'
 
 Vue.use(VueRouter)
 
@@ -58,6 +60,16 @@ const routes = [
     path: '/community',
     name: 'community',
     component: CommunityView
+  },
+  { // 게시글 작성 페이지
+    path: '/community/create',
+    name: 'CreateArticle',
+    component: CreateArticleView
+  },
+  { // 게시글 상세 페이지
+    path: '/community/:id',
+    name: 'DetailArticle',
+    component: DetailArticleView
   },
   { // 프로필 페이지
     path: '/profile',

@@ -39,6 +39,10 @@ export default new Vuex.Store({
     GET_EXCHANGES(state, exchanges) {
       state.exchanges = exchanges
     },
+
+    GET_ARTICLES(state, articles) {
+      state.articles = articles
+    }
   },
   actions: {
     signUp(context, payload) {
@@ -92,12 +96,12 @@ export default new Vuex.Store({
         url: `${API_URL}/api/v1/articles/`,
         headers: {
           Authorization: `Token ${ context.state.token }`
-        }
-          .then(res =>
-            { context.commit('GET_ARTICLES', res.data) }
-          )
-          .catch(err => {console.log(err)})
+        },
       })
+        .then(res =>
+          { context.commit('GET_ARTICLES', res.data) }
+        )
+        .catch(err => {console.log(err)})
     },
 
     getDepositProducts(context) {
