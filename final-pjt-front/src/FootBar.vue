@@ -24,4 +24,10 @@ export default {
     align-content: center;
     font-size: 1rem;
     }
+
+    @media (max-width:768px) {
+    footer {
+        font-size: 0.8rem;
+    }
+    }
 </style>

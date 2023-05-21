@@ -20,13 +20,13 @@
   
 </script>
 
-
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+  /* 추가 */
   color: #000000;
   background-color: #F3F2E9;
   position: relative;
@@ -73,7 +73,6 @@ nav a {
 nav a.router-link-exact-active {
   color: #e98f1a;
 }
-
 
 
 /* @media (max-width:768px) {
