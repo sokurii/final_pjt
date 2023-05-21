@@ -15,19 +15,29 @@
     <div>
       <p>제목 : {{ article.title }} </p>
       <p>작성자 : {{ article.username }} </p>
-      <p>생성 날짜 : {{ article.created_at }}</p>
+      <p>작성 날짜 : {{ article.created_at }}</p>
       <p>내용 : {{ article.content }} </p>
     </div>
+    <hr>
+    <h3>댓글 목록</h3>
+    <CommentList :comments="article.comment_set" :id="article.id"/>
+
+
     <button class="btn btn-primary" @click="goBack">뒤로가기</button>
   </div>
 </template>
 
 <script>
+import CommentList from '@/components/CommentList.vue'
+
 import axios from 'axios'
 const API_URL = 'http://127.0.0.1:8000'
 
 export default {
   name: 'DetailArticleView',
+  components: {
+    CommentList,
+  },
   data() {
     return {
       article: {}
