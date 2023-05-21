@@ -1,7 +1,7 @@
 <template>
   <div class="profile-page">
 
-    <div class="page-header header-filter" data-parallax="true" style="background-image:url('https://demos.creative-tim.com/bs3/material-kit/assets/img/examples/city.jpg');"></div>
+    <div class="page-header" data-parallax="true" style="background-image:url('https://demos.creative-tim.com/bs3/material-kit/assets/img/examples/city.jpg');"></div>
     <div class="main main-container">
       <div class="profile-content ">
         <div class="container">
