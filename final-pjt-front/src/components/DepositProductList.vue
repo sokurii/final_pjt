@@ -4,6 +4,7 @@
       v-for="product in filteredProducts"
       :key="product.id"
       :product="product"
+      :options="product.depositoptions"
     />
   </div>
 </template>
