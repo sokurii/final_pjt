@@ -42,6 +42,9 @@ export default new Vuex.Store({
 
     GET_ARTICLES(state, articles) {
       state.articles = articles
+    },
+    NO_ARTICLES(state) {
+      state.articles = []
     }
   },
   actions: {
@@ -101,7 +104,9 @@ export default new Vuex.Store({
         .then(res =>
           { context.commit('GET_ARTICLES', res.data) }
         )
-        .catch(err => {console.log(err)})
+        .catch(err => {
+          context.commit('NO_ARTICLES')
+        })
     },
 
     getDepositProducts(context) {
