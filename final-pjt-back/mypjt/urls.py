@@ -20,6 +20,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('finlife/', include('finlife.urls')),
     path('api/v1/', include('articles.urls')),
+    path('accounts/profile/', include('accounts.urls')),
     
     # 계정 관련
     path('accounts/', include('dj_rest_auth.urls')),
