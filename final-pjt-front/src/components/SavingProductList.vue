@@ -14,6 +14,9 @@
           </colgroup> -->
           <thead>
           <th style="width: 100px">n개월</th>
+          <th style="width: 100px">금리</th>
+          <th style="width: 100px">적립방식</th>
+          <th style="width: 100px">지급방식</th>
           <th style="width: 100px">세전이자</th>
           <th style="width: 100px">세후이자</th>
           <th style="width: 200px">은행명</th>
@@ -36,9 +39,20 @@
             <tbody >
 
               <tr v-for="product in filteredProducts" :key="product.id" class="body_content d-flex p-3 mt-1">
-                <td style="width: 100px">오 된당 ㅋㅋ </td>
-                <td style="width: 100px">오 된당 ㅋㅋ </td>
-                <td style="width: 100px">오 된당 ㅋㅋ </td>
+                <td>
+                  <div class="row" v-for="option in product.savingoptions" :key="option.id">                
+                    <div class="col" style="width: 100px">{{ option.save_trm }}</div>
+                    <div class="col" style="width: 100px">{{ option.intr_rate }}</div>
+                    <div class="col" style="width: 100px">{{ option.rsrv_type_nm }}</div>
+                    <div class="col" style="width: 100px">{{ option.intr_rate_type_nm }}</div>
+                    <div class="col" style="width: 100px">세전이자</div>
+                    <div class="col" style="width: 100px">세후이자</div>
+                    <!-- <td style="width: 100px">{{ option.intr_rate }} </td>
+                    <td style="width: 100px">{{ option.intr_rate_type_nm }}</td>
+                    <td style="width: 100px">세전이자</td>
+                    <td style="width: 100px">세후이자</td> -->
+                  </div>            
+                </td>
                 <td style="width: 200px">{{ product.kor_co_nm }}</td>
                 <td style="width: 320px">
                   <router-link
