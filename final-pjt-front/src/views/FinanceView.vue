@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-tabs content-class="bg-white">
+    <b-tabs content-class="bg-white" justified >
       <h3>금융상품비교, 설명 div 만들기</h3>
       <b-tab title="정기예금" active class="tab">
         <div id="container">

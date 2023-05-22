@@ -1,59 +1,34 @@
 <template>
-
   <div class="right_wrap">
-      <div class="fix_header d-flex justify-content-between p-3">
-        <!-- <table class="main_table"> -->
-          <!-- <colgroup>
-            <col width="100px">
-            <col width="100px">
-            <col width="100px">
-            <col width="200px">
-            <col width="320px">      
-          </colgroup> -->
-          <thead>
-          <th style="width: 100px">n개월</th>
-          <th style="width: 100px">세전이자</th>
-          <th style="width: 100px">세후이자</th>
-          <th style="width: 200px">은행명</th>
-          <th style="width: 320px">상품명</th>
-          </thead>
-        <!-- </table> -->
-      </div> 
+    <div class="fix_header d-flex justify-content-between p-3">
+      <thead>
+        <th style="width: 100px">n개월</th>
+        <th style="width: 100px">세전이자</th>
+        <th style="width: 100px">세후이자</th>
+        <th style="width: 200px">은행명</th>
+        <th style="width: 320px">상품명</th>
+      </thead>
 
-      <div class="fix_body d-flex justify-content-between">
+    </div>
 
-        <!-- <table class="main_table content"> -->
-            <!-- <colgroup>
-              <col width="100px">
-              <col width="100px">
-              <col width="100px">
-              <col width="100px">
-              <col width="100px">
-            </colgroup> -->
-
-            <tbody >
-
-              <tr v-for="product in filteredProducts" :key="product.id" class="body_content d-flex p-3 mt-1">
-                <td style="width: 100px">오 된당 ㅋㅋ </td>
-                <td style="width: 100px">오 된당 ㅋㅋ </td>
-                <td style="width: 100px">오 된당 ㅋㅋ </td>
-                <td style="width: 200px">{{ product.kor_co_nm }}</td>
-                <td style="width: 320px">
-                  <router-link
-                  :to ="{
-                  name : 'depositDetail',
-                  params: {fin_prdt_cd: product.fin_prdt_cd}
-                  }"
-                  >
-                  {{ product.fin_prdt_nm }}
-                  </router-link>
-                </td>
-              </tr>
-
-            </tbody>
-   
-        <!-- </table> -->
-      </div>
+    <div class="fix_body d-flex justify-content-between">
+      <tbody>
+        <tr v-for="product in filteredProducts" :key="product.id" class="body_content d-flex p-3 mt-1">
+          <td style="width: 100px">오 된당 ㅋㅋ</td>
+          <td style="width: 100px">오 된당 ㅋㅋ</td>
+          <td style="width: 100px">오 된당 ㅋㅋ</td>
+          <td style="width: 200px">{{ product.kor_co_nm }}</td>
+          <td style="width: 320px">
+            <router-link :to="{
+              name: 'depositDetail',
+              params: { fin_prdt_cd: product.fin_prdt_cd }
+            }">
+              {{ product.fin_prdt_nm }}
+            </router-link>
+          </td>
+        </tr>
+      </tbody>
+    </div>
   </div>
 </template>
 
