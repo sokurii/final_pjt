@@ -130,3 +130,21 @@ def saving_product_detail(request, fin_prdt_cd):
     saving_product = get_object_or_404(SavingProducts, fin_prdt_cd=fin_prdt_cd)
     serializer = SavingProductsSerializer(saving_product)
     return Response(serializer.data)
+
+@api_view(['POST'])
+def like_deposit_products(request, fin_prdt_cd):
+    deposit = DepositProducts.objects.get(fin_prdt_cd=fin_prdt_cd)
+    
+    if deposit.like_users.filter(pk=request.user.pk).exists():
+        deposit.like_users.remove(request.user)
+    else:
+        deposit.like_users.add(request.user)
+
+@api_view(['POST'])
+def like_saving_products(request, fin_prdt_cd):
+    saving = SavingProducts.objects.get(fin_prdt_cd=fin_prdt_cd)
+    
+    if saving.like_users.filter(pk=request.user.pk).exists():
+        saving.like_users.remove(request.user)
+    else:
+        saving.like_users.add(request.user)

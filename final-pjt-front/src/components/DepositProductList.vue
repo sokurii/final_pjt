@@ -1,6 +1,10 @@
 <template>
 
   <div class="right_wrap">
+      <div class="notice">
+        <h6>세율은 일반과세(15.4%)를 적용했으며, 실제와는 차이가 있을 수 있습니다.</h6>
+      </div>
+
       <div class="fix_header d-flex justify-content-between p-3">
         <!-- <table class="main_table"> -->
           <!-- <colgroup>
