@@ -107,8 +107,6 @@ def exchangeinfo(request):
     ExchangeInfos.objects.all().delete()
     
     for data in response:
-        if data.get('cur_unit') == 'KRW':
-            continue
         exchangeinfo = ExchangeInfos()
         exchangeinfo.cur_unit = data.get('cur_unit')
         exchangeinfo.cur_nm = data.get('cur_nm')

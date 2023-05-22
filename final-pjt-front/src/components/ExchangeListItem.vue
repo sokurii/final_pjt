@@ -1,7 +1,6 @@
 <template>
   <div>
-    <p>통화명 : {{ exchange.cur_unit }} | {{ exchange.cur_nm }} </p>
-    <p>환율 : {{ exchange.exchange }}</p>
+    <p>통화명 : {{ exchange.cur_unit }} | {{ exchange.cur_nm }} | 환율 : {{ exchange.exchange }}</p>
   </div>
 </template>
 

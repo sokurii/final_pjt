@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ExchangeList />
+    <!-- <ExchangeList /> -->
     <ExchangeCalculator />
   </div>
 </template>
