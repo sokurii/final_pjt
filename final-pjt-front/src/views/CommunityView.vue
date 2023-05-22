@@ -1,23 +1,32 @@
 <template>
   <div>
-    <h1>CommunityView</h1>
-    <button @click='goToWrite'>글 작성하기</button>
-
-
+    <ArticleList />
   </div>
 </template>
 
 <script>
-
+import ArticleList from '@/components/ArticleList.vue'
 
 export default {
   name: 'CommunityView',
-  methods:{
-    goToWrite(){
-      this.$router.push('/write')
+  components: {
+    ArticleList,
+  },
+  computed: {
+    isLogin() {
+      return this.$store.getters.isLogin
+    }
+  },
+  methods: {
+    getArticles() {
+      if (this.isLogin) {
+        this.$store.dispatch('getArticles')
+      } else {
+        alert('로그인이 필요한 서비스입니다!')
+        this.$router.push({ name: 'login' })
+      }
     }
   }
-
 }
 </script>
 

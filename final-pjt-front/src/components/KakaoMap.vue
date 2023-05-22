@@ -1,7 +1,10 @@
 <template>
   <div>
     <div id="map">
-      
+    </div>
+    <div id="menu_wrap" class="bg_white">
+      <ul id="placesList"></ul>
+      <div id="pagination"></div>
     </div>
   </div>
 </template>
@@ -12,8 +15,12 @@ export default {
   data() {
     return {
         map: null,
-        KAKAO_API_KEY: process.env.VUE_APP_KAKAO_API_KEY
+        KAKAO_API_KEY: process.env.VUE_APP_KAKAO_API_KEY,
+        markers: [],
     }
+  },
+  props: {
+    datas: Object,
   },
   mounted() {
     if (window.kakao && window.kakao.maps) {
@@ -37,12 +44,15 @@ export default {
         const options = {
             center: new window.kakao.maps.LatLng(35.096378878315, 128.85365157034527), // (위도, 경도)
             level: 2
+            // 초기 위치는 SSAFY 부울경 캠퍼스
         }
 
         this.map = new window.kakao.maps.Map(container, options)
         this.loadMarker()
     },
+    // 마커 생성
     loadMarker() {
+        // SSAFY 부울경 캠퍼스에 마커 생성
         const markerPosition = new window.kakao.maps.LatLng(
             35.096378878315,
             128.85365157034527

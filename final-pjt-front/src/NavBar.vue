@@ -9,11 +9,16 @@
         <router-link @click.native="goToLogin" to="/exchange">환율</router-link>
         <router-link @click.native="goToLogin" to="/map">지도</router-link> 
         <router-link to="/community">게시판</router-link>
+        <!-- <div>
+          <a href="#" @click="goToFinance">금융상품비교</a>  |
+          <a href="#" @click="goToExchange">환율</a>  |
+          <a href="#" @click="goToMap">지도</a>  |
+          <a href="#" @click="goToCommunity">게시판</a>
+        </div> -->
       </div>
-      
       <div class='account'>
         <span v-if="!isLogin">
-          <router-link to="/login" >로그인</router-link> |
+          <router-link to="/login">로그인</router-link> |
           <router-link :to="{ name: 'signup' }">회원가입</router-link>
         </span>
         <span v-if="isLogin">
@@ -36,7 +41,7 @@ export default {
     },
     computed: {
       isLogin() {
-        return this.$store.getters.isLogin;
+        return this.$store.getters.isLogin
       },
     },
     methods: {
@@ -53,7 +58,17 @@ export default {
         }
 
       },
-
+    // methods:{
+    //     logout(){
+    //         this.$store.dispatch('logout')
+    //     }
+    // },
+    // computed:{
+    //     ...mapGetters(['isLoggedIn',]),
+    //     loginState(){
+    //         return (this.isLoggedIn) ? 'Logout' : 'Login'
+    //     }
+    // },
     },
 }
 </script>

@@ -1,5 +1,4 @@
 <template>
-
   <div class="right_wrap">
       <div class="fix_header d-flex justify-content-between p-3">
         <!-- <table class="main_table"> -->
@@ -58,54 +57,40 @@
 </template>
 
 <script>
-import DepositProductListItem from './DepositProductListItem.vue'
+import SavingProductListItem from './SavingProductListItem.vue'
 
 export default {
-  name: 'DepositProductList',
+  name: 'SavingProductList',
   components: {
-    DepositProductListItem,
+    SavingProductListItem,
   },
   props: {
-    bankD: String,
+    bankS: String,
   },
   computed: {
-    depositProducts() {
-      return this.$store.state.depositProducts
+    savingProducts() {
+      return this.$store.state.savingProducts
     },
     filteredProducts() {
-      if (this.bankD === '전체') {
-        return this.depositProducts
+      if (this.bankS === '전체') {
+        return this.savingProducts
       }
-      return this.depositProducts.filter(
-        (depositProduct) => depositProduct.kor_co_nm === this.bankD
+      return this.savingProducts.filter(
+        (savingProduct) => savingProduct.kor_co_nm === this.bankS
       )
     }
   },
   created() {
-    this.getDepositProducts()
+    this.getSavingProducts()
   },
   methods: {
-    getDepositProducts() {
-      this.$store.dispatch('getDepositProducts')
+    getSavingProducts() {
+      this.$store.dispatch('getSavingProducts')
     }
   }
 }
 </script>
 
 <style>
-.right_wrap{
-    width: 1000px;
-    padding-left: 80px;
-    padding-top: 10px;
-    /* padding-bottom: 90px; */
-    min-height: -moz-calc( 100vh - 170px);
-    min-height: calc( 100vh - 170px);
-}
-.fix_header{
-  /* background-color: #F3F2E9; */
-  background-color: #f3d993;
-  border-radius: 10px;
-}
-
 
 </style>

@@ -12,7 +12,7 @@
 
             <div class="left_wrap fixed shadow">
                 <p class="tit text-start">
-                    <strong class="head_txt">정기예금</strong><br>
+                    <strong class="head_txt">정기적금</strong><br>
                     <span>검색조건을 입력해주세요</span>
                 </p>
   
@@ -88,12 +88,13 @@
                       </select>
                     </div>
                   </div>
-
+                  
                   <!-- 확인 / 초기화  -->
                 <div class="btn_wrap pt-4 pb-5">
                     <button type="submit" class="btn btn-primary">조회</button>
                     <button class="btn_reset">초기화</button>
                 </div>
+
                 </form>
                     
   
@@ -182,69 +183,3 @@ export default {
 }
 </script>
 
-<style>
-
-/* 화면에 보여지는 영역 */
-
-.input_group {
-  display: flex;
-}
-
-.input_group.all {
-  display: block;
-
-}
-
-/* 화면에 보여지는 영역 */
-
-.left_wrap {
-  border-radius: 10px;
-  width: 300px;
-  min-height: -moz-calc( 100vh - 220px);
-  min-height: calc( 100vh - 220px);
-  background-color: #fff;
-}
-
-.tit{
-  border-top-right-radius: 10px;
-  border-top-left-radius: 10px;
-  background-color: #6da36f;
-  padding: 25px;
-}
-.left_menu_inner > * {
-  width: 100%;
-  display: block;
-  background-color: #fff;
-}
-
-.input_box{
-  margin-bottom: 10px;
-}
-
-.input_box>input, select{
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 5px;
-  width: 250px; 
-  height: 35px;
-}
-
-.input_title>*{
-  padding: 5px 27px;
-  float: left;
-}
-
-.input_label{
-  padding: 5px 27px;
-  float:left
-}
-
-.head_txt{
-  font-size: 24px;
-  color: white;
-}
-span{
-  color: white;
-}
-
-</style>

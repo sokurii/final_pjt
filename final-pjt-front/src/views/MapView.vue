@@ -1,5 +1,9 @@
 <template>
   <div class="profile-page">
+    <!-- <h1>은행 위치 조회</h1>
+    <MapSearchInput @search-banks="getSearchDatas"/>
+    <KakaoMap :datas="datas"/> -->
+<!-- ------------------------------------------------- -->
     <div class="profile-header d-flex align-items-center justify-content-center" data-parallax="true" >
       <h1>우리 동네 은행 찾기</h1>
     </div>
@@ -7,15 +11,20 @@
     <div class="main main-container mt-4">
       <div class="map-container row">
         <div class="col-3">
-          <MapSearchInput />    
+          <MapSearchInput @search-banks="getSearchDatas"/>    
         </div>
         <div class="col">
-          <KakaoMap />
+          <KakaoMap :datas="datas"/>
         </div>
       </div>
     </div>
 
+
   </div>
+
+
+
+  
 </template>
 
 <script>
@@ -27,6 +36,22 @@ export default {
   components: {
     KakaoMap,
     MapSearchInput
+  },
+  data() {
+    return {
+      datas: {
+        province: null,
+        city: null,
+        bank: null,
+      }
+    }
+  },
+  methods: {
+    getSearchDatas(datas) {
+      this.datas.province = datas.province
+      this.datas.city = datas.city
+      this.datas.bank = datas.bank
+    }
   }
 }
 </script>
@@ -56,7 +81,5 @@ export default {
   position: relative;
   z-index: 3;
 }
-
-
 
 </style>

@@ -38,31 +38,7 @@
   padding-bottom: 60px; /* FootBar의 높이와 같은 값으로 설정 */
 }
 
-/* 
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  background-color: #F3F2E9;
-  height: 90px;
-} */
 
-/* .menu{
-  display : flex;
-  justify-content: center;
-  align-items: center;
-  gap:20px;
-  padding-left: 200px;
-} */
-
-/* .account{
-  display:flex;
-  gap:20px;
-  padding-right: 200px;
-} */
-
-/* nav {
-  padding: 30px;
-} */
 
 nav a {
   font-weight: bold;
