@@ -82,6 +82,18 @@ export default {
 </script>
 
 <style scoped>
+/* 로그인이랑 회원가입 창에 적용해보기  */
+/* .header-filter:before {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: block;
+    left: 0;
+    top: 0;
+    content: "";
+    background: rgba(0,0,0,.5);
+} */
 .loginform{
   width: 50%;
   height: 70%;

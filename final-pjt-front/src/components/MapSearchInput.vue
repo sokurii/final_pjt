@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="banner flex-column justify-content:center align-items:center">
     <form class="m-1" @submit.prevent="searchBanks({province, city, bank})">
       <b-form-group label="광역시/도" label-for="province" label-cols-md="auto" class="mb-3">
         <b-form-select id="province" v-model="province" :options="provinces"></b-form-select>
@@ -95,5 +95,35 @@ export default {
 </script>
 
 <style>
+label{
+  font-weight: bold;
+}
 
+.banner {
+  /* width:20% ; */
+  height: 100%;
+  background-color: #7ab87d; /* 배너 배경색 */
+  color: #fff; /* 배너 텍스트 색상 */
+  padding: 10px 10px; /* 내부 여백 설정 */
+  /* border-radius: 6px; 모서리를 둥글게 */
+  border-top-left-radius: 10px;
+  border-bottom-left-radius:10px;
+  align-items: center;
+  
+  /* display: flex; */
+}
+
+.banner button {
+  background-color: #fff; /* 버튼 배경색 */
+  color: #7ab87d; /* 버튼 텍스트 색상 */
+  padding: 8px 16px; /* 버튼 여백 설정 */
+  border-radius: px; /* 모서리를 둥글게 */
+  border: none; /* 테두리 제거 */
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.banner button:hover {
+  background-color: #e5e5e5; /* 마우스 오버 시 배경색 변경 */
+}
 </style>
