@@ -28,7 +28,8 @@
   text-align: center;
   /* 추가 */
   color: #000000;
-  background-color: #F3F2E9;
+  /* background-color: #F3F2E9; */
+  background-color: white;
   position: relative;
   min-height: 100vh;
   height: 100vh;
