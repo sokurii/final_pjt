@@ -19,7 +19,7 @@ export default new Vuex.Store({
     depositProducts: [],
     savingProducts: [],
     exchanges: [],
-    profile: [],
+    profile: {},
     username: null,
   },
   getters: {
@@ -49,9 +49,9 @@ export default new Vuex.Store({
     NO_ARTICLES(state) {
       state.articles = []
     },
-    // SAVE_PROFILE(state, profile) {
-    //   state.profile = profile
-    // },
+    GET_MY_PROFILE(state, profile) {
+      state.profile = profile
+    },
   },
   actions: {
     signUp(context, payload) {
@@ -156,6 +156,21 @@ export default new Vuex.Store({
       })
         .then(res =>
           context.commit('GET_EXCHANGES', res.data)
+        )
+        .catch(err => console.log(err))
+    },
+
+    getMyProfile(context, payload) {
+      const username = payload.username
+      axios({
+        method: 'get',
+        url: `${API_URL}/accounts/profile/user/${username}`,
+        headers: {
+          Authorization: `Token ${ context.state.token }`
+        },
+      })
+        .then(res =>
+          context.commit('GET_MY_PROFILE', res.data)
         )
         .catch(err => console.log(err))
     }
