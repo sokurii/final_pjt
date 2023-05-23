@@ -25,32 +25,31 @@ def deposit_products(request):  # 정기예금 데이터 저장 및 전체 조�
     base = response.get('result')['baseList']
     options = response.get('result')['optionList']
     
-    query = DepositProducts.objects.all()
-    if not query.exists():
-        for b in base:
-            deposit = DepositProducts()
-            deposit.dcls_month = b.get('dcls_month')
-            deposit.fin_prdt_cd = b.get('fin_prdt_cd')
-            deposit.kor_co_nm = b.get('kor_co_nm')
-            deposit.fin_prdt_nm = b.get('fin_prdt_nm')
-            deposit.etc_note = b.get('etc_note')
-            deposit.join_deny = b.get('join_deny')
-            deposit.join_member = b.get('join_member')
-            deposit.join_way = b.get('join_way')
-            deposit.spcl_cnd = b.get('spcl_cnd')
-            
-            deposit.save()
-            
-        for o in options:
-            fin_prdt_cd = DepositProducts.objects.get(fin_prdt_cd=o.get('fin_prdt_cd'))
-            option = DepositOptions()
-            option.fin_prdt_cd = fin_prdt_cd
-            option.intr_rate_type_nm = o.get('intr_rate_type_nm')
-            option.intr_rate = o.get('intr_rate')
-            option.intr_rate2 = o.get('intr_rate2')
-            option.save_trm = o.get('save_trm')
-            
-            option.save()
+    DepositProducts.objects.all().delete()
+    for b in base:
+        deposit = DepositProducts()
+        deposit.dcls_month = b.get('dcls_month')
+        deposit.fin_prdt_cd = b.get('fin_prdt_cd')
+        deposit.kor_co_nm = b.get('kor_co_nm')
+        deposit.fin_prdt_nm = b.get('fin_prdt_nm')
+        deposit.etc_note = b.get('etc_note')
+        deposit.join_deny = b.get('join_deny')
+        deposit.join_member = b.get('join_member')
+        deposit.join_way = b.get('join_way')
+        deposit.spcl_cnd = b.get('spcl_cnd')
+        
+        deposit.save()
+        
+    for o in options:
+        fin_prdt_cd = DepositProducts.objects.get(fin_prdt_cd=o.get('fin_prdt_cd'))
+        option = DepositOptions()
+        option.fin_prdt_cd = fin_prdt_cd
+        option.intr_rate_type_nm = o.get('intr_rate_type_nm')
+        option.intr_rate = o.get('intr_rate')
+        option.intr_rate2 = o.get('intr_rate2')
+        option.save_trm = o.get('save_trm')
+        
+        option.save()
     
     # return Response({'message': 'Okay'})
     
@@ -68,33 +67,32 @@ def saving_products(request):  # 정기적금 데이터 저장 및 전체 조회
     base = response.get('result')['baseList']
     options = response.get('result')['optionList']
     
-    query = SavingProducts.objects.all()
-    if not query.exists():
-        for b in base:
-            saving = SavingProducts()
-            saving.fin_prdt_cd = b.get('fin_prdt_cd')
-            saving.dcls_month = b.get('dcls_month')
-            saving.kor_co_nm = b.get('kor_co_nm')
-            saving.fin_prdt_nm = b.get('fin_prdt_nm')
-            saving.etc_note = b.get('etc_note')
-            saving.join_deny = b.get('join_deny')
-            saving.join_member = b.get('join_member')
-            saving.join_way = b.get('join_way')
-            saving.spcl_cnd = b.get('spcl_cnd')
-            
-            saving.save()
-            
-        for o in options:
-            fin_prdt_cd = SavingProducts.objects.get(fin_prdt_cd=o.get('fin_prdt_cd'))
-            option = SavingOptions()
-            option.fin_prdt_cd = fin_prdt_cd
-            option.intr_rate_type_nm = o.get('intr_rate_type_nm')
-            option.intr_rate = o.get('intr_rate')
-            option.intr_rate2 = o.get('intr_rate2')
-            option.save_trm = o.get('save_trm')
-            option.rsrv_type_nm = o.get('rsrv_type_nm')
-            
-            option.save()
+    SavingProducts.objects.all().delete()
+    for b in base:
+        saving = SavingProducts()
+        saving.fin_prdt_cd = b.get('fin_prdt_cd')
+        saving.dcls_month = b.get('dcls_month')
+        saving.kor_co_nm = b.get('kor_co_nm')
+        saving.fin_prdt_nm = b.get('fin_prdt_nm')
+        saving.etc_note = b.get('etc_note')
+        saving.join_deny = b.get('join_deny')
+        saving.join_member = b.get('join_member')
+        saving.join_way = b.get('join_way')
+        saving.spcl_cnd = b.get('spcl_cnd')
+        
+        saving.save()
+        
+    for o in options:
+        fin_prdt_cd = SavingProducts.objects.get(fin_prdt_cd=o.get('fin_prdt_cd'))
+        option = SavingOptions()
+        option.fin_prdt_cd = fin_prdt_cd
+        option.intr_rate_type_nm = o.get('intr_rate_type_nm')
+        option.intr_rate = o.get('intr_rate')
+        option.intr_rate2 = o.get('intr_rate2')
+        option.save_trm = o.get('save_trm')
+        option.rsrv_type_nm = o.get('rsrv_type_nm')
+        
+        option.save()
             
     savings = SavingProducts.objects.all()
     serializer = SavingProductsSerializer(savings, many=True)
@@ -109,8 +107,6 @@ def exchangeinfo(request):
     ExchangeInfos.objects.all().delete()
     
     for data in response:
-        if data.get('cur_unit') == 'KRW':
-            continue
         exchangeinfo = ExchangeInfos()
         exchangeinfo.cur_unit = data.get('cur_unit')
         exchangeinfo.cur_nm = data.get('cur_nm')
@@ -134,3 +130,21 @@ def saving_product_detail(request, fin_prdt_cd):
     saving_product = get_object_or_404(SavingProducts, fin_prdt_cd=fin_prdt_cd)
     serializer = SavingProductsSerializer(saving_product)
     return Response(serializer.data)
+
+@api_view(['POST'])
+def like_deposit_products(request, fin_prdt_cd):
+    deposit = DepositProducts.objects.get(fin_prdt_cd=fin_prdt_cd)
+    
+    if deposit.like_users.filter(pk=request.user.pk).exists():
+        deposit.like_users.remove(request.user)
+    else:
+        deposit.like_users.add(request.user)
+
+@api_view(['POST'])
+def like_saving_products(request, fin_prdt_cd):
+    saving = SavingProducts.objects.get(fin_prdt_cd=fin_prdt_cd)
+    
+    if saving.like_users.filter(pk=request.user.pk).exists():
+        saving.like_users.remove(request.user)
+    else:
+        saving.like_users.add(request.user)

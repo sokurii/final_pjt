@@ -1,11 +1,9 @@
 <template>
   <div class="profile-page">
-
     <div class="page-header header-filter" data-parallax="true" style="background-image:url('https://demos.creative-tim.com/bs3/material-kit/assets/img/examples/city.jpg');"></div>
-    <div class="main main-container">
-      <div class="profile-content ">
-        <div class="container">
-          <!-- 프로필 이미지, 유저 이름, 소개글 -->
+    <b-card no-body>
+      <b-tabs pills card vertical>
+        <b-tab title="프로필" active>
           <div class="row d-flex justify-content-center align-items-center">
             <div class="col-md-6 ml-auto mr-auto ">
               <div class="profile ">
@@ -25,12 +23,25 @@
             </div>
           </div>
           <div class="description text-center">
-            <p>이 편지는 영국에서 최초로 시작되어 일년에 한바퀴를 돌면서 받는 사람에게 행운을 주었고 지금은 당신에게로 옮겨진 이 편지는 4일 안에 당신 곁을 떠나야 합니다. 이 편지를 포함해서 7통을 행운이 필요한 사람에게 보내 주셔야 합니다. 복사를 해도 좋습니다. 혹 미신이라 하실지 모르지만 사실입니다. 영국에서 HGXWCH이라는 사람은 1930년에 이 편지를 받았습니다. 그는 비서에게 복사해서 보내라고 했습니다. 며칠 뒤에 복권이 당첨되어 20억을 받았습니다. 어떤 이는 이 편지를 받았으나 96시간 이내 자신의 손에서 떠나야 한다는 사실을 잊었습니다. 그는 곧 사직되었습니다. 나중에야 이 사실을 알고 7통의 편지를 보냈는데 다시 좋은 직장을 얻었습니다. 미국의 케네디 대통령은 이 편지를 받았지만 그냥 버렸습니다. 결국 9일 후 그는 암살당했습니다. 기억해 주세요. 이 편지를 보내면 7년의 행운이 있을 것이고 그렇지 않으면 3년의 불행이 있을 것입니다. 그리고 이 편지를 버리거나 낙서를 해서는 절대로 안됩니다. 7통입니다. 이 편지를 받은 사람은 행운이 깃들것입니다. 힘들겠지만 좋은게 좋다고 생각하세요. 7년의 행운을 빌면서...</p>
+            <p>{{ content }}</p>
           </div>
-
-        <!-- 여기 구분선 하나 넣고 싶네  -->
-
-          <!-- 작성한 게시글, 찜해둔 금융 상품 -->
+          <div v-if="!(profile)">
+            프로필을 작성하세요
+            <button class="btn btn-primary">프로필 생성</button>
+          </div>
+          <div v-else>
+            <div>
+              성별 : {{ profile.gender }}
+            </div>
+            <div>
+              나이 : {{ profile.age }}
+            </div>
+            <div>
+              거주지 : {{ profile.residence }}
+            </div>
+          </div>
+        </b-tab>
+        <b-tab title="관심상품">
           <div class="row d-flex justify-content-center align-items-center">
             <div class="col-md-6 ml-auto mr-auto ">
               <div class="profile-tabs ">
@@ -52,7 +63,8 @@
               </div>
             </div>
           </div>
-        
+        </b-tab>
+        <b-tab title="내가 쓴 글">
           <div class="tab-content tab-space">
             <div class="tab-pane work active show" id="work">
               <div class="row d-flex justify-content-center align-items-center">
@@ -63,7 +75,7 @@
                     <!-- 게시글 1 -->
                     <div class="col-md-6">
                       <!-- asset에 있는 사진으로 바꾸고 싶은데 왜 안되냐...  -->
-                      <div class="card card-background" style="background-image: url('../assets/article1.png')">
+                      <div class="card card-background" style="background-image: url('./src/assets/article1.png')">
                         <a href="#pablo"></a>
                         <div class="card-body">
                           <label class="badge">작성 날짜</label>
@@ -90,28 +102,13 @@
                 </div>
               </div>
             </div>
-            
-            <div class="tab-pane text-center gallery" id="favorite">ㅇㅇ
-              <div class="row">
-                <div class="col-md-3 ml-auto">
-                  <img src="http://www.globalfashionstreet.com/wp-content/uploads/2018/03/the-different-kinds-of-womens-street-fashion-style-1.jpg" class="rounded">
-                  <img src="https://smhttp-ssl-33667.nexcesscdn.net/manual/wp-content/uploads/2017/08/street-style-mens-overcoat.jpg" class="rounded">
-                </div>
-                <div class="col-md-3 mr-auto">
-                  <img src="http://fashiongum.com/wp-content/uploads/2015/01/stilettos-summer-shoes-trend-6.jpg" class="rounded">
-                  <img src="https://smhttp-ssl-33667.nexcesscdn.net/manual/wp-content/uploads/2016/06/pocket-square-how-to-1170x736.jpg" class="rounded">
-                  <img src="https://rachealnaluyange.files.wordpress.com/2014/06/2012-fashion-bags-hot-women-s-handbag-b1462-women-s-handbag-vintage-one-shoulder-cross-body.jpg" class="rounded">
-                </div>
-              </div>
-            </div>
           </div>
-        </div>
-      </div>
-    </div>
-
+        </b-tab>
+      </b-tabs>
+    </b-card>
     <!-- 팝업창 -->
     <div>
-      
+      <h1>이런 상품은 어때요?</h1>
     </div>
   </div>
 
@@ -123,10 +120,17 @@
 
 <script>
 export default {
-  name: 'App',
-  // data(){
+  name: 'ProfileView',
+  data(){
+    return {
+      content: '이 편지는 영국에서 최초로 시작되어...',
+      profile: {},
+      gender: null,
+      age: null,
+      residence: null,
+    }
 
-  // },
+  },
   methods:{
 
   }

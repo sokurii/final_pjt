@@ -12,7 +12,7 @@
         {{ product.fin_prdt_nm }}
       </router-link>
     </p>
-    <p>금리 : </p>
+    <p>금리 : {{ options }}</p>
     <p>상세설명 : {{ product.etc_note }}</p>
     <p>우대사항 : {{ product.spcl_cnd }}</p>
     <hr>
@@ -24,6 +24,7 @@ export default {
   name: 'DepositProductListItem',
   props: {
     product: Object,
+    options: Array,
   },
 }
 </script>
