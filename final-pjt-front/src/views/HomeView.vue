@@ -32,7 +32,7 @@
           <div class="col-md-6 d-flex justify-content-center align-items-center">
             <div class="copy-box">
               <div class="title">예/적금 금리비교</div>
-              <div class="copy">전국 금융기관의 예금, 적금 정보를<br>한 눈에 알려 드려요!</div>
+              <div class="copy">전국 금융기관의 예금, 적금 정보를<br>한 눈에 알려 드려요!</div><br>
               <button @click="goToFinance" to="/finance" class="btn btn-secondary">금융상품비교하기</button> 
             </div>
           </div>
@@ -40,37 +40,39 @@
       </div>
 
 
+
+
+
       <div class="section-2">
         <div class="inner">
           <div class="col-md-6 d-flex justify-content-center align-items-center">
             <div class="copy-box">
-              <div class="title">환율계산기</div>
-              <div class="copy">내게 꼭 필요했던 환율,<br>ㅇㅇ에게 맡겨 보세요!</div>
-              <button @click="goToExchange" to="/exchange" class="btn btn-secondary">환율계산하러가기</button> 
+              <div class="title">우리동네은행</div>
+              <div class="copy">마음에 드는 상품을 어디서 가입할까?<br>주변 은행을 찾아보세요!</div><br>
+              <button @click="goToMap" to="/map" class="btn btn-secondary">우리동네은행찾기</button> 
             </div>
           </div>
           <div class="col-md-6 d-flex justify-content-center align-items-center">
-            <img src="../assets/cal.png" alt="" class="img-fluid mx-auto d-block" style="max-width: 50%; max-height: 50%;">
+            <img src="../assets/map.png" alt="" class="img-fluid mx-auto d-block" style="max-width: 60%; max-height: 60%;">
           </div>
         </div>
       </div>
-
-
 
       <div class="section-3">
         <div class="inner">
           <div class="col-md-6 d-flex justify-content-center align-items-center">
-            <img src="../assets/bank.png" alt="" class="img-fluid mx-auto d-block" style="max-width: 50%; max-height: 50%;">
+            <img src="../assets/talk.png" alt="" class="img-fluid mx-auto d-block" style="max-width: 50%; max-height: 50%;">
           </div>
           <div class="col-md-6 d-flex justify-content-center align-items-center">
             <div class="copy-box">
-              <div class="title">우리동네은행</div>
-              <div class="copy">마음에 드는 상품을 어디서 가입할까?<br>주변 은행을 찾아보세요!</div>
-              <button @click="goToMap" to="/map" class="btn btn-secondary">우리동네은행찾기</button> 
+              <div class="title">플래너 보드</div>
+              <div class="copy">나의 금융 플래너를 짜보고,<br>사람들과 자유롭게 소통하세요!</div><br>
+              <button @click="goToCommunity" to="/community" class="btn btn-secondary">게시판 구경하기</button> 
             </div>
           </div>
         </div>
       </div>
+
 
     </div>
   </div>
@@ -101,17 +103,17 @@ export default {
         this.$router.push({ name: 'login' })
       }
     },
-    goToExchange() {
+    goToMap() {
       if (this.isLogin) {
-        this.$router.push({ name: 'exchange' })
+        this.$router.push({ name: 'map' })
       } else {         
         alert('로그인이 필요한 서비스입니다.')
         this.$router.push({ name: 'login' })
       }
     },
-    goToMap() {
+    goToCommunity() {
       if (this.isLogin) {
-        this.$router.push({ name: 'map' })
+        this.$router.push({ name: 'community' })
       } else {         
         alert('로그인이 필요한 서비스입니다.')
         this.$router.push({ name: 'login' })
@@ -168,8 +170,8 @@ export default {
 
 }
 .img{
-  max-width: 50%;
-  max-height: 50%;
+  /* max-width: 60%;
+  max-height: 60%; */
   padding-top: 60px;
 }
 
