@@ -1,4 +1,12 @@
 <template>
+  <!-- <div>
+    <form class="m-1" @submit.prevent="searchProducts">
+      <b-form-group label="은행명" label-for="bank" label-cols-md="auto" class="mb-3">
+        <b-form-select id="bank" v-model="bank" :options="banks"></b-form-select>
+      </b-form-group>
+      <button type="submit" class="btn btn-primary">조회</button>
+    </form>
+  </div> -->
     <div class="left_wrap">
         <!-- 좌측 검색필터 -->
 
@@ -92,6 +100,8 @@
   
             </div>
   
+
+      <!-- </div> -->
     </div>
 </template>
 

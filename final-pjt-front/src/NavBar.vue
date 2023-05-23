@@ -6,15 +6,10 @@
         </router-link>
         <router-link :to="{ name: 'home' }">홈</router-link>
         <router-link @click.native="goToLogin" to="/finance">금융상품비교</router-link>
-        <router-link @click.native="goToLogin" to="/exchange">환율</router-link>
-        <router-link @click.native="goToLogin" to="/map">지도</router-link> 
+        <router-link @click.native="goToLogin" to="/map">주변은행찾기</router-link> 
         <router-link to="/community">게시판</router-link>
-        <!-- <div>
-          <a href="#" @click="goToFinance">금융상품비교</a>  |
-          <a href="#" @click="goToExchange">환율</a>  |
-          <a href="#" @click="goToMap">지도</a>  |
-          <a href="#" @click="goToCommunity">게시판</a>
-        </div> -->
+        <router-link @click.native="goToLogin" to="/exchange">환율</router-link>
+
       </div>
       <div class='account'>
         <span v-if="!isLogin">
@@ -58,17 +53,6 @@ export default {
         }
 
       },
-    // methods:{
-    //     logout(){
-    //         this.$store.dispatch('logout')
-    //     }
-    // },
-    // computed:{
-    //     ...mapGetters(['isLoggedIn',]),
-    //     loginState(){
-    //         return (this.isLoggedIn) ? 'Logout' : 'Login'
-    //     }
-    // },
     },
 }
 </script>
@@ -104,8 +88,5 @@ export default {
     text-decoration: none;
     }
 
-    /* .nav {
-    padding: 30px;
-    } */
 
 </style>

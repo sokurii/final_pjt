@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="container">
     <form class="loginform mx-auto" @submit.prevent="login">
       <div class="login-container">
         <!-- login-container 왼쪽 요소 -->
@@ -94,7 +94,6 @@ export default {
     content: "";
     background: rgba(0,0,0,.5);
 } */
-
 .loginform{
   width: 50%;
   height: 70%;
@@ -107,12 +106,12 @@ export default {
 .login-container{
   display: flex;
   justify-content: space-between;
+  height: 100%;
   background-color: #fff;
   border-radius: 20px ;
 }
 
 .login-img{
-  display: flex;
   width: 50%;
   background-color: #f8d57b;
   border-top-left-radius: 20px;
@@ -124,12 +123,10 @@ export default {
 }
 
 .log-img{
-  position:relative;
   width: 80%;
-  height: 100;
   opacity : 0.7;
-  margin-top: 90px;
-  margin-left: 50px;
+  margin-top: 100px;
+  margin-left: 10px;
   
 }
 
@@ -169,10 +166,6 @@ export default {
   height: 70%;
 }
 
-.input-container>*{
-  width: 300px;
-  height: 50px;
-}
 .id-save{
   text-align: left;
 }

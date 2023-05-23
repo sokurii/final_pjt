@@ -2,11 +2,11 @@
   <div>
     <h2>오늘의 환율</h2>
     <p>{{ today }} 기준</p>
-    <p>IDR, JPY는 100원당 환율</p>
+    <p>IDR, JPY는 100 화폐단위당 환율</p>
     <hr>
     <div class="">
       <ExchangeListItem 
-        v-for="exchange in exchanges"
+        v-for="exchange in exchangesExceptKRW"
         :key="exchange.id"
         :exchange="exchange"
       />
@@ -26,6 +26,11 @@ export default {
   computed: {
     exchanges() {
       return this.$store.state.exchanges
+    },
+    exchangesExceptKRW() {
+      return this.exchanges.filter(
+        (exchange) => exchange.cur_unit != 'KRW'
+      )
     },
     today() {
       const today = new Date();

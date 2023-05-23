@@ -1,15 +1,15 @@
 <template>
   <div>
-    <b-tabs content-class="bg-white" justified >
-      <h3>금융상품비교, 설명 div 만들기</h3>
+    <b-tabs content-class="bg-white">
+      <h2>금융상품비교</h2>
       <b-tab title="정기예금" active class="tab">
-        <div id="container">
+        <div id="finance-container">
           <DepositProductSearchInput @search-bank="getSearchBankD"/>
           <DepositProductList :bankD="bankD"/>
         </div>
       </b-tab>
       <b-tab title="정기적금">
-        <div id="container">
+        <div id="finance-container">
           <SavingProductSearchInput @search-bank="getSearchBankS"/>
           <SavingProductList :bankS="bankS"/>
         </div>
@@ -54,13 +54,11 @@ export default {
 .finance{
   background-color: white;
 }
-#container {
+#finance-container {
   padding-top: 50px;
   padding-bottom: 90px;
   width: 1200px;
   margin: 0 auto;
   display: flex;
 }
-
-
 </style>
