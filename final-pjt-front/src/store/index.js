@@ -19,7 +19,8 @@ export default new Vuex.Store({
     depositProducts: [],
     savingProducts: [],
     exchanges: [],
-    profile: [],
+    profile: {},
+    username: null,
   },
   getters: {
     isLogin(state) {
@@ -27,8 +28,9 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    SAVE_TOKEN(state, token) {
+    SAVE_TOKEN(state, { token, username }) {
       state.token = token
+      state.username = username
       router.push({ name : 'home' })
     },
     GET_DEPOSIT_PRODUCTS(state, depositProducts) {
@@ -47,9 +49,9 @@ export default new Vuex.Store({
     NO_ARTICLES(state) {
       state.articles = []
     },
-    // SAVE_PROFILE(state, profile) {
-    //   state.profile = profile
-    // },
+    GET_MY_PROFILE(state, profile) {
+      state.profile = profile
+    },
   },
   actions: {
     signUp(context, payload) {
@@ -82,7 +84,7 @@ export default new Vuex.Store({
       })
         .then(res => {
           // context.commit('SIGN_UP', res.data.key)
-          context.commit('SAVE_TOKEN', res.data.key)
+          context.commit('SAVE_TOKEN', { token: res.data.key, username })
           alert('회원가입이 완료되었습니다!')
         })
         .catch(err => {
@@ -101,7 +103,7 @@ export default new Vuex.Store({
         }
       })
         .then(res => {
-          context.commit('SAVE_TOKEN', res.data.key)
+          context.commit('SAVE_TOKEN', { token: res.data.key, username })
           alert('로그인 되었습니다!')
         })
         .catch(()=> {
@@ -154,6 +156,21 @@ export default new Vuex.Store({
       })
         .then(res =>
           context.commit('GET_EXCHANGES', res.data)
+        )
+        .catch(err => console.log(err))
+    },
+
+    getMyProfile(context, payload) {
+      const username = payload.username
+      axios({
+        method: 'get',
+        url: `${API_URL}/accounts/profile/user/${username}`,
+        headers: {
+          Authorization: `Token ${ context.state.token }`
+        },
+      })
+        .then(res =>
+          context.commit('GET_MY_PROFILE', res.data)
         )
         .catch(err => console.log(err))
     }
