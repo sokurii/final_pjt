@@ -1,84 +1,51 @@
 <template>
-
   <div class="right_wrap">
-      <div class="notice">
-        <h6>세율은 일반과세(15.4%)를 적용했으며, 실제와는 차이가 있을 수 있습니다.</h6>
-      </div>
+    <div class="notice">
+      <h6>세율은 일반과세(15.4%)를 적용했으며, 실제와는 차이가 있을 수 있습니다.</h6>
+    </div>
 
-      <div class="fix_header d-flex justify-content-between p-3">
-        <!-- <table class="main_table"> -->
-          <!-- <colgroup>
-            <col width="100px">
-            <col width="100px">
-            <col width="100px">
-            <col width="200px">
-            <col width="320px">      
-          </colgroup> -->
-          <thead>
-          <th style="width: 100px">예치기간(개월)</th>
-          <th style="width: 100px">금리(%)</th>
-          <th style="width: 100px">지급방식</th>
-          <th style="width: 100px">예상세전이자(원)</th>
-          <th style="width: 100px">예상세후이자(원)</th>
-          <th style="width: 200px">은행명</th>
-          <th style="width: 320px">상품명</th>
-          </thead>
-        <!-- </table> -->
-      </div> 
+    <div class="fix_header d-flex justify-content-between p-3">
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 100px">n개월</th>
+            <th style="width: 100px">금리</th>
+            <th style="width: 100px">지급방식</th>
+            <th style="width: 100px">세전이자</th>
+            <th style="width: 100px">세후이자</th>
+            <th style="width: 200px">은행명</th>
+            <th style="width: 320px">상품명</th>
+          </tr>
+        </thead>
+      </table>
+    </div>
 
-      <div class="fix_body d-flex justify-content-between">
+    <div class="fix_body d-flex justify-content-between">
+      <table>
+        <tbody>
+          <tr v-for="product in filteredProducts" :key="product.id" class="body_content d-flex p-3 mt-1">
+            <td>
+              <table>
+                <tr v-for="option in product.depositoptions" :key="option.id">
+                  <td style="width: 100px">{{ option.save_trm }}</td>
+                  <td style="width: 100px">{{ option.intr_rate }}</td>
+                  <td style="width: 100px">{{ option.intr_rate_type_nm }}</td>
+                  <td style="width: 100px">세전이자</td>
+                  <td style="width: 100px">세후이자</td>
+                </tr>
+              </table>
+            </td>
 
-        <!-- <table class="main_table content"> -->
-            <!-- <colgroup>
-              <col width="100px">
-              <col width="100px">
-              <col width="100px">
-              <col width="100px">
-              <col width="100px">
-            </colgroup> -->
-
-            <tbody >
-
-              <tr v-for="product in filteredProducts" :key="product.id" class="body_content d-flex p-3 mt-1">
-                <td>
-                  <div class="row" v-for="option in product.depositoptions" :key="option.id">                
-                    <div class="col" style="width: 100px">{{ option.save_trm }}</div>
-                    <div class="col" style="width: 100px">{{ option.intr_rate }}</div>
-                    <div class="col" style="width: 100px">{{ option.intr_rate_type_nm }}</div>
-                    <div v-if="option.intr_rate_type_nm === '단리'" class="col" style="width: 100px">{{ (payloadD.depositAmount * ( 0.01 * option.intr_rate ) * ( option.save_trm / 12 )).toFixed(0) }}</div>
-                    <div v-else class="col" style="width: 100px">{{ (payloadD.depositAmount * ((1 + 0.01 * option.intr_rate) ** (option.save_trm / 12)) - payloadD.depositAmount).toFixed(0) }}</div>
-                    
-                    <div v-if="option.intr_rate_type_nm === '단리'" class="col" style="width: 100px">{{ (payloadD.depositAmount * ( 0.01 * option.intr_rate ) * ( option.save_trm / 12 ) * (1 - 0.154)).toFixed(0) }}</div>
-                    <div v-else class="col" style="width: 100px">{{ ((payloadD.depositAmount * ((1 + 0.01 * option.intr_rate) ** (option.save_trm / 12)) - payloadD.depositAmount) * (1 - 0.154)).toFixed(0) }}</div>
-                    <!-- <div v-if="option.rsrv_type_nm === '단리'" class="col" style="width: 100px">{{ payloadD.depositAmount * (((1 + 0.01 * option.intr_rate) * option.save_trm) - 1) }}</div>
-                    <div v-else class="col" style="width: 100px">{{ payloadD.depositAmount }}</div>
-                      
-                    <div v-if="option.rsrv_type_nm === '단리'" class="col" style="width: 100px">{{ payloadD.depositAmount }}</div>
-                    <div v-else class="col" style="width: 100px">{{ payloadD.depositAmount }}</div> -->
-                    <!-- <td style="width: 100px">{{ option.intr_rate }} </td>
-                    <td style="width: 100px">{{ option.intr_rate_type_nm }}</td>
-                    <td style="width: 100px">세전이자</td>
-                    <td style="width: 100px">세후이자</td> -->
-                  </div>            
-                </td>
-                
-                <td style="width: 200px">{{ product.kor_co_nm }}</td>
-                <td style="width: 320px">
-                  <router-link
-                  :to ="{
-                  name : 'depositDetail',
-                  params: {fin_prdt_cd: product.fin_prdt_cd}
-                  }"
-                  >
-                  {{ product.fin_prdt_nm }}
-                  </router-link>
-                </td>
-              </tr>
-
-            </tbody>
-   
-        <!-- </table> -->
-      </div>
+            <td style="width: 200px">{{ product.kor_co_nm }}</td>
+            <td style="width: 320px" @click="openModal(product)">
+              <!-- <span @click="openModal(product)"> -->
+                {{ product.fin_prdt_nm }}
+              <!-- </span> -->
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -90,21 +57,22 @@ export default {
   components: {
     DepositProductListItem,
   },
+
   props: {
-    payloadD: Object,
+    bankD: String,
   },
   computed: {
     depositProducts() {
       return this.$store.state.depositProducts
     },
     filteredProducts() {
-      if (this.payloadD.selectBank === '전체') {
+      if (this.bankD === '전체') {
         return this.depositProducts
       }
       return this.depositProducts.filter(
-        (depositProduct) => depositProduct.kor_co_nm === this.payloadD.selectBank
+        (depositProduct) => depositProduct.kor_co_nm === this.bankD
       )
-    },
+    }
   },
   created() {
     this.getDepositProducts()
@@ -112,12 +80,26 @@ export default {
   methods: {
     getDepositProducts() {
       this.$store.dispatch('getDepositProducts')
-    }
+    },
+      openModal(product) {
+      alert("안녕하세요");
+      // 모달창을 열기 위한 로직을 구현합니다.
+      // 예를 들면:
+      // this.selectedProduct = product;
+      // this.showModal = true;
+    },
+
   }
 }
 </script>
 
 <style>
+
+
+
+
+
+
 .right_wrap{
     width: 1000px;
     padding-left: 80px;

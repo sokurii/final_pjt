@@ -1,17 +1,17 @@
 <template>
   <div>
-    <h2>금융상품비교</h2>
     <b-tabs content-class="bg-white">
+      <h2>금융상품비교</h2>
       <b-tab title="정기예금" active class="tab">
-        <div id="container">
-          <DepositProductSearchInput @search-bank="getSearchD"/>
-          <DepositProductList :payloadD="payloadD"/>
+        <div id="finance-container">
+          <DepositProductSearchInput @search-bank="getSearchBankD"/>
+          <DepositProductList :bankD="bankD"/>
         </div>
       </b-tab>
       <b-tab title="정기적금">
-        <div id="container">
-          <SavingProductSearchInput @search-bank="getSearchS"/>
-          <SavingProductList :payloadS="payloadS"/>
+        <div id="finance-container">
+          <SavingProductSearchInput @search-bank="getSearchBankS"/>
+          <SavingProductList :bankS="bankS"/>
         </div>
       </b-tab>
     </b-tabs>
@@ -34,16 +34,16 @@ export default {
   },
   data() {
     return {
-      payloadD: {},
-      payloadS: {},
+      bankD: null,
+      bankS: null,
     }
   },
   methods: {
-    getSearchD(payloadD) {
-      this.payloadD = payloadD
+    getSearchBankD(bankD) {
+      this.bankD = bankD
     },
-    getSearchS(payloadS) {
-      this.payloadS = payloadS
+    getSearchBankS(bankS) {
+      this.bankS = bankS
     },
   }
 
@@ -54,7 +54,7 @@ export default {
 .finance{
   background-color: white;
 }
-#container {
+#finance-container {
   padding-top: 50px;
   padding-bottom: 90px;
   width: 1200px;

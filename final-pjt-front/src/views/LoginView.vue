@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="container">
     <form class="loginform mx-auto" @submit.prevent="login">
       <div class="login-container">
         <!-- login-container 왼쪽 요소 -->

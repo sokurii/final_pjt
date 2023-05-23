@@ -1,80 +1,79 @@
 <template>
-  <div class="profile-page">
-    <!-- <h1>은행 위치 조회</h1>
-    <MapSearchInput @search-banks="getSearchDatas"/>
-    <KakaoMap :datas="datas"/> -->
-<!-- ------------------------------------------------- -->
-    <div class="profile-header d-flex align-items-center justify-content-center" data-parallax="true" >
-      <h1>우리 동네 은행 찾기</h1>
+  <div id="map-container" class="bg-white row">
+      <div class="pt-3 pb-3">
+        <h2><strong>우리동네 은행찾기</strong></h2>
+      </div>
+    <!-- 좌측 배너 -->
+    <div class="banner flex-column justify-content:center align-items:center mt-5 col-2">
+      <!-- <div class="col-3"> -->
+      <!-- <div class="p-3 m-2"> -->
+
+      <form @submit.prevent="searchPlaces">
+        <b-form-group label="광역시/도" label-for="province" label-cols-md="auto" class="mb-3">
+          <b-form-select id="province" v-model="province" :options="provinces"></b-form-select>
+        </b-form-group>
+        <b-form-group label="시/군/구" label-for="city" label-cols-md="auto" class="mb-3">
+          <b-form-select id="city" v-model="city" :options="cities[province]"></b-form-select>
+        </b-form-group>
+        <b-form-group label="은행명" label-for="bank" label-cols-md="auto" class="mb-3">
+          <b-form-input id="bank" v-model="bank" class="d-inline-block" style="width: 250px; height: 35px;"></b-form-input>
+        </b-form-group>
+        <button type="submit" class="btn btn-primary">이동</button>
+      </form>
+      <!-- <img src="../assets/map.png" alt="" style="max-width: 50%; max-height: 50%;"> -->
+      <img src="../assets/map.png" alt="" style="width: 80%" class="map-img">
     </div>
-    <div class="main main-container mt-4">
-      <div class="map-container row">
-        <div class="col-3">
-          <!-- <MapSearchInput @search-banks="getSearchDatas"/>     -->
-          <!-- MapSearchInput -->
-          <div class="banner flex-column justify-content:center align-items:center">
-            <form class="m-1" @submit.prevent="searchPlaces">
-              <b-form-group label="광역시/도" label-for="province" label-cols-md="auto" class="mb-3">
-                <b-form-select id="province" v-model="province" :options="provinces"></b-form-select>
-              </b-form-group>
-              <b-form-group label="시/군/구" label-for="city" label-cols-md="auto" class="mb-3">
-                <b-form-select id="city" v-model="city" :options="cities[province]"></b-form-select>
-              </b-form-group>
-              <b-form-group label="은행명" label-for="bank" label-cols-md="auto" class="mb-3">
-                <b-form-input id="bank" v-model="bank" class="d-inline-block" style="width: 250px; height: 35px;"></b-form-input>
-              </b-form-group>
-              <button type="submit" class="btn btn-primary">이동</button>
-            </form>
-          </div>
-        </div>
-        <div class="col">
-          <!-- <KakaoMap :datas="datas"/> -->
-          <!-- KakaoMap -->
-          <div id="map">
-          </div>
-          <div class="fix_header d-flex justify-content-between p-3">
-            <!-- <table class="main_table"> -->
-              <!-- <colgroup>
-                <col width="100px">
-                <col width="100px">
-                <col width="100px">
-                <col width="200px">
-                <col width="320px">      
-              </colgroup> -->
-              <thead>
-              <th style="width: 100px">번호</th>
-              <th style="width: 300px">이름</th>
-              <th style="width: 300px">주소</th>
-              <th style="width: 200px">전화번호</th>
-              </thead>
-            <!-- </table> -->
-          </div>
-          <div class="fix_body d-flex justify-content-between">
-            <tbody v-if="results">
+    
+    <!-- 지도-->
+    <div class="mt-5 col-5">
+      <!-- 지도 -->
+      <div id="map" >
+      </div>
+    </div> 
 
-              <tr v-for="(result, index) in results" :key="index" class="body_content d-flex p-3 mt-1">
-                <td style="width: 100px">{{ index + 1}} </td>
-                <td style="width: 300px">{{ result.place_name }}</td>
-                <td style="width: 300px">{{ result.address_name }}</td>
-                <td style="width: 200px">{{ result.phone }}</td>
-              </tr>
+    <!-- 목록  -->
+    <div class="bank-list mt-5 col-4">
+      <!--은행 목록  -->
+      <div class="fix_header d-flex justify-content-between p-3">
+        <!-- <table class="main_table"> -->
+          <thead>
+          <th style="width: 50px">번호</th>
+          <th style="width: 100px">이름</th>
+          <th style="width: 300px">주소</th>
+          <th style="width: 200px">전화번호</th>
+          </thead>
+        <!-- </table> -->
+      </div>
+      <div class="fix_body d-flex justify-content-between" style="overflow-y: scroll; max-height: 700px;">
+        <tbody v-if="results">
+          <tr v-for="(result, index) in results" :key="index" class="body_content d-flex p-3 mt-1">
+            <td style="width: 50px">{{ index + 1}} </td>
+            <td style="width: 100px">{{ result.place_name }}</td>
+            <td style="width: 300px">{{ result.address_name }}</td>
+            <td style="width: 200px">{{ result.phone }}</td>
+          </tr>
+        </tbody>
+        <!-- </table> -->
+      </div>
 
-            </tbody>
-   
-            <!-- </table> -->
-          </div>
-          <div id="menu_wrap" class="bg_white" style="display: none;">
-            <ul id="placesList"></ul>
-            <div id="pagination"></div>
-          </div>
-        </div>
+      <div id="menu_wrap" class="bg-red" style="display: none;">
+        <ul id="placesList"></ul>
+        <div id="pagination"></div>
       </div>
     </div>
-
-
   </div>
 
+    <!-- <div class="main-container mt-4 col-5"> -->
+      <!-- <div class="map_container row"> -->
+      <!-- <div class="map_container"> -->
+        <!-- </div> -->
+        <!-- <div class="col"> -->
 
+
+
+        <!-- </div>
+      </div>
+    </div> -->
 
   
 </template>
@@ -137,33 +136,15 @@ export default {
         '전라남도': ['강진군', '고흥군', '곡성군', '광양시', '구례군', '나주시', '담양군', '무안군', '목포시', '보성군', '순천시', '신안군', '여수시', '영광군', '영암군', '완도군', '장성군', '장흥군', '진도군', '함평군', '해남군', '화순군'],
         '제주특별자치도': ['제주시', '서귀포시'],
       },
-      // banks: [
-      //   '전체',
-      //   '우리은행',
-      //   '한국스탠다드차타드은행',
-      //   '대구은행',
-      //   '부산은행',
-      //   '광주은행',
-      //   '제주은행',
-      //   '전북은행',
-      //   '경남은행',
-      //   '중소기업은행',
-      //   '한국산업은행',
-      //   '국민은행',
-      //   '신한은행',
-      //   '농협은행주식회사',
-      //   '하나은행',
-      //   '주식회사 케이뱅크',
-      //   '수협은행',
-      //   '주식회사 카카오뱅크',
-      //   '토스뱅크 주식회사',
-      // ],
+
 
       // 카카오맵 관련
       map: null,
       KAKAO_API_KEY: process.env.VUE_APP_KAKAO_API_KEY,
       markers: [],
       results: [],
+      // 마커 관련 코드
+      infowindow:null
     }
   },
   computed: {
@@ -183,11 +164,6 @@ export default {
     }
   },
   methods: {
-  //   getSearchDatas(datas) {
-  //     this.datas.province = datas.province
-  //     this.datas.city = datas.city
-  //     this.datas.bank = datas.bank
-  //   }
     // api 불러오기
     loadScript() {
       const script = document.createElement("script");
@@ -207,6 +183,7 @@ export default {
       this.map = new window.kakao.maps.Map(container, options)
       this.loadMarker()
     },
+    
     // 마커 생성
     loadMarker() {
       // SSAFY 부울경 캠퍼스에 마커 생성
@@ -217,6 +194,7 @@ export default {
       const marker = new window.kakao.maps.Marker({
           position: markerPosition,
       })
+      // 마커 지도에 표시 
       marker.setMap(this.map)
     },
     searchPlaces() {
@@ -387,7 +365,14 @@ export default {
 </script>
 
 <style>
-.profile-page .profile-header {   
+.map-container{
+  padding-top: 50px;
+  padding-bottom: 90px;
+  width: 1200px;
+  margin: 0 auto;
+  display: flex;
+}
+.map-page .map-header {   
     height: 100px;
     background-size:cover;
     background-position: center;
@@ -399,9 +384,7 @@ export default {
 
 }
 
-/* .main {
-  
-  } */
+
 
 .main-container {
   margin: 50px 50px 0;
@@ -410,6 +393,8 @@ export default {
   background: #FFF;
   position: relative;
   z-index: 3;
+  height: calc(100% - 100px); /* footer-bar.view를 제외한 높이로 설정 (60px는 footer-bar.view의 높이) */
+  overflow-y: auto;
 }
 
 
@@ -420,17 +405,17 @@ label{
 }
 
 .banner {
-  /* width:20% ; */
-  height: 100%;
+  /* width:400px ; */
+  height: 700px;
   background-color: #7ab87d; /* 배너 배경색 */
+  box-shadow: 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12), 0 8px 10px -5px rgba(0,0,0,.2);
   color: #fff; /* 배너 텍스트 색상 */
-  padding: 10px 10px; /* 내부 여백 설정 */
-  /* border-radius: 6px; 모서리를 둥글게 */
-  border-top-left-radius: 10px;
-  border-bottom-left-radius:10px;
+  padding: 30px 0px; /* 내부 여백 설정 */
+  border-radius: 6px; 
   align-items: center;
+  margin: 40px ;
   
-  /* display: flex; */
+  display: flex;
 }
 
 .banner button {
@@ -447,12 +432,15 @@ label{
   background-color: #e5e5e5; /* 마우스 오버 시 배경색 변경 */
 }
 
+
+
 /* KakaoMap */
 #map {
-  margin: 3px;
+  margin: 2px;
   display: flex;
   border: solid;
-  height: 500px;
+  height: 700px;
 }
+
 
 </style>
