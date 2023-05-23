@@ -1,7 +1,10 @@
 from django.db import models
+from django.conf import settings
 
 # Create your models here.
 class DepositProducts(models.Model):
+    # user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    # like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_deposits')
     fin_prdt_cd = models.TextField(unique=True)
     dcls_month = models.TextField()
     kor_co_nm = models.TextField()
@@ -20,6 +23,8 @@ class DepositOptions(models.Model):
     save_trm = models.IntegerField()
     
 class SavingProducts(models.Model):
+    # user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    # like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_savings')
     fin_prdt_cd = models.TextField(unique=True)
     dcls_month = models.TextField()
     kor_co_nm = models.TextField()

@@ -33,7 +33,7 @@
                 <b-form-input type="password" v-model="password2" placeholder="✅ 비밀번호를 확인하세요" id="password2" style="width: 300px; height: 50px;"></b-form-input>
               </div> -->
 
-              <div class="mt-2">
+              <!-- <div class="mt-2">
                 <label class="label-text" style="width: 120px;">성별</label>
                 <b-form-group class="radio-buttons">
                   <b-form-radio v-model="selectedGender" name="gender" value="male">남성</b-form-radio>
@@ -53,7 +53,7 @@
                 <select id="region" v-model="selectedResidence">
                   <option v-for="region in regions" :key="region" :value="region">{{ region }}</option>
                 </select>
-              </div>
+              </div> -->
 
               <!-- <div class="mt-2 mb-2">
                 <div class="label-text" style="width: 120px;">소득??(미정)</div>

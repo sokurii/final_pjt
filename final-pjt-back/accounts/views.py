@@ -29,7 +29,8 @@ def profile(request):
             serializer.save(user=request.user)
             return Response(serializer.data)
 
-@api_view(['POST']) 
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def create_profile(request):
     serializer = ProfileSerializer(data=request.data)
     if serializer.is_valid(raise_exception=True):

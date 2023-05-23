@@ -19,6 +19,7 @@ export default new Vuex.Store({
     depositProducts: [],
     savingProducts: [],
     exchanges: [],
+    profile: [],
   },
   getters: {
     isLogin(state) {
@@ -45,7 +46,10 @@ export default new Vuex.Store({
     },
     NO_ARTICLES(state) {
       state.articles = []
-    }
+    },
+    // SAVE_PROFILE(state, profile) {
+    //   state.profile = profile
+    // },
   },
   actions: {
     signUp(context, payload) {
@@ -55,13 +59,25 @@ export default new Vuex.Store({
       const gender = payload.selectedGender
       const age = payload.selectedAge
       const residence = payload.selectedResidence
-
+      // axios({
+      //   method: 'post',
+      //   url: `${API_URL}/accounts/profile/`,
+      //   data: {
+      //     gender, age, residence,
+      //   }
+      // })
+      //   .then(res => {
+      //     context.commit('SAVE_PROFILE', res.data)
+      //   })
+      //   .catch(err => {
+      //     alert('잘못 입력하셨습니다. 다시 입력하세요.')
+      //   })
 
       axios({
         method: 'post',
         url: `${API_URL}/accounts/signup/`,
         data: {
-          username, password1, password2, gender, age, residence,
+          username, password1, password2,
         }
       })
         .then(res => {

@@ -1,6 +1,10 @@
 <template>
   <div>
     <h1 class="d-flex m-4">상품 상세 정보</h1>
+    <div>
+      <b-button pill variant="success">관심상품 등록</b-button>
+      <b-button pill>관심상품 등록 해제</b-button>
+    </div>
     <div class="d-flex flex-column mb-3">
       <div class="p-2 text-start">
         <p>공시 제출월 : {{ product?.dcls_month }}</p>

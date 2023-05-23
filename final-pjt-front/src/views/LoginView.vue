@@ -22,12 +22,12 @@
             </div>
 
             <div class="id-save" style="margin-top: -10px; margin-bottom:20px; width:300px ">
-              <b-form-checkbox v-model="rememberId">
+              <b-form-checkbox v-model="rememberId" true-value="true" false-value="false">
                 <span style="margin-left: 5px;">아이디 저장</span>
               </b-form-checkbox>
+            </div>
               <!-- <input type="checkbox" v-model="rememberId">
               <label for="remember">아이디 저장</label> -->
-            </div>
             <!-- <b-form-checkbox v-model="saveId">아이디 저장</b-form-checkbox> -->
             <b-button class="btn btn-success" type="submit" style="width: 300px; height:50px;">Login</b-button><br>
             <router-link id="signup" to="/signup">회원가입</router-link>
@@ -46,9 +46,16 @@ export default {
     return {
         id: null,
         password: null,
-        rememberId:false
+        rememberId: false,
     };
   },
+  // mounted() {
+  //   // 페이지가 로드될 때 저장된 아이디가 있는지 확인하고, 있을 경우 아이디 입력 필드에 값을 설정합니다.
+  //   const savedId = localStorage.getItem('savedId');
+  //   if (savedId && this.rememberId) {
+  //     this.id = savedId;
+  //   }
+  // },
   methods: {
     login() {
       const id = this.id
@@ -59,11 +66,34 @@ export default {
       }
       this.$store.dispatch('logIn', payload)
     }
-  }
+  },
+  // watch: {
+  //   rememberId(newVal) {
+  //     if (!newVal) {
+  //       // 아이디 저장 체크박스가 해제되었을 때, 저장된 아이디를 제거합니다.
+  //       localStorage.removeItem('savedId');
+  //     } else if (this.id) {
+  //       // 아이디 저장 체크박스가 체크되었고, 아이디 입력 필드에 값이 있을 때 아이디를 저장합니다.
+  //       localStorage.setItem('savedId', this.id);
+  //     }
+  //   },
+  // },
 };
 </script>
 
 <style scoped>
+/* 로그인이랑 회원가입 창에 적용해보기  */
+/* .header-filter:before {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: block;
+    left: 0;
+    top: 0;
+    content: "";
+    background: rgba(0,0,0,.5);
+} */
 .loginform{
   width: 50%;
   height: 70%;
