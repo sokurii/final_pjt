@@ -39,7 +39,6 @@ def article_detail(request, article_pk):
 
     if request.method == 'GET':
         serializer = ArticleSerializer(article)
-        print(serializer.data)
         return Response(serializer.data)
     
     elif request.method == 'DELETE':
@@ -67,28 +66,28 @@ def comment_detail(request, comment_pk):
     # comment = Comment.objects.get(pk=comment_pk)
     comment = get_object_or_404(Comment, pk=comment_pk)
 
-    if request.method == 'GET':
+    if request.method == 'GET':  # 상세 댓글 조회
         serializer = CommentSerializer(comment)
         return Response(serializer.data)
 
-    elif request.method == 'DELETE':
+    elif request.method == 'DELETE':  # 댓글 삭제
         comment.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-    elif request.method == 'PUT':
+    elif request.method == 'PUT':  # 댓글 수정
         serializer = CommentSerializer(comment, data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response(serializer.data)
-
     
 
 
 @api_view(['POST'])
-def comment_create(request, article_pk):
+@permission_classes([IsAuthenticated])
+def comment_create(request, article_pk):  # 댓글 생성
     # article = Article.objects.get(pk=article_pk)
     article = get_object_or_404(Article, pk=article_pk)
     serializer = CommentSerializer(data=request.data)
     if serializer.is_valid(raise_exception=True):
-        serializer.save(article=article)
+        serializer.save(user=request.user, article=article)
         return Response(serializer.data, status=status.HTTP_201_CREATED)

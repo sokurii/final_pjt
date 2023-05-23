@@ -33,7 +33,7 @@ import axios from 'axios'
 const API_URL = 'http://127.0.0.1:8000'
 
 export default {
-  name: 'ProductDetailView',
+  name: 'SavingProductDetailView',
   data() {
     return {
       product: null
@@ -46,7 +46,7 @@ export default {
     getProductDetail() {
       axios({
         method: 'get',
-        url: `${API_URL}/finlife/deposit-products/${this.$route.params.fin_prdt_cd}/`,
+        url: `${API_URL}/finlife/saving-products/${this.$route.params.fin_prdt_cd}/`,
       })
         .then((res) => {
           this.product = res.data
