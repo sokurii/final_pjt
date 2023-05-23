@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.conf import settings
 from django.shortcuts import get_object_or_404, get_list_or_404
 from django.db.models import Max
+from django.contrib.auth import get_user_model
 
 import requests
 
@@ -16,6 +17,7 @@ from datetime import datetime
 
 API_KEY = settings.API_KEY
 EXCHANGE_API_KEY = settings.EXCHANGE_API_KEY
+User = get_user_model()
 
 # Create your views here.
 @api_view(['GET'])
@@ -148,3 +150,18 @@ def like_saving_products(request, fin_prdt_cd):
         saving.like_users.remove(request.user)
     else:
         saving.like_users.add(request.user)
+        
+@api_view(['GET'])
+def user_liked_products(request):
+    user = request.user
+
+    liked_deposit_products = DepositProducts.objects.filter(like_users=user)
+    deposit_serializer = DepositProductsSerializer(liked_deposit_products, many=True)
+
+    liked_saving_products = SavingProducts.objects.filter(like_users=user)
+    saving_serializer = SavingProductsSerializer(liked_saving_products, many=True)
+
+    return Response({
+        'liked_deposit_products': deposit_serializer.data,
+        'liked_saving_products': saving_serializer.data
+    })

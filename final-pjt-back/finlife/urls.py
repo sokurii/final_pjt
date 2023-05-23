@@ -11,5 +11,7 @@ urlpatterns = [
     
     path('deposit-products/<fin_prdt_cd>/likes', views.like_deposit_products),
     path('saving-products/<fin_prdt_cd>/likes', views.like_saving_products),
+    
+    path('like_products/', views.user_liked_products),
     # path('deposit-products/top-rate/', views.top_rate),
 ]

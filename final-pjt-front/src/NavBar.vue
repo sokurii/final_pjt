@@ -46,7 +46,7 @@ export default {
     },
     methods: {
       logout() {
-        this.$store.commit('SAVE_TOKEN', null) // 토큰을 null로 설정하여 로그아웃 처리
+        this.$store.commit('SAVE_TOKEN', { token: null, username: null }) // 토큰과 username을 null로 설정하여 로그아웃 처리
         alert('로그아웃 되었습니다!')
         this.$router.push({ name: 'login' }) // 로그인 페이지로 이동
       },

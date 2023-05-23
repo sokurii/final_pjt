@@ -75,7 +75,7 @@
                     <!-- 게시글 1 -->
                     <div class="col-md-6">
                       <!-- asset에 있는 사진으로 바꾸고 싶은데 왜 안되냐...  -->
-                      <div class="card card-background" style="background-image: url('./src/assets/article1.png')">
+                      <div class="card card-background" style="background-image: url('./article1.png')">
                         <a href="#pablo"></a>
                         <div class="card-body">
                           <label class="badge">작성 날짜</label>
