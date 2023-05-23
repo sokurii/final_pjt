@@ -1,20 +1,15 @@
 <template>
-  <div id="container" class="bg-white d-flex flex-column">
-    <!-- </div> -->
-    <div class="board-title p-3">
-      <div class="row align-items-center">
-        <div class="col-auto">
-          <!-- <img src="@/assets/document.png" alt=""> -->
-        </div>
-        <div class="col">
-          <h1><strong>게시글 목록</strong></h1>
-        </div>
-      </div>
+  <div id="container" class="bg-white">
+    <!-- 배너 영역  -->
+    <div class="board-title d-flex flex-column align-items-center justify-content-center">
+      <div><h1 class="board-title-text"><strong>커뮤니티</strong></h1></div>
+      <div>Lorem, ipsum dolor sit amet consectetur adipisicing elit.<br>Illum recusandae maxime temporibus blanditiis reprehenderit quos cumque nulla unde sunt</div>
+      <!-- <img src="@/assets/document.png"  style="width : 10% ; transform:rotate(20deg);" > -->
     </div>
 
-
+    <!-- 내용 영역 -->
     <div class="article-list-container">
-      <h2 class="mt-4 mb-3 p-2 font-weight-bold">총 n개의 게시글이 있습니다</h2>
+      <h2 class="mt-4 mb-3 p-2">총 n개의 게시글이 있습니다</h2>
       <div class="d-flex justify-content-end mr-2">
         <router-link :to="{ name: 'CreateArticle' }" class="board-btn">게시글 작성하기</router-link>
       </div>
@@ -87,19 +82,19 @@ export default {
 
 .article-list-container {
   padding: 20px 50px ;
-  height: calc(100% - 150px); /* footer-bar.view를 제외한 높이로 설정 (60px는 footer-bar.view의 높이) */
-  overflow-y: auto; /* 내용이 넘칠 경우 스크롤 표시 */
+  height: calc(100% - 500px); /* footer-bar.view를 제외한 높이로 설정 (60px는 footer-bar.view의 높이) */
+  /* overflow-y: auto; */
 }
 
 .board-title {
   /* margin: 50px 0px; */
 
-  background-color: #6da36f;
+  background-color: #F3F2E9;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   padding: 20px; 
-  height: 350px;
+  height: 400px;
 }
 
 
@@ -107,14 +102,14 @@ export default {
   /* 버튼에 원하는 스타일을 적용하세요 */
   display: inline-block;
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: #6da36f;
   color: #fff;
   border-radius: 5px;
   text-decoration: none;
 }
 
 .board-btn:hover {
-  background-color: #0056b3;
+  background-color: #3c643e;
 }
 
 .board-btn:focus {

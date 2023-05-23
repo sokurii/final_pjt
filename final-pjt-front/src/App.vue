@@ -1,6 +1,7 @@
 <template>
-  <div id="app">
+  <div id="app" class='d-flex flex-column'>
     <nav-bar></nav-bar>
+
     <router-view></router-view>
     <foot-bar></foot-bar>
   </div>
@@ -45,4 +46,7 @@ nav a {
 nav a.router-link-exact-active {
   color: #e98f1a;
 }
+
+
+
 </style>

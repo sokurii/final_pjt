@@ -21,6 +21,7 @@
           <router-link :to="{ name: 'profile' }">프로필</router-link>
         </span>
       </div>
+          <hr class="divider">
   </nav>  
 
 </template>
@@ -60,33 +61,39 @@ export default {
 <style>
     
 
-    .navbar {
-    display: flex;
-    justify-content: space-between;
-    background-color: #F3F2E9;
-    width: 100%;
-    height: 120px;
-    }
+  .navbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: #F3F2E9;
+  width: 100%;
+  height: 120px;
+  }
 
-    .menu{
-    display : flex;
-    justify-content: center;
-    align-items: center;
-    gap:20px;
-    padding-left: 200px;
-    }
+  .menu{
+  display : flex;
+  justify-content: center;
+  align-items: center;
+  gap:20px;
+  padding-left: 200px;
+  }
 
-    .account{
-    display:flex;
-    gap:20px;
-    padding-right: 200px;
-    }
+  .account{
+  display:flex;
+  gap:20px;
+  padding-right: 200px;
+  }
 
-    .logout {
-    font-weight: bold;
-    color: black;
-    text-decoration: none;
-    }
+  .logout {
+  font-weight: bold;
+  color: black;
+  text-decoration: none;
+  }
 
+.divider {
+  width: 76%;
+  border: none;
+  border-top: 1.8px solid rgb(171, 168, 168);
+  margin: 0px auto;
+}
 
 </style>

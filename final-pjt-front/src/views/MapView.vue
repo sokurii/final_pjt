@@ -1,12 +1,12 @@
 <template>
   <div id="map-container" class="bg-white row">
+      <div class="pt-3 pb-3">
+        <h2><strong>우리동네 은행찾기</strong></h2>
+      </div>
     <!-- 좌측 배너 -->
     <div class="banner flex-column justify-content:center align-items:center mt-5 col-2">
       <!-- <div class="col-3"> -->
       <!-- <div class="p-3 m-2"> -->
-      <div class="pt-3 pb-3">
-        <h2><strong>우리동네 은행찾기</strong></h2>
-      </div>
 
       <form @submit.prevent="searchPlaces">
         <b-form-group label="광역시/도" label-for="province" label-cols-md="auto" class="mb-3">
