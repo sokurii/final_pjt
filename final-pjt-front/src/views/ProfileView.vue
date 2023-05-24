@@ -78,10 +78,10 @@
                     <!-- 게시글 1 -->
                     <div v-for="article in profile.article_set" :key="article.id" class="col-md-6">
                       <!-- asset에 있는 사진으로 바꾸고 싶은데 왜 안되냐...  -->
-                      <div class="card card-background" style="background-image: url('http://www.backdownsouth.com/wp-content/uploads/2016/11/sockfancy004.jpg')">
+                      <div class="card card-background m-2" style="background-image: url('http://www.backdownsouth.com/wp-content/uploads/2016/11/sockfancy004.jpg')">
                         <a href="#pablo"></a>
                         <div class="card-body">
-                          <label class="badge">{{ article.created_at }}</label>
+                          <label class="badge">{{ article.created_at.slice(0, 19).replace('T', ' ') }}</label>
                           <a href="#pablo">
                             <h2 class="card-title">
                               <router-link

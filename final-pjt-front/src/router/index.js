@@ -31,7 +31,7 @@ const routes = [
     name: 'login',
     component: LoginView,
     beforeEnter(to, from, next) {
-      if (isLoggedIn === true) {
+      if (store.getters.isLogin === true) {
         alert('이미 로그인이 되어있습니다.')
         next({ name: 'home' })
       } else {

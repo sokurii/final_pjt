@@ -8,6 +8,7 @@
       <textarea id="content" cols="30" rows="10" v-model="content" required></textarea><br>
       <button type="submit" id="submit" class="btn btn-success">게시글 작성</button>
     </form>
+    <button class="btn btn-primary" @click="goBack">뒤로가기</button>
   </div>
 </template>
 
@@ -45,6 +46,9 @@ export default {
           this.$router.push({ name: 'DetailArticle', params: { id: this.$route.params.id } })
         })
         .catch(err => console.log(err))
+    },
+    goBack() {
+      this.$router.go(-1)
     },
   }
 

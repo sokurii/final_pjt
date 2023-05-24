@@ -23,7 +23,7 @@
 
             <div class="id-save" style="margin-top: -10px; margin-bottom:20px; width:300px ">
               <b-form-checkbox v-model="rememberId" true-value="true" false-value="false">
-                <span style="margin-left: 5px;">아이디 저장</span>
+                <span class="text-black" style="margin-left: 5px;">아이디 저장</span>
               </b-form-checkbox>
             </div>
               <!-- <input type="checkbox" v-model="rememberId">
@@ -97,10 +97,10 @@ export default {
 .loginform{
   width: 50%;
   height: 70%;
-  position: fixed;
+  /* position: fixed; */
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  /* transform: translate(-50%, -50%); */
 }
 
 .login-container{

@@ -95,7 +95,6 @@ export default {
   },
   methods: {
     goToFinance() {
-      console.log(this.isLogin)
       if (this.isLogin) {
         this.$router.push({ name: 'finance' })
       } else {         

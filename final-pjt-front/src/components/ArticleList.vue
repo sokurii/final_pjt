@@ -21,7 +21,7 @@
             {{ item.username }}
           </template>
           <template #cell(created_at)="{ item }">
-            {{ item.created_at }}
+            {{ item.created_at.slice(0, 19).replace('T', ' ') }}
           </template>
         </b-table>
 

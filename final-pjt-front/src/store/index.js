@@ -86,6 +86,7 @@ export default new Vuex.Store({
           // context.commit('SIGN_UP', res.data.key)
           context.commit('SAVE_TOKEN', { token: res.data.key, username })
           alert('회원가입이 완료되었습니다!')
+          location.reload() // 페이지 새로고침
         })
         .catch(err => {
           alert('잘못 입력하셨습니다. 다시 입력하세요.')
@@ -105,6 +106,7 @@ export default new Vuex.Store({
         .then(res => {
           context.commit('SAVE_TOKEN', { token: res.data.key, username })
           alert('로그인 되었습니다!')
+          location.reload() // 페이지 새로고침
         })
         .catch(()=> {
           alert('잘못 입력하셨습니다. 다시 입력하세요.')
