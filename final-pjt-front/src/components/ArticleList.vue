@@ -15,7 +15,7 @@
       </div>
         <b-table striped hover :items="articles" :fields="fields" :per-page="perPage">
           <template #cell(title)="{ item }">
-            <router-link :to="{ name: 'DetailArticle', params: { id: item.id } }">{{ item.title }}</router-link>
+            <router-link id="detail-article" :to="{ name: 'DetailArticle', params: { id: item.id } }">{{ item.title }}</router-link>
           </template>
           <template #cell(username)="{ item }">
             {{ item.username }}
@@ -116,5 +116,8 @@ export default {
   outline: none;
 }
 
+#detail-article {
+  text-decoration: none;
+}
 
 </style>
