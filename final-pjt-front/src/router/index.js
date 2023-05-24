@@ -18,6 +18,8 @@ import store from '../store'
 
 Vue.use(VueRouter)
 
+const isLoggedIn = store.getters.isLogin
+
 const routes = [
   { // 메인 페이지
     path: '/',
@@ -28,6 +30,14 @@ const routes = [
     path: '/login',
     name: 'login',
     component: LoginView,
+    beforeEnter(to, from, next) {
+      if (isLoggedIn === true) {
+        alert('이미 로그인이 되어있습니다.')
+        next({ name: 'home' })
+      } else {
+        next()
+      }
+    }
   },
   { // 회원가입 페이지
     path: '/signup',
@@ -93,7 +103,6 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  const isLoggedIn = store.getters.isLogin
   const authPages = [
     'finance',
     'map',
