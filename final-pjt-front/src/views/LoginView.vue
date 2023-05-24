@@ -97,10 +97,10 @@ export default {
 .loginform{
   width: 50%;
   height: 70%;
-  position: fixed;
+  /* position: fixed; */
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  /* transform: translate(-50%, -50%); */
 }
 
 .login-container{

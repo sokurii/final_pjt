@@ -7,77 +7,70 @@
       <!-- <img src="@/assets/document.png"  style="width : 10% ; transform:rotate(20deg);" > -->
     </div>
 
-    <!-- 좌측 배너 -->
-    <div class="banner flex-column justify-content:center align-items:center mt-5 col-2">
-      <!-- <div class="col-3"> -->
-      <!-- <div class="p-3 m-2"> -->
 
-      <form @submit.prevent="searchPlaces">
-        <b-form-group label="광역시/도" label-for="province" label-cols-md="auto" class="mb-3">
-          <b-form-select id="province" v-model="province" :options="provinces"></b-form-select>
-        </b-form-group>
-        <b-form-group label="시/군/구" label-for="city" label-cols-md="auto" class="mb-3">
-          <b-form-select id="city" v-model="city" :options="cities[province]"></b-form-select>
-        </b-form-group>
-        <b-form-group label="은행명" label-for="bank" label-cols-md="auto" class="mb-3">
-          <b-form-input id="bank" v-model="bank" class="d-inline-block" style="width: 250px; height: 35px;"></b-form-input>
-        </b-form-group>
-        <button type="submit" class="btn btn-primary">이동</button>
-      </form>
-      <!-- <img src="../assets/map.png" alt="" style="max-width: 50%; max-height: 50%;"> -->
-      <img src="../assets/map.png" alt="" style="width: 80%" class="map-img">
+    <div class="map-box d-flex ">
+      <!-- 좌측 배너 -->
+      <div class="banner flex-column justify-content:center align-items:center col-2">
+        <form @submit.prevent="searchPlaces">
+          <b-form-group label="광역시/도" label-for="province" label-cols-md="auto" class="mb-3">
+            <b-form-select id="province" v-model="province" :options="provinces"></b-form-select>
+          </b-form-group>
+          <b-form-group label="시/군/구" label-for="city" label-cols-md="auto" class="mb-3">
+            <b-form-select id="city" v-model="city" :options="cities[province]"></b-form-select>
+          </b-form-group>
+          <b-form-group label="은행명" label-for="bank" label-cols-md="auto" class="mb-3">
+            <b-form-input id="bank" v-model="bank" class="d-inline-block" style="width: 250px; height: 35px;"></b-form-input>
+          </b-form-group>
+          <button type="submit" class="btn btn-primary">이동</button>
+        </form>
+        <!-- <img src="../assets/map.png" alt="" style="max-width: 50%; max-height: 50%;"> -->
+        <img src="../assets/map.png" alt="" style="width: 80%" class="map-img">
+      </div>
+      
+      <!-- 지도-->
+      <div class="col-5">
+        <!-- 지도 -->
+        <div id="map" >
+        </div>
+      </div> 
+
+      <!-- 목록  -->
+      <div class="bank-list mt-0 col-4">
+        <!--은행 목록  -->
+        <div class="fix_header d-flex justify-content-between p-3">
+          <!-- <table class="main_table"> -->
+            <thead>
+            <th style="width: 50px">번호</th>
+            <th style="width: 100px">이름</th>
+            <th style="width: 300px">주소</th>
+            <th style="width: 200px">전화번호</th>
+            </thead>
+          <!-- </table> -->
+        </div>
+        <div class="fix_body d-flex justify-content-between" style="overflow-y: scroll; max-height: 700px;">
+          <tbody v-if="results">
+            <tr v-for="(result, index) in results" :key="index" class="body_content d-flex p-3 mt-1">
+              <td style="width: 50px">{{ index + 1}} </td>
+              <td style="width: 100px">{{ result.place_name }}</td>
+              <td style="width: 300px">{{ result.address_name }}</td>
+              <td style="width: 200px">{{ result.phone }}</td>
+            </tr>
+          </tbody>
+          <!-- </table> -->
+        </div>
+
+        <div id="menu_wrap" class="bg-red" style="display: none;">
+          <ul id="placesList"></ul>
+          <div id="pagination"></div>
+        </div>
+      </div>
     </div>
-    
-    <!-- 지도-->
-    <div class="mt-5 col-5">
-      <!-- 지도 -->
-      <div id="map" >
-      </div>
-    </div> 
 
-    <!-- 목록  -->
-    <div class="bank-list mt-5 col-4">
-      <!--은행 목록  -->
-      <div class="fix_header d-flex justify-content-between p-3">
-        <!-- <table class="main_table"> -->
-          <thead>
-          <th style="width: 50px">번호</th>
-          <th style="width: 100px">이름</th>
-          <th style="width: 300px">주소</th>
-          <th style="width: 200px">전화번호</th>
-          </thead>
-        <!-- </table> -->
-      </div>
-      <div class="fix_body d-flex justify-content-between" style="overflow-y: scroll; max-height: 700px;">
-        <tbody v-if="results">
-          <tr v-for="(result, index) in results" :key="index" class="body_content d-flex p-3 mt-1">
-            <td style="width: 50px">{{ index + 1}} </td>
-            <td style="width: 100px">{{ result.place_name }}</td>
-            <td style="width: 300px">{{ result.address_name }}</td>
-            <td style="width: 200px">{{ result.phone }}</td>
-          </tr>
-        </tbody>
-        <!-- </table> -->
-      </div>
 
-      <div id="menu_wrap" class="bg-red" style="display: none;">
-        <ul id="placesList"></ul>
-        <div id="pagination"></div>
-      </div>
-    </div>
+
+
   </div>
 
-    <!-- <div class="main-container mt-4 col-5"> -->
-      <!-- <div class="map_container row"> -->
-      <!-- <div class="map_container"> -->
-        <!-- </div> -->
-        <!-- <div class="col"> -->
-
-
-
-        <!-- </div>
-      </div>
-    </div> -->
 
   
 </template>
@@ -370,12 +363,12 @@ export default {
 
 <style>
 .map-container{
-  padding-top: 50px;
-  padding-bottom: 90px;
+  /* padding-top: 50px; */
+  /* padding-bottom: 10px; */
   width: 1200px;
   margin: 0 auto;
   display: flex;
-  /* height: calc(100% - 00px); */
+  height: calc(100% - 200px);
 }
 .map-page .map-header {   
     height: 100px;
@@ -387,6 +380,10 @@ export default {
     display: flex;
     align-items: center;
 
+}
+
+.map-box{
+  padding: 60px;
 }
 
 

@@ -13,7 +13,7 @@
 
       <b-table striped hover :items="articles" :fields="fields" :per-page="perPage" class="b-table" thead-class="custom-thead">
         <template #cell(title)="{ item }">
-          <router-link :to="{ name: 'DetailArticle', params: { id: item.id } }">{{ item.title }}</router-link>
+          <router-link class="title-link" :to="{ name: 'DetailArticle', params: { id: item.id } }">{{ item.title }}</router-link>
         </template>
         <template #cell(username)="{ item }">
           {{ item.username }}
@@ -126,6 +126,10 @@ export default {
   /* border-top : 2px solid #e98f1a; */
 }
 
-
+.title-link{
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+}
 
 </style>
