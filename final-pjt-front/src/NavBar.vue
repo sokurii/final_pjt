@@ -5,9 +5,9 @@
             <img src="./assets/mmop.png" alt="" style="max-width:150px">
         </router-link>
         <router-link :to="{ name: 'home' }">홈</router-link>
-        <router-link @click.native="goToLogin" to="/finance">금융상품비교</router-link>
-        <router-link @click.native="goToLogin" to="/exchange">환율</router-link>
-        <router-link @click.native="goToLogin" to="/map">지도</router-link> 
+        <router-link to="/finance">금융상품비교</router-link>
+        <router-link to="/exchange">환율</router-link>
+        <router-link to="/map">지도</router-link> 
         <router-link to="/community">게시판</router-link>
         <!-- <div>
           <a href="#" @click="goToFinance">금융상품비교</a>  |
@@ -19,6 +19,11 @@
       <div class='account'>
         <span v-if="!isLogin">
           <router-link to="/login">로그인</router-link> |
+          <!-- <b-button v-b-modal="login">로그인</b-button>  |
+          <b-modal id="login" title="Login">
+            <LoginView />
+          </b-modal> -->
+
           <router-link :to="{ name: 'signup' }">회원가입</router-link>
         </span>
         <span v-if="isLogin">
@@ -51,13 +56,6 @@ export default {
         this.$router.push({ name: 'login' }) // 로그인 페이지로 이동
       },
 
-      goToLogin() {
-        if (!this.isLogin) {
-          alert('로그인이 필요한 서비스입니다.')
-          this.$router.push({ name: 'login' })
-        }
-
-      },
     // methods:{
     //     logout(){
     //         this.$store.dispatch('logout')
