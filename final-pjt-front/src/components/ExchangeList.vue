@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="exchange-container">
     <h2>오늘의 환율</h2>
     <p>{{ today }} 기준</p>
     <p>IDR, JPY는 100 화폐단위당 환율</p>
@@ -54,5 +54,8 @@ export default {
 </script>
 
 <style>
-
+.exchange-container{
+  background-color: white;
+  
+}
 </style>

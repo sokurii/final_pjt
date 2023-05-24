@@ -1,28 +1,52 @@
 <template>
   <div class="article-details">
-    <h1>게시글 상세 정보</h1>
-    <div class="actions">
-      <router-link
-        :to="{
-          name: 'UpdateArticle',
-          params: { id: article.id, title: article.title, content: article.content },
-        }"
-      >
-        <button class="btn btn-light">수정하기</button>
-      </router-link>
-      <button class="btn btn-danger" @click="deleteArticle">삭제하기</button>
-    </div>
-    <div class="article-info">
-      <p><strong>제목:</strong> {{ article.title }}</p>
-      <p><strong>작성자:</strong> {{ article.username }}</p>
-      <p><strong>작성 날짜:</strong> {{ article.created_at }}</p>
-      <p><strong>내용:</strong> {{ article.content }}</p>
-    </div>
-    <hr>
-    <h3>댓글 목록</h3>
-    <CommentList :comments="article.comment_set" :id="article.id"/>
+    <!-- <div class="board-title d-flex flex-column align-items-center justify-content-center">
+      <div><h1 class="board-title-text"><strong>커뮤니티</strong></h1></div>
+      <div>Lorem, ipsum dolor sit amet consectetur adipisicing elit.<br>Illum recusandae maxime temporibus blanditiis reprehenderit quos cumque nulla unde sunt</div>
+    </div> -->
 
-    <button class="btn btn-primary" @click="goBack">뒤로가기</button>
+    <div class="detail-container">
+      <h3 class="text-start"><strong>{{ article.title }}</strong></h3>
+      <div class="article-info">
+        <!-- <p><strong>제목:</strong> {{ article.title }}</p> -->
+          <table class="table mt-4">
+            <tbody>
+              <tr class= "header-title text-start">
+                <th style="width: 10%">제목</th>
+                <td colspan="3" style="width:90%">{{ article.title }}</td>
+              </tr>
+              <tr class="text-start">
+                <th style="width:10%">작성자</th>
+                <td style="width:30%"> {{ article.username }}</td>
+                <th style="width:10%">작성 날짜</th>
+                <td style="width:40%"> {{ article.created_at }}</td>
+              </tr>
+              <tr class="height=100%" >
+                <td colspan="4" class="p-3 text-start" style="height: 300px">{{ article.content }}</td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+
+      <div class="actions d-flex justify-content-end">
+        <router-link
+          :to="{
+            name: 'UpdateArticle',
+            params: { id: article.id, title: article.title, content: article.content },
+          }"
+        >
+          <button class="btn btn-light">수정하기</button>
+        </router-link>
+        <button class="btn btn-danger" @click="deleteArticle">삭제하기</button>
+      </div>
+      
+
+      <p class="text-start">댓글 n</p>  <!-- 댓글 n개 있다는 뜻 --> 
+      <CommentList :comments="article.comment_set" :id="article.id"/>
+
+      <button class="btn btn-primary" @click="goBack">뒤로가기</button>
+    </div>
+
   </div>
 </template>
 
@@ -71,16 +95,30 @@ export default {
 </script>
 
 <style scoped>
-.article-details {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
+/* .article-details{
+  /* height: calc(100% - 100px); 
+} */
+
+.detail-container{
+  margin: 50px auto;
+  width: 80%;
+  height: calc(100% - 100px);
+  background-color: #fff;
+  padding: 50px;
+  /* border: #ff5555 solid; */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 그림자 효과 추가 */
+
 }
 
-.article-details h1 {
-  font-size: 24px;
-  margin-bottom: 20px;
+.header-title{
+  border-top: 1px #dfdcdc solid;
 }
+
+.article-info{
+  height: 100%;
+}
+
+/* ------------------------------------- */
 
 .article-details .actions {
   display: flex;
@@ -106,4 +144,57 @@ export default {
   margin-top: 20px;
 }
 
+/* 추가된 스타일링 */
+.article-details p {
+  font-size: 16px;
+  color: #555;
+}
+
+.article-details .btn {
+  padding: 8px 16px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.article-details .btn-light {
+  background-color: #e2e2e2;
+  border: none;
+  color: #333;
+}
+
+.article-details .btn-danger {
+  background-color: #ff5555;
+  border: none;
+  color: #fff;
+}
+
+.article-details .btn-primary {
+  background-color: #3366ff;
+  border: none;
+  color: #fff;
+}
+
+.article-details .btn-primary:hover,
+.article-details .btn-danger:hover,
+.article-details .btn-light:hover {
+  opacity: 0.8;
+}
+
+/* 테이블 */
+
+.detail-container table {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.detail-container th {
+  width: 20%;
+  background-color: #f0f0f0;
+  text-align: left;
+}
+
+.detail-container td {
+  width: 80%;
+}
 </style>

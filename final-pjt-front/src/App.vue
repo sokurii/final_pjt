@@ -1,7 +1,6 @@
 <template>
-  <div id="app" class='d-flex flex-column'>
+  <div id="app">
     <nav-bar></nav-bar>
-
     <router-view></router-view>
     <foot-bar></foot-bar>
   </div>
@@ -12,30 +11,35 @@
   import FootBar from './FootBar.vue';
 
   export default {
-    name: 'App',
-    components: {
+    name:'App',
+    components :{
       NavBar,
       FootBar,
-    },
-  };
+    }
+    }
+  
 </script>
 
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   text-align: center;
+  /* 추가 */
   color: #000000;
   /* background-color: #F3F2E9; */
   position: relative;
   min-height: 100vh;
-  /* height: 100vh; */
-  display: flex;
-  flex-direction: column;
-}
-
-router-view {
+  height: 100vh;
   flex-grow: 1;
 }
+
+.content {
+  padding-bottom: 60px; /* FootBar의 높이와 같은 값으로 설정 */
+}
+
+
 
 nav a {
   font-weight: bold;
@@ -48,5 +52,9 @@ nav a.router-link-exact-active {
 }
 
 
-
+/* @media (max-width:768px) {
+    footer {
+        font-size: 0.5rem;
+    }
+} */
 </style>

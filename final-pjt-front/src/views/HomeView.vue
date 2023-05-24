@@ -136,7 +136,7 @@ export default {
   align-items: center;
   width: 100%;
   height: 500px;
-  background-color: #F3F2E9;
+  background-color: white;
   /* background-color: #adbeae; */
   
   /* background-color: #FFAD3A; */
@@ -147,7 +147,7 @@ export default {
   justify-content: center;
   align-items: center;  
   height: 500px;
-  background-color: white;
+  background-color: #F3F2E9;
 }
 
 .section-3{
@@ -155,7 +155,7 @@ export default {
   justify-content: center;
   align-items: center;
   height: 500px;
-  background-color: #F3F2E9;;
+  background-color: white;
   /* background-color: #ebb262; */
 }
 

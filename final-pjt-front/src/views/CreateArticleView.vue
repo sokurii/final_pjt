@@ -1,13 +1,25 @@
 <template>
-  <div id="container" class="create-article-container">
-    <h2>게시글 작성</h2>
-    <form @submit.prevent="createArticle" class="create-article-form">
-      <label for="title">제목:</label>
-      <input type="text" id="title" v-model="title" required><br>
-      <label for="content">내용:</label>
-      <textarea id="content" cols="30" rows="10" v-model="content" required></textarea><br>
-      <button type="submit" id="submit" class="btn btn-success">게시글 작성</button>
-    </form>
+  <div id="container">
+    <div class="board-title d-flex flex-column align-items-center justify-content-center">
+      <div><h1 class="board-title-text"><strong>커뮤니티</strong></h1></div>
+      <div>Lorem, ipsum dolor sit amet consectetur adipisicing elit.<br>Illum recusandae maxime temporibus blanditiis reprehenderit quos cumque nulla unde sunt</div>
+      <!-- <img src="@/assets/document.png"  style="width : 10% ; transform:rotate(20deg);" > -->
+    </div>
+
+    <div class="create-article-container">
+      <div class="article-title text-start">
+        <h2><strong>게시글 작성</strong></h2>
+      </div>
+      <form @submit.prevent="createArticle" class="create-article-form">
+        <label for="title">제목:</label>
+        <input type="text" id="title" v-model="title" required><br>
+        <label for="content">내용:</label>
+        <textarea id="content" cols="30" rows="10" v-model="content" required></textarea><br>
+        <div class="submit-btn">
+          <button type="submit" id="submit" class="btn btn-success">게시글 작성</button>
+        </div>  
+      </form>
+    </div>
   </div>
 </template>
 
@@ -21,6 +33,7 @@ export default {
     return {
       title: null,
       content: null,
+      // category:'예금', //수정수정 
     }
   },
   computed: {
@@ -32,6 +45,7 @@ export default {
     createArticle() {
       const title = this.title
       const content = this.content
+      const category = this.category // 수정수정 
       if (!title) {
         alert('제목을 입력해주세요!')
         return
@@ -39,11 +53,15 @@ export default {
         alert('내용을 입력해주세요!')
         return
       }
+      // } else if (!category){ // 수저엉 
+      //   alert('카테고리를 선택해주세요!')
+      //   return
+      // }
 
       axios({
         method: 'post',
         url: `${API_URL}/api/v1/articles/`,
-        data: { title, content },
+        data: { title, content, category }, //추가 카테고리 전송 
         headers: {
           Authorization: `Token ${ this.token }`
         }
@@ -61,13 +79,18 @@ export default {
 <style scoped>
 .create-article-container {
   background-color: #fff;
-  padding: 20px;
+  padding: 80px;
+  height: calc(100% -100px);
 }
 
 .create-article-form {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+}
+
+.article-title{
+  margin-bottom: 50px;
 }
 
 label {
@@ -85,5 +108,13 @@ textarea {
 
 button {
   padding: 10px 20px;
+}
+
+.submit-btn{
+  margin-left: auto;  
+}
+.btn-success{
+  background-color:#6da36f;
+  border: none;
 }
 </style>

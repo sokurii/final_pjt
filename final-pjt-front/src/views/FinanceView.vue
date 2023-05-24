@@ -1,17 +1,22 @@
 <template>
   <div>
+    <div class="board-title d-flex flex-column align-items-center justify-content-center">
+      <div><h1 class="board-title-text"><strong>금융상품비교</strong></h1></div>
+      <div>Lorem, ipsum dolor sit amet consectetur adipisicing elit.<br>Illum recusandae maxime temporibus blanditiis reprehenderit quos cumque nulla unde sunt</div>
+      <!-- <img src="@/assets/document.png"  style="width : 10% ; transform:rotate(20deg);" > -->
+    </div>
+
     <b-tabs content-class="bg-white">
-      <h2>금융상품비교</h2>
       <b-tab title="정기예금" active class="tab">
-        <div id="finance-container">
-          <DepositProductSearchInput @search-bank="getSearchBankD"/>
-          <DepositProductList :bankD="bankD"/>
+        <div id="container">
+          <DepositProductSearchInput @search-bank="getSearchD"/>
+          <DepositProductList :payloadD="payloadD"/>
         </div>
       </b-tab>
       <b-tab title="정기적금">
-        <div id="finance-container">
-          <SavingProductSearchInput @search-bank="getSearchBankS"/>
-          <SavingProductList :bankS="bankS"/>
+        <div id="container">
+          <SavingProductSearchInput @search-bank="getSearchS"/>
+          <SavingProductList :payloadS="payloadS"/>
         </div>
       </b-tab>
     </b-tabs>
@@ -34,16 +39,16 @@ export default {
   },
   data() {
     return {
-      bankD: null,
-      bankS: null,
+      payloadD: {},
+      payloadS: {},
     }
   },
   methods: {
-    getSearchBankD(bankD) {
-      this.bankD = bankD
+    getSearchD(payloadD) {
+      this.payloadD = payloadD
     },
-    getSearchBankS(bankS) {
-      this.bankS = bankS
+    getSearchS(payloadS) {
+      this.payloadS = payloadS
     },
   }
 
@@ -54,11 +59,14 @@ export default {
 .finance{
   background-color: white;
 }
-#finance-container {
+#container {
   padding-top: 50px;
   padding-bottom: 90px;
   width: 1200px;
   margin: 0 auto;
   display: flex;
+  height: 100vh; /* 화면 전체 높이로 설정 */
+  flex-grow:1;
 }
+
 </style>

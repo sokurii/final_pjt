@@ -1,38 +1,36 @@
 <template>
   <div id="container" class="bg-white">
     <!-- 배너 영역  -->
-    <div class="board-title d-flex flex-column align-items-center justify-content-center">
-      <div><h1 class="board-title-text"><strong>커뮤니티</strong></h1></div>
-      <div>Lorem, ipsum dolor sit amet consectetur adipisicing elit.<br>Illum recusandae maxime temporibus blanditiis reprehenderit quos cumque nulla unde sunt</div>
-      <!-- <img src="@/assets/document.png"  style="width : 10% ; transform:rotate(20deg);" > -->
-    </div>
+
 
     <!-- 내용 영역 -->
     <div class="article-list-container">
-      <h2 class="mt-4 mb-3 p-2">총 n개의 게시글이 있습니다</h2>
+      <h2 class="mt-4 mb-3 p-2">총 {{ articles.length }}개의 게시글이 있습니다</h2>
+
       <div class="d-flex justify-content-end mr-2">
         <router-link :to="{ name: 'CreateArticle' }" class="board-btn">게시글 작성하기</router-link>
       </div>
-        <b-table striped hover :items="articles" :fields="fields" :per-page="perPage">
-          <template #cell(title)="{ item }">
-            <router-link :to="{ name: 'DetailArticle', params: { id: item.id } }">{{ item.title }}</router-link>
-          </template>
-          <template #cell(username)="{ item }">
-            {{ item.username }}
-          </template>
-          <template #cell(created_at)="{ item }">
-            {{ item.created_at }}
-          </template>
-        </b-table>
 
-        <b-pagination
-          v-model="currentPage"
-          :total-rows="articles.length"
-          :per-page="perPage"
-          align="center"
-          class="mt-3"
-        ></b-pagination>
-      </div>
+      <b-table striped hover :items="articles" :fields="fields" :per-page="perPage" class="b-table" thead-class="custom-thead">
+        <template #cell(title)="{ item }">
+          <router-link :to="{ name: 'DetailArticle', params: { id: item.id } }">{{ item.title }}</router-link>
+        </template>
+        <template #cell(username)="{ item }">
+          {{ item.username }}
+        </template>
+        <template #cell(created_at)="{ item }">
+          {{ item.created_at }}
+        </template>
+      </b-table>
+
+      <b-pagination
+        v-model="currentPage"
+        :total-rows="articles.length"
+        :per-page="perPage"
+        align="center"
+        class="mt-3"
+      ></b-pagination>
+    </div>
   </div>
 </template>
 
@@ -61,6 +59,7 @@ export default {
   computed: {
     articles() {
       return this.$store.state.articles
+
     },
   },
   created() {
@@ -70,19 +69,17 @@ export default {
     getArticles() {
       this.$store.dispatch('getArticles')
     },
+
   },
 }
 </script>
 
 <style>
-#container {
-  height: 100vh; /* 화면 전체 높이로 설정 */
-  flex-grow:1;
-}
+
 
 .article-list-container {
-  padding: 20px 50px ;
-  height: calc(100% - 500px); /* footer-bar.view를 제외한 높이로 설정 (60px는 footer-bar.view의 높이) */
+  padding: 40px 200px 10px ;
+  height: calc(100vh - 100px); 
   /* overflow-y: auto; */
 }
 
@@ -94,7 +91,7 @@ export default {
   background-position: center;
   background-repeat: no-repeat;
   padding: 20px; 
-  height: 400px;
+  height: 350px;
 }
 
 
@@ -115,6 +112,20 @@ export default {
 .board-btn:focus {
   outline: none;
 }
+
+.b-table{
+  margin: 60px 0px;
+}
+
+.custom-thead {
+  background-color: #8d8d8c;
+  color: white;
+  font-size: 18px;
+  /* color: #your-color; */
+  /* border-bottom: 2px solid #e98f1a; */
+  /* border-top : 2px solid #e98f1a; */
+}
+
 
 
 </style>

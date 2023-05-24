@@ -6,10 +6,15 @@
         </router-link>
         <router-link :to="{ name: 'home' }">홈</router-link>
         <router-link @click.native="goToLogin" to="/finance">금융상품비교</router-link>
-        <router-link @click.native="goToLogin" to="/map">주변은행찾기</router-link> 
-        <router-link to="/community">게시판</router-link>
         <router-link @click.native="goToLogin" to="/exchange">환율</router-link>
-
+        <router-link @click.native="goToLogin" to="/map">지도</router-link> 
+        <router-link to="/community">게시판</router-link>
+        <!-- <div>
+          <a href="#" @click="goToFinance">금융상품비교</a>  |
+          <a href="#" @click="goToExchange">환율</a>  |
+          <a href="#" @click="goToMap">지도</a>  |
+          <a href="#" @click="goToCommunity">게시판</a>
+        </div> -->
       </div>
       <div class='account'>
         <span v-if="!isLogin">
@@ -21,7 +26,6 @@
           <router-link :to="{ name: 'profile' }">프로필</router-link>
         </span>
       </div>
-          <hr class="divider">
   </nav>  
 
 </template>
@@ -42,7 +46,7 @@ export default {
     },
     methods: {
       logout() {
-        this.$store.commit('SAVE_TOKEN', null) // 토큰을 null로 설정하여 로그아웃 처리
+        this.$store.commit('SAVE_TOKEN', { token: null, username: null }) // 토큰과 username을 null로 설정하여 로그아웃 처리
         alert('로그아웃 되었습니다!')
         this.$router.push({ name: 'login' }) // 로그인 페이지로 이동
       },
@@ -61,39 +65,37 @@ export default {
 <style>
     
 
-  .navbar {
-  display: flex;
-  justify-content: space-between;
-  background-color: #F3F2E9;
-  width: 100%;
-  height: 120px;
-  }
+    .navbar {
+    display: flex;
+    justify-content: space-between;
+    /* background-color: #F3F2E9; */
+    background-color: #fff;
+    width: 100%;
+    height: 120px;
+    }
 
-  .menu{
-  display : flex;
-  justify-content: center;
-  align-items: center;
-  gap:20px;
-  padding-left: 200px;
-  }
+    .menu{
+    display : flex;
+    justify-content: center;
+    align-items: center;
+    gap:20px;
+    padding-left: 200px;
+    }
 
-  .account{
-  display:flex;
-  gap:20px;
-  padding-right: 200px;
-  }
+    .account{
+    display:flex;
+    gap:20px;
+    padding-right: 200px;
+    }
 
-  .logout {
-  font-weight: bold;
-  color: black;
-  text-decoration: none;
-  }
+    .logout {
+    font-weight: bold;
+    color: black;
+    text-decoration: none;
+    }
 
-.divider {
-  width: 76%;
-  border: none;
-  border-top: 1.8px solid rgb(171, 168, 168);
-  margin: 0px auto;
-}
+    /* .nav {
+    padding: 30px;
+    } */
 
 </style>

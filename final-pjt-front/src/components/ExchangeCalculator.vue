@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="exchange-container">
     <h2>환율 계산기</h2>
     <div class="m-5">
       <b-input-group size="lg" prepend="$">

@@ -1,8 +1,12 @@
 <template>
   <div id="map-container" class="bg-white row">
-      <div class="pt-3 pb-3">
-        <h2><strong>우리동네 은행찾기</strong></h2>
-      </div>
+        <!-- 배너 영역  -->
+    <div class="board-title d-flex flex-column align-items-center justify-content-center">
+      <div><h1 class="board-title-text"><strong>우리동네은행</strong></h1></div>
+      <div>Lorem, ipsum dolor sit amet consectetur adipisicing elit.<br>Illum recusandae maxime temporibus blanditiis reprehenderit quos cumque nulla unde sunt</div>
+      <!-- <img src="@/assets/document.png"  style="width : 10% ; transform:rotate(20deg);" > -->
+    </div>
+
     <!-- 좌측 배너 -->
     <div class="banner flex-column justify-content:center align-items:center mt-5 col-2">
       <!-- <div class="col-3"> -->
@@ -371,6 +375,7 @@ export default {
   width: 1200px;
   margin: 0 auto;
   display: flex;
+  /* height: calc(100% - 00px); */
 }
 .map-page .map-header {   
     height: 100px;
@@ -393,7 +398,7 @@ export default {
   background: #FFF;
   position: relative;
   z-index: 3;
-  height: calc(100% - 100px); /* footer-bar.view를 제외한 높이로 설정 (60px는 footer-bar.view의 높이) */
+  height: calc(100% - 200px); /* footer-bar.view를 제외한 높이로 설정 (60px는 footer-bar.view의 높이) */
   overflow-y: auto;
 }
 
@@ -413,7 +418,8 @@ label{
   padding: 30px 0px; /* 내부 여백 설정 */
   border-radius: 6px; 
   align-items: center;
-  margin: 40px ;
+  /* margin: 40px ; */
+  margin: auto;
   
   display: flex;
 }
@@ -436,11 +442,14 @@ label{
 
 /* KakaoMap */
 #map {
-  margin: 2px;
+  /* margin: 2px; */
+  margin: auto;
   display: flex;
   border: solid;
   height: 700px;
 }
 
-
+.bank-list{
+  margin: auto;
+}
 </style>
