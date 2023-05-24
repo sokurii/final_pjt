@@ -9,7 +9,7 @@
 
     <!-- 내용 영역 -->
     <div class="article-list-container">
-      <h2 class="mt-4 mb-3 p-2">총 n개의 게시글이 있습니다</h2>
+      <h2 class="mt-4 mb-3 p-2">총 {{ articles.length }}개의 게시글이 있습니다</h2>
       <div class="d-flex justify-content-end mr-2">
         <router-link :to="{ name: 'CreateArticle' }" class="board-btn">게시글 작성하기</router-link>
       </div>
