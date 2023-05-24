@@ -44,22 +44,12 @@
         <b-tab title="관심상품">
           <div class="row d-flex justify-content-center align-items-center">
             <div class="col-md-6 ml-auto mr-auto ">
-              <div class="profile-tabs ">
-                <!-- 선택 버튼 2개 -->
-                <!-- <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist"> -->
-                  <!-- 게시글 버튼 (보라색) -->
-                  <!-- <li class="nav-item"> -->
-                    <!-- <a class="nav-link active" href="#work" role="tab" data-toggle="tab"> -->
-                      <!-- <i class="material-icons">작성한 게시글</i>Articles -->
-                    <!-- </a> -->
-                  <!-- </li> -->
-                  <!-- 찜해둔 상품 버튼(보라색) -->
-                  <!-- <li class="nav-item"> -->
-                    <!-- <a class="nav-link" href="#favorite" role="tab" data-toggle="tab"> -->
-                      <!-- <i class="material-icons">찜한 금융상품</i> Favorite -->
-                    <!-- </a> -->
-                  <!-- </li> -->
-                <!-- </ul> -->
+              <h4>총 {{ profile.likedeposits_count + profile.likesavings_count }}개의 관심상품이 있습니다.</h4>
+              <div v-for="deposit in profile.likedeposits" :key="deposit.id">
+                <p>{{ deposit.fin_prdt_nm }}</p>
+              </div>
+              <div v-for="saving in profile.likesavings" :key="saving.id">
+                <p>{{ saving.fin_prdt_nm }}</p>
               </div>
             </div>
           </div>

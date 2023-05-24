@@ -1,8 +1,8 @@
 <template>
   <div>
     <div>
-      <b-button pill variant="success">관심상품 등록</b-button>
-      <b-button pill>관심상품 등록 해제</b-button>
+      <b-button v-if="!likeStatusS" pill variant="success" @click="likeSaving">관심상품 등록</b-button>
+      <b-button v-else pill @click="likeSaving">관심상품 등록 해제</b-button>
     </div>
     <div class="d-flex flex-column mb-3">
       <div class="p-2 text-start">
@@ -41,11 +41,13 @@ export default {
   },
   data() {
     return {
-      product: null
+      product: null,
+      likeStatusS: false,
     }
   },
   created() {
     this.getProductDetail()
+    this.retrieveLikeStatusS()
   },
   methods: {
     getProductDetail() {
@@ -58,6 +60,40 @@ export default {
         })
         .catch(err => console.log(err))
     },
+    
+    likeSaving() {
+      axios({
+        method: 'post',
+        url: `${API_URL}/finlife/saving-products/${this.fin_prdt_cd}/likes/`,
+        headers: {
+          Authorization: `Token ${ this.$store.state.token }`
+        },
+      })
+        .then(() => {
+          if (!this.likeStatusS) {
+            alert('관심상품으로 등록되었습니다.')
+            this.likeStatusS = true
+          } else {
+            alert('관심상품 등록이 해제되었습니다.')
+            this.likeStatusS = false
+          }
+
+          this.saveLikeStatusS() // like 상태 변경 후 저장
+        })
+        .catch(err => console.log(err))
+    },
+
+    retrieveLikeStatusS() {
+      const likeStatusS = localStorage.getItem('likeStatusS')
+      if (likeStatusS !== null) {
+        this.likeStatusS = JSON.parse(likeStatusS)
+      }
+    },
+
+    saveLikeStatusS() {
+      localStorage.setItem('likeStatusS', JSON.stringify(this.likeStatusS))
+    },
+
     goBack() {
         this.$router.go(-1)
     }

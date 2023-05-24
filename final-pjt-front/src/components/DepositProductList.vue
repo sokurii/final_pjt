@@ -67,7 +67,7 @@
                   <b-button v-b-modal="product.fin_prdt_cd">{{ product.fin_prdt_nm }}</b-button>
 
                   <b-modal :id="product.fin_prdt_cd" title="상품 상세 정보">
-                    <DepositProductDetail :fin_prdt_cd="product.fin_prdt_cd"/>
+                    <DepositProductDetail :fin_prdt_cd="product.fin_prdt_cd" :likeStatusD="product.likeStatusD" @like-toggle="toggleLikeStatus(product)"/>
                   </b-modal>
                 </td>
               </tr>
@@ -114,7 +114,20 @@ export default {
   methods: {
     getDepositProducts() {
       this.$store.dispatch('getDepositProducts')
-    }
+    },
+    toggleLikeStatus(product) {
+      product.likeStatusD = !product.likeStatusD
+      this.saveLikeStatus(product)
+    },
+    saveLikeStatus(product) {
+      localStorage.setItem(`likeStatus_${product.fin_prdt_cd}`, JSON.stringify(product.likeStatus))
+    },
+    retrieveLikeStatus(product) {
+      const likeStatusD = localStorage.getItem(`likeStatus_${product.fin_prdt_cd}`)
+      if (likeStatusD !== null) {
+        product.likeStatusD = JSON.parse(likeStatusD)
+      }
+    },
   }
 }
 </script>

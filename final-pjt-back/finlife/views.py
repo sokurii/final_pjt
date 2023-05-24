@@ -6,6 +6,9 @@ from django.contrib.auth import get_user_model
 
 import requests
 
+from rest_framework.decorators import permission_classes
+from rest_framework.permissions import IsAuthenticated
+
 from .models import DepositProducts, DepositOptions, SavingProducts, SavingOptions, ExchangeInfos
 from .serializers import DepositProductsSerializer, DepositOptionsSerializer, SavingProductsSerializer, SavingOptionsSerializer, ExchangeInfosSerializer
 
@@ -134,6 +137,7 @@ def saving_product_detail(request, fin_prdt_cd):
     return Response(serializer.data)
 
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def like_deposit_products(request, fin_prdt_cd):
     deposit = DepositProducts.objects.get(fin_prdt_cd=fin_prdt_cd)
     
@@ -142,7 +146,10 @@ def like_deposit_products(request, fin_prdt_cd):
     else:
         deposit.like_users.add(request.user)
 
+    return Response({'message': 'Okay'})
+
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def like_saving_products(request, fin_prdt_cd):
     saving = SavingProducts.objects.get(fin_prdt_cd=fin_prdt_cd)
     
@@ -150,18 +157,20 @@ def like_saving_products(request, fin_prdt_cd):
         saving.like_users.remove(request.user)
     else:
         saving.like_users.add(request.user)
+
+    return Response({'message': 'Okay'})
         
-@api_view(['GET'])
-def user_liked_products(request):
-    user = request.user
+# @api_view(['GET'])
+# def user_liked_products(request):
+#     user = request.user
 
-    liked_deposit_products = DepositProducts.objects.filter(like_users=user)
-    deposit_serializer = DepositProductsSerializer(liked_deposit_products, many=True)
+#     liked_deposit_products = DepositProducts.objects.filter(like_users=user)
+#     deposit_serializer = DepositProductsSerializer(liked_deposit_products, many=True)
 
-    liked_saving_products = SavingProducts.objects.filter(like_users=user)
-    saving_serializer = SavingProductsSerializer(liked_saving_products, many=True)
+#     liked_saving_products = SavingProducts.objects.filter(like_users=user)
+#     saving_serializer = SavingProductsSerializer(liked_saving_products, many=True)
 
-    return Response({
-        'liked_deposit_products': deposit_serializer.data,
-        'liked_saving_products': saving_serializer.data
-    })
+#     return Response({
+#         'liked_deposit_products': deposit_serializer.data,
+#         'liked_saving_products': saving_serializer.data
+#     })
