@@ -14,7 +14,11 @@ import CreateArticleView from '../views/CreateArticleView.vue'
 import DetailArticleView from '../views/DetailArticleView.vue'
 import UpdateArticleView from '../views/UpdateArticleView.vue'
 
+import store from '../store'
+
 Vue.use(VueRouter)
+
+const isLoggedIn = store.getters.isLogin
 
 const routes = [
   { // 메인 페이지
@@ -26,6 +30,14 @@ const routes = [
     path: '/login',
     name: 'login',
     component: LoginView,
+    beforeEnter(to, from, next) {
+      if (store.getters.isLogin === true) {
+        alert('이미 로그인이 되어있습니다.')
+        next({ name: 'home' })
+      } else {
+        next()
+      }
+    }
   },
   { // 회원가입 페이지
     path: '/signup',
@@ -37,16 +49,16 @@ const routes = [
     name: 'finance',
     component: FinanceView
   },
-  { // 정기예금 상품 상세 조회 페이지
-    path: '/finance/deposit/:fin_prdt_cd',
-    name: 'depositDetail',
-    component: DepositProductDetailView
-  },
-  { // 금융상품 상세 조회 페이지
-    path: '/finance/saving/:fin_prdt_cd',
-    name: 'savingDetail',
-    component: SavingProductDetailView
-  },
+  // { // 정기예금 상품 상세 조회 페이지
+  //   path: '/finance/deposit/:fin_prdt_cd',
+  //   name: 'depositDetail',
+  //   component: DepositProductDetailView
+  // },
+  // { // 금융상품 상세 조회 페이지
+  //   path: '/finance/saving/:fin_prdt_cd',
+  //   name: 'savingDetail',
+  //   component: SavingProductDetailView
+  // },
   { // 지도 페이지
     path: '/map',
     name: 'map',
@@ -88,6 +100,27 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  const authPages = [
+    'finance',
+    'map',
+    'exchange',
+    'CreateArticle',
+    'DetailArticle',
+    'UpdateArticle',
+    'profile',
+  ]
+
+  const isAuthRequired = authPages.includes(to.name)
+
+  if (isAuthRequired && !isLoggedIn) {
+    alert('로그인이 필요한 서비스입니다.')
+    next({ name: 'login' })
+  } else {
+    next()
+  }
 })
 
 export default router

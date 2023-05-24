@@ -111,7 +111,7 @@ export default {
   data() {
     return {
       payload: {
-        depositAmount: '0',
+        depositAmount: '100000',
         selectedTerm: '12', // 초기 선택된 예치기간\
         interest: '',
         selectedPaymentTerm: '전체',

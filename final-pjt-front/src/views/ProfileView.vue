@@ -76,12 +76,12 @@
                   <!-- 여기에 게시글 목록 불러와서 붙이기 !!!! -->
                   <div v-else class="row collections">
                     <!-- 게시글 1 -->
-                    <div v-for="article in profile.article_set" :key="article.id" class="col-md-6">
+                    <div v-for="article in profile.article_set" :key="article.id" class="col-md-4">
                       <!-- asset에 있는 사진으로 바꾸고 싶은데 왜 안되냐...  -->
-                      <div class="card card-background" style="background-image: url('http://www.backdownsouth.com/wp-content/uploads/2016/11/sockfancy004.jpg')">
+                      <div class="card card-background m-2" style="background-image: url('http://www.backdownsouth.com/wp-content/uploads/2016/11/sockfancy004.jpg')">
                         <a href="#pablo"></a>
                         <div class="card-body">
-                          <label class="badge">{{ article.created_at }}</label>
+                          <label class="badge">{{ article.created_at.slice(0, 19).replace('T', ' ') }}</label>
                           <a href="#pablo">
                             <h2 class="card-title">
                               <router-link
@@ -119,9 +119,59 @@
       </b-tabs>
     </b-card>
     <!-- 팝업창 -->
-    <div>
-      <h1>이런 상품은 어때요?</h1>
+    <div class="recommend">
+      <div>
+        <h1>이런 상품은 어때요?</h1>
+      </div>
+      <br>
+      <br>
+      <div class="product-cards row">
+        <!-- 카드 목록 -->
+        <div class="col-4">
+          <b-card-group deck>
+            <b-card
+              header="featured"
+              header-tag="header"
+              footer="Card Footer"
+              footer-tag="footer"
+              title="Title"
+            >
+              <b-card-text>Header and footers using props.</b-card-text>
+              <b-button href="#" variant="primary">Go somewhere</b-button>
+            </b-card>
+          </b-card-group>
+        </div>
+        <div class="col-4">
+          <b-card-group deck>
+            <b-card
+              header="featured"
+              header-tag="header"
+              footer="Card Footer"
+              footer-tag="footer"
+              title="Title"
+            >
+              <b-card-text>Header and footers using props.</b-card-text>
+              <b-button href="#" variant="primary">Go somewhere</b-button>
+            </b-card>
+          </b-card-group>
+        </div>
+        <div class="col-4">
+          <b-card-group deck>
+            <b-card
+              header="featured"
+              header-tag="header"
+              footer="Card Footer"
+              footer-tag="footer"
+              title="Title"
+            >
+              <b-card-text>Header and footers using props.</b-card-text>
+              <b-button href="#" variant="primary">Go somewhere</b-button>
+            </b-card>
+          </b-card-group>
+        </div>
+      </div>
     </div>
+
   </div>
 
 
@@ -456,6 +506,7 @@ h4.card-title{
     position: relative;
     padding: 0;
     z-index: 1;
+    width: auto;
     margin-left: 15px;
     margin-right: 15px;
     margin-top: -30px;
@@ -592,6 +643,9 @@ h4.card-title{
     margin-right: 1.5rem;
 }
 
+.product-cards {
+  width: auto;
+}
 
 }
 </style>

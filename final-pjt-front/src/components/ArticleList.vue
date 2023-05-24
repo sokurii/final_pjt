@@ -15,13 +15,13 @@
       </div>
         <b-table striped hover :items="articles" :fields="fields" :per-page="perPage">
           <template #cell(title)="{ item }">
-            <router-link :to="{ name: 'DetailArticle', params: { id: item.id } }">{{ item.title }}</router-link>
+            <router-link id="detail-article" :to="{ name: 'DetailArticle', params: { id: item.id } }">{{ item.title }}</router-link>
           </template>
           <template #cell(username)="{ item }">
             {{ item.username }}
           </template>
           <template #cell(created_at)="{ item }">
-            {{ item.created_at }}
+            {{ item.created_at.slice(0, 19).replace('T', ' ') }}
           </template>
         </b-table>
 
@@ -116,5 +116,8 @@ export default {
   outline: none;
 }
 
+#detail-article {
+  text-decoration: none;
+}
 
 </style>

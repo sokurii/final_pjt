@@ -15,7 +15,7 @@
     <div class="article-info">
       <p><strong>제목:</strong> {{ article.title }}</p>
       <p><strong>작성자:</strong> {{ article.username }}</p>
-      <p><strong>작성 날짜:</strong> {{ article.created_at }}</p>
+      <p><strong>작성 날짜:</strong> {{ article.created_at.slice(0, 19).replace('T', ' ') }}</p>
       <p><strong>내용:</strong> {{ article.content }}</p>
     </div>
     <hr>

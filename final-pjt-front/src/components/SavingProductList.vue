@@ -60,14 +60,11 @@
                 </td>
                 <td style="width: 200px">{{ product.kor_co_nm }}</td>
                 <td style="width: 320px">
-                  <router-link
-                  :to ="{
-                  name : 'savingDetail',
-                  params: {fin_prdt_cd: product.fin_prdt_cd}
-                  }"
-                  >
-                  {{ product.fin_prdt_nm }}
-                  </router-link>
+                  <b-button v-b-modal="product.fin_prdt_cd">{{ product.fin_prdt_nm }}</b-button>
+
+                  <b-modal :id="product.fin_prdt_cd" title="상품 상세 정보">
+                    <SavingtProductDetail :fin_prdt_cd="product.fin_prdt_cd"/>
+                  </b-modal>
                 </td>
               </tr>
 
@@ -79,12 +76,12 @@
 </template>
 
 <script>
-import SavingProductListItem from './SavingProductListItem.vue'
+import SavingtProductDetail from './SavingProductDetail.vue'
 
 export default {
   name: 'SavingProductList',
   components: {
-    SavingProductListItem,
+    SavingtProductDetail,
   },
   props: {
     payloadS: Object,
