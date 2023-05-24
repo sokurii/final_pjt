@@ -21,17 +21,17 @@
 
                   <!-- 1. 예치금액 -->
                   <div class="amount_area">
-                    <label class="input_label">예치금액</label>
+                    <label class="input_label">월납입금액</label>
                     <div class="input_box">
-                      <input class="min amount" name="amount" maxlength="10" v-model="depositAmount">
+                      <input class="min amount" name="amount" maxlength="10" v-model="payload.depositAmount">
                     </div>
                   </div>
 
                   <!-- 2. 예치기간 -->
                   <div class="input_group all period">
-                    <label class="input_label">예치기간</label>
+                    <label class="input_label">예치기간(개월)</label>
                     <div class="input_box">
-                      <select class="min select" name="term" v-model="selectedTerm">
+                      <select class="min select" name="term" v-model="payload.selectedTerm">
                         <option v-for="term in terms" :key="term" :value="term">{{ term }}</option>
                       </select>
                     </div>
@@ -42,7 +42,7 @@
                   <div class="amount_area">
                     <label class="input_label">이자율</label>
                     <div class="input_box">
-                      <input class="min interest" v-model="interest" name="interest" maxlength="10">
+                      <input class="min interest" v-model="payload.interest" name="interest" maxlength="10">
                     </div>
                   </div>
                   
@@ -50,7 +50,7 @@
                   <div class="input_group all deposit_only" style="display: block;">
                     <label class="input_label">이자지급방식</label>
                     <div class="input_box">
-                      <select class="min select" v-model="selectedPaymentTerm" name="payment_term">
+                      <select class="min select" v-model="payload.selectedPaymentTerm" name="payment_term">
                         <option v-for="option in paymentTerms" :key="option" :value="option">{{ option }}</option>
                       </select>
                     </div>
@@ -60,7 +60,7 @@
                   <div class="input_group all">
                     <label class="input_label">지역</label>
                     <div class="input_box">
-                      <select class="min select" v-model="selectedRegion" name="region_sido">
+                      <select class="min select" v-model="payload.selectedRegion" name="region_sido">
                         <option v-for="region in regions" :key="region" :value="region">{{ region }}</option>
                       </select>
                     </div>
@@ -71,7 +71,7 @@
                   <div class="input_gruop all">
                     <label class="input_label">은행명</label>
                     <div class="input_box">
-                      <select class="min select" v-model="selectBank" name="bank_sido">
+                      <select class="min select" v-model="payload.selectBank" name="bank_sido">
                         <option v-for="bank in banks" :key="bank" :value="bank">{{ bank }}</option>
                       </select>
                     </div>
@@ -83,7 +83,7 @@
                   <div class="input_group all">
                     <label class="input_label">가입방식</label>
                     <div class="input_box">
-                      <select class="min select" v-model="selectedJoinChannel" name="join_channel">
+                      <select class="min select" v-model="payload.selectedJoinChannel" name="join_channel">
                         <option v-for="channel in joinChannels" :key="channel" :value="channel">{{ channel }}</option>
                       </select>
                     </div>
@@ -110,21 +110,25 @@ export default {
   name: 'SavingProductSearchInput',
   data() {
     return {
-      depositAmount: '1000000',
-      selectedTerm: '12개월', // 초기 선택된 예치기간
+      payload: {
+        depositAmount: '0',
+        selectedTerm: '12', // 초기 선택된 예치기간\
+        interest: '',
+        selectedPaymentTerm: '전체',
+        selectedRegion: '전체',
+        selectBank: '전체',
+        selectedJoinChannel: '전체',
+      },
       terms: [
-        '6개월',
-        '12개월',
-        '24개월',
-        '36개월' 
+        '6',
+        '12',
+        '24',
+        '36' 
       ],
-      interest: '',
-      selectedPaymentTerm: '전체',
       paymentTerms: [
         '전체', 
         '단리', 
         '복리'],
-      selectedRegion: '전체',
       regions: [
         '전체',
         '서울',
@@ -145,7 +149,6 @@ export default {
         '경상남도',
         '제주'
       ],
-      selectBank: '전체',
       banks: [
           '전체',
           '우리은행',
@@ -167,7 +170,6 @@ export default {
           '주식회사 카카오뱅크',
           '토스뱅크 주식회사',
       ],
-      selectedJoinChannel: '전체',
       joinChannels: [
         '전체', 
         '온라인', 
@@ -177,9 +179,8 @@ export default {
   },
   methods: {
     searchProducts() {
-      this.$emit('search-bank', this.selectBank)
+      this.$emit('search-bank', this.payload)
     }
   }
 }
 </script>
-
