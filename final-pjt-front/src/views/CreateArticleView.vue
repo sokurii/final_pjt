@@ -7,6 +7,7 @@
       <label for="content">내용:</label>
       <textarea id="content" cols="30" rows="10" v-model="content" required></textarea><br>
       <button type="submit" id="submit" class="btn btn-success">게시글 작성</button>
+      <button class="btn btn-primary" @click="goBack">뒤로가기</button>
     </form>
   </div>
 </template>
@@ -53,7 +54,10 @@ export default {
           this.$router.push({ name: 'community' })
         })
         .catch(err => console.log(err))
-    }
+    },
+    goBack() {
+      this.$router.push({ name: 'community' })
+    },
   }
 }
 </script>

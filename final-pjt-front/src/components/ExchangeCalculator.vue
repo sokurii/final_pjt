@@ -52,8 +52,15 @@ export default {
     calculateExchange() {
       const exchange1 = this.exchange1
       const exchange2 = this.exchange2
-      const exchangeRate = this.exchangeValue[exchange1] / this.exchangeValue[exchange2]
-      this.exchangeOutput = this.exchangeInput * exchangeRate
+      let exchangeRate = this.exchangeValue[exchange1] / this.exchangeValue[exchange2]
+
+      if (exchange1 === 'JPY(100) 일본 옌' || exchange1 === 'IDR(100) 인도네시아 루피아') {
+        exchangeRate = exchangeRate * 0.01
+      } 
+      if (exchange2 === 'JPY(100) 일본 옌' || exchange2 === 'IDR(100) 인도네시아 루피아'){
+        exchangeRate = exchangeRate * 100
+      }
+      this.exchangeOutput = parseFloat((this.exchangeInput * exchangeRate).toFixed(2))
     },
     change() {
       const temp = this.exchange1
