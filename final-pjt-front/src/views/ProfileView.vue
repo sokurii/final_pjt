@@ -13,7 +13,7 @@
                 <div class="name">
                   <!-- <h3 class="title">담곰이</h3> -->
                   <h3 class="title">
-                    {{ myUsername }}
+                    {{ username }}
                     <span v-if="!showPopup">{{title}}</span>
                     <input v-if="showPopup" class="input" v-model="title">
                     <button class="btn btn-link" @click="togglePopup('title')">{{ showPopup ? '저장' : '수정'}}</button>
