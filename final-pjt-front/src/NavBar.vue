@@ -1,37 +1,33 @@
 <template>
-  <nav class = 'navbar'>
+  <div>
+    <div class="nav-container">
+
       <div class='menu'>       
-        <router-link :to="{ name: 'home' }">
-            <img src="./assets/mmop.png" alt="" style="max-width:150px">
+        <router-link :to="{ name: 'home' }" >
+            <img src="./assets/mmop.png" alt="" style="max-width:250px">
         </router-link>
         <router-link :to="{ name: 'home' }">홈</router-link>
-        <router-link to="/finance">금융상품비교</router-link>
-        <router-link to="/exchange">환율</router-link>
-        <router-link to="/map">지도</router-link> 
-        <router-link to="/community">게시판</router-link>
-        <!-- <div>
-          <a href="#" @click="goToFinance">금융상품비교</a>  |
-          <a href="#" @click="goToExchange">환율</a>  |
-          <a href="#" @click="goToMap">지도</a>  |
-          <a href="#" @click="goToCommunity">게시판</a>
-        </div> -->
+        <router-link @click.native="goToLogin" to="/finance">금융상품비교</router-link>
+        <router-link @click.native="goToLogin" to="/map">우리동네은행</router-link> 
+        <router-link to="/community">커뮤니티</router-link>
+        <router-link @click.native="goToLogin" to="/exchange">환율</router-link>
       </div>
-      <div class='account'>
-        <span v-if="!isLogin" class="text-black">
-          <router-link to="/login">로그인</router-link> |
-          <!-- <b-button v-b-modal="login">로그인</b-button>  |
-          <b-modal id="login" title="Login">
-            <LoginView />
-          </b-modal> -->
 
+      <div class='account'>
+        <span v-if="!isLogin">
+          <router-link to="/login">로그인</router-link> |
           <router-link :to="{ name: 'signup' }">회원가입</router-link>
         </span>
-        <span v-if="isLogin" class="text-black">
+        <span v-if="isLogin">
           <a href="" @click="logout">로그아웃</a> |
           <router-link :to="{ name: 'profile' }">프로필</router-link>
         </span>
+      <!-- </div> -->
+
       </div>
-  </nav>  
+    </div>
+
+  </div>  
 
 </template>
 
@@ -53,23 +49,16 @@ export default {
       logout() {
         this.$store.commit('SAVE_TOKEN', { token: null, username: null }) // 토큰과 username을 null로 설정하여 로그아웃 처리
         alert('로그아웃 되었습니다!')
-        //  로그아웃시 state 최신화
-        this.$nextTick(() => {
-          this.$router.push({ name: 'login' }) // 로그인 페이지로 이동
-        })
+        this.$router.push({ name: 'login' }) // 로그인 페이지로 이동
       },
 
-    // methods:{
-    //     logout(){
-    //         this.$store.dispatch('logout')
-    //     }
-    // },
-    // computed:{
-    //     ...mapGetters(['isLoggedIn',]),
-    //     loginState(){
-    //         return (this.isLoggedIn) ? 'Logout' : 'Login'
-    //     }
-    // },
+      goToLogin() {
+        if (!this.isLogin) {
+          alert('로그인이 필요한 서비스입니다.')
+          this.$router.push({ name: 'login' })
+        }
+
+      },
     },
 }
 </script>
@@ -77,36 +66,41 @@ export default {
 <style>
     
 
-    .navbar {
-    display: flex;
-    justify-content: space-between;
-    background-color: #F3F2E9;
-    width: 100%;
-    height: 120px;
-    }
+.nav-container {
+  display: flex; /* 주축과 교차축 나눠서 아이템식 */
+justify-content: space-between;
+background-color: #fff;
+width: 100%;
+height: 120px;
+padding: 0px 200px;
+}
 
-    .menu{
-    display : flex;
-    justify-content: center;
-    align-items: center;
-    gap:20px;
-    padding-left: 200px;
-    }
+/* 내브바 폰트 */
+div a {
+font-size:19px;
+font-weight: bold;
+color: black;
+text-decoration: none;
+}
 
-    .account{
-    display:flex;
-    gap:20px;
-    padding-right: 200px;
-    }
+div a.router-link-exact-active {
+  color: #e98f1a;
+}
 
-    .logout {
-    font-weight: bold;
-    color: black;
-    text-decoration: none;
-    }
 
-    /* .nav {
-    padding: 30px;
-    } */
+
+.menu, .account{
+display : flex;
+justify-content: center;
+align-items: center;
+gap:25px;
+
+}
+
+
+
+
+
+
 
 </style>

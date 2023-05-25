@@ -23,7 +23,7 @@
 
             <div class="id-save" style="margin-top: -10px; margin-bottom:20px; width:300px ">
               <b-form-checkbox v-model="rememberId" true-value="true" false-value="false">
-                <span class="text-black" style="margin-left: 5px;">아이디 저장</span>
+                <span style="margin-left: 5px;">아이디 저장</span>
               </b-form-checkbox>
             </div>
               <!-- <input type="checkbox" v-model="rememberId">
@@ -49,13 +49,7 @@ export default {
         rememberId: false,
     };
   },
-  // mounted() {
-  //   // 페이지가 로드될 때 저장된 아이디가 있는지 확인하고, 있을 경우 아이디 입력 필드에 값을 설정합니다.
-  //   const savedId = localStorage.getItem('savedId');
-  //   if (savedId && this.rememberId) {
-  //     this.id = savedId;
-  //   }
-  // },
+
   methods: {
     login() {
       const id = this.id
@@ -78,38 +72,35 @@ export default {
   //     }
   //   },
   // },
+
 };
 </script>
 
 <style scoped>
-/* 로그인이랑 회원가입 창에 적용해보기  */
-/* .header-filter:before {
-    position: absolute;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    display: block;
-    left: 0;
-    top: 0;
-    content: "";
-    background: rgba(0,0,0,.5);
-} */
-.loginform{
-  width: 50%;
-  height: 70%;
-  /* position: fixed; */
-  top: 50%;
-  left: 50%;
-  /* transform: translate(-50%, -50%); */
+#container {
+  width: 1200px;
+  height: 100vh;
+  margin: 100px auto ;
+  display: flex;
+  flex-grow:1;
 }
 
-.login-container{
+
+
+.loginform{
+  width: 70%;
+  height: 60%;
+}
+
+.login-container {
   display: flex;
   justify-content: space-between;
   height: 100%;
   background-color: #fff;
-  border-radius: 20px ;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
 
 .login-img{
   width: 50%;
@@ -126,7 +117,7 @@ export default {
   width: 80%;
   opacity : 0.7;
   margin-top: 100px;
-  margin-left: 10px;
+  margin-left: 0px;
   
 }
 
@@ -152,10 +143,10 @@ export default {
 } 
 
 .mmop{
-  width:25%;
+  width:40%;
   margin-top: 50px;
   margin-bottom: 20px;
-  margin-right: 220px;
+  margin-left: 50px;
 }
 
 .input-container{

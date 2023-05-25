@@ -1,12 +1,4 @@
 <template>
-  <!-- <div>
-    <form class="m-1" @submit.prevent="searchProducts">
-      <b-form-group label="은행명" label-for="bank" label-cols-md="auto" class="mb-3">
-        <b-form-select id="bank" v-model="bank" :options="banks"></b-form-select>
-      </b-form-group>
-      <button type="submit" class="btn btn-primary">조회</button>
-    </form>
-  </div> -->
     <div class="left_wrap">
         <!-- 좌측 검색필터 -->
 
@@ -213,14 +205,20 @@ export default {
   background-color: #6da36f;
   padding: 25px;
 }
+
+
 .left_menu_inner > * {
   width: 100%;
   display: block;
   background-color: #fff;
+  
 }
 
 .input_box{
+  
   margin-bottom: 10px;
+  margin: auto;
+  text-align: center;
 }
 
 .input_box>input, select{
@@ -229,6 +227,7 @@ export default {
   padding: 5px;
   width: 250px; 
   height: 35px;
+  
 }
 
 .input_title>*{

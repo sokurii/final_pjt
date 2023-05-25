@@ -1,6 +1,10 @@
 <template>
   <div>
-    <h2>금융상품비교</h2>
+    <div class="board-title d-flex flex-column align-items-center justify-content-center">
+      <div><h1 class="board-title-text"><strong>금융상품비교</strong></h1></div>
+      <div>Lorem, ipsum dolor sit amet consectetur adipisicing elit.<br>Illum recusandae maxime temporibus blanditiis reprehenderit quos cumque nulla unde sunt</div>
+    </div>
+
     <b-tabs content-class="bg-white">
       <b-tab title="정기예금" active class="tab">
         <div id="container">
@@ -60,6 +64,8 @@ export default {
   width: 1200px;
   margin: 0 auto;
   display: flex;
-  height: auto !important;
+  height: 100vh;
+  flex-grow:1;
 }
+
 </style>

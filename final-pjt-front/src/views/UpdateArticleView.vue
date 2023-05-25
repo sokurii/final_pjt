@@ -1,14 +1,24 @@
 <template>
-  <div class="update-article-container">
-    <h2>게시글 수정</h2>
-    <form @submit.prevent="updateArticle" class="update-article-form">
-      <label for="title">제목:</label>
-      <input type="text" id="title" v-model="title" required><br>
-      <label for="content">내용:</label>
-      <textarea id="content" cols="30" rows="10" v-model="content" required></textarea><br>
-      <button type="submit" id="submit" class="btn btn-success">게시글 작성</button>
-    </form>
-    <button class="btn btn-primary" @click="goBack">뒤로가기</button>
+  <div id="container">
+    <div class="board-title d-flex flex-column align-items-center justify-content-center">
+      <div><h1 class="board-title-text"><strong>커뮤니티</strong></h1></div>
+      <div>Lorem, ipsum dolor sit amet consectetur adipisicing elit.<br>Illum recusandae maxime temporibus blanditiis reprehenderit quos cumque nulla unde sunt</div>
+    </div>
+
+    <div class="update-article-container">
+      <div class="update-title text-start">
+        <h2><strong>게시글 수정</strong></h2>
+      </div>      
+      <form @submit.prevent="updateArticle" class="update-article-form">
+        <label for="title">제목:</label>
+        <input type="text" id="title" v-model="title" required><br>
+        <label for="content">내용:</label>
+        <textarea id="content" cols="30" rows="10" v-model="content" required></textarea><br>
+        <div class="submit-btn">
+          <button type="submit" id="submit" class="btn btn-success">게시글 수정</button>
+        </div>  
+      </form>
+    </div>  
   </div>
 </template>
 
@@ -47,9 +57,6 @@ export default {
         })
         .catch(err => console.log(err))
     },
-    goBack() {
-      this.$router.go(-1)
-    },
   }
 
 }
@@ -58,13 +65,18 @@ export default {
 <style scoped>
 .update-article-container {
   background-color: #fff;
-  padding: 20px;
+  padding: 80px;
+  /* height: calc(100% -100px); */
 }
 
 .update-article-form {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+}
+
+.update-title{
+  margin-bottom: 50px;
 }
 
 label {
@@ -83,4 +95,13 @@ textarea {
 button {
   padding: 10px 20px;
 }
+.btn-success{
+  background-color:#6da36f;
+  border: none;
+}
+
+.submit-btn{
+  margin-left: auto;  
+}
+
 </style>

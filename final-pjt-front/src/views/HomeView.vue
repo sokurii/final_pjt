@@ -6,26 +6,20 @@
         style="text-shadow: 0px 0px 2px #000"
         fade
         indicators
-        img-width="960"
+        img-width="1024"
         img-height="480"
       >
         <b-carousel-slide
-          caption="Welcome To MMoP"
-          img-src="/images/homeimage1.jpg"
-          img-width="960"
-          img-height="480"
+          caption="First Slide"
+          img-src="https://picsum.photos/1024/480/?image=10"
         ></b-carousel-slide>
         <b-carousel-slide
           caption="Second Slide"
           img-src="https://picsum.photos/1024/480/?image=12"
-          img-width="960"
-          img-height="480"
         ></b-carousel-slide>
         <b-carousel-slide
           caption="Third Slide"
           img-src="https://picsum.photos/1024/480/?image=22"
-          img-width="960"
-          img-height="480"
         ></b-carousel-slide>
       </b-carousel>
     </div>
@@ -101,6 +95,7 @@ export default {
   },
   methods: {
     goToFinance() {
+      console.log(this.isLogin)
       if (this.isLogin) {
         this.$router.push({ name: 'finance' })
       } else {         
@@ -129,7 +124,7 @@ export default {
 </script>
 
 
-<style>
+<style scoped>
 
 .home{
   width: 100%;
@@ -141,7 +136,7 @@ export default {
   align-items: center;
   width: 100%;
   height: 500px;
-  background-color: #F3F2E9;
+  background-color: white;
   /* background-color: #adbeae; */
   
   /* background-color: #FFAD3A; */
@@ -152,7 +147,7 @@ export default {
   justify-content: center;
   align-items: center;  
   height: 500px;
-  background-color: white;
+  background-color: #F3F2E9;
 }
 
 .section-3{
@@ -160,7 +155,7 @@ export default {
   justify-content: center;
   align-items: center;
   height: 500px;
-  background-color: #F3F2E9;;
+  background-color: white;
   /* background-color: #ebb262; */
 }
 
