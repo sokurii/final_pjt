@@ -82,10 +82,14 @@
                   </div>
 
                   <!-- 확인 / 초기화  -->
-                  <div class="btn_wrap pt-4 pb-5">
+                  <div class="btn_wrap pt-4 pb-2">
                       <button type="submit" class="btn btn-primary">조회</button>
-                      <button class="btn_reset">초기화</button>
                   </div>
+                  <div class="btn_wrap">
+                      <button class="btn btn-secondary">초기화</button>
+                  </div>
+
+                    
                 </form>
                     
   
@@ -186,16 +190,15 @@ export default {
 
 .input_group.all {
   display: block;
-
+  padding: 10px 0px;
 }
 
 /* 화면에 보여지는 영역 */
 
 .left_wrap {
-  border-radius: 10px;
+  border-radius: 20px;
   width: 300px;
-  min-height: -moz-calc( 100vh - 220px);
-  min-height: calc( 100vh - 220px);
+  height: 900px;
   background-color: #fff;
 }
 
@@ -214,11 +217,15 @@ export default {
   
 }
 
-.input_box{
-  
+.input_box, .btn_wrap{
   margin-bottom: 10px;
   margin: auto;
   text-align: center;
+}
+
+.btn{
+  width: 250px;
+  height: 40px;
 }
 
 .input_box>input, select{
@@ -247,5 +254,6 @@ export default {
 span{
   color: white;
 }
+
 
 </style>

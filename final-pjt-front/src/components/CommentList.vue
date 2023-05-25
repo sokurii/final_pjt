@@ -1,5 +1,6 @@
 <template>
   <div>
+    
     <div class="comment-box">
       <form @submit.prevent="createComment" class="comment-form">
         <h4>댓글 작성</h4>

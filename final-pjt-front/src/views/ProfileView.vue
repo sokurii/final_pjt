@@ -639,4 +639,7 @@ h4.card-title{
 
 }
 
+h1 {
+  text-align: center;
+}
 </style>

@@ -1,17 +1,19 @@
 <template>
-  <div id="map-container" class="bg-white row">
+  <div>
         <!-- 배너 영역  -->
-    <div class="board-title d-flex flex-column align-items-center justify-content-center">
-      <div><h1 class="board-title-text"><strong>우리동네은행</strong></h1></div>
-      <div>Lorem, ipsum dolor sit amet consectetur adipisicing elit.<br>Illum recusandae maxime temporibus blanditiis reprehenderit quos cumque nulla unde sunt</div>
-      <!-- <img src="@/assets/document.png"  style="width : 10% ; transform:rotate(20deg);" > -->
+    <div class="board-title d-flex flex-column justify-content-center">
+      <img class="map2-img" src="../assets/map2.png" alt="">
+      <div><h1 class="board-title-text text-center"><strong>우리동네은행</strong></h1></div>
+      <div><h5 class="text-center pt-3">예/적금 상품을 어디서 가입하면 좋을까?</h5></div>
+      <div><h5 class="text-center">나와 가까운 우리 동네 은행을 모프가 대신 찾아드릴게요!</h5></div>
     </div>
 
 
     <div class="map-box d-flex">
       <!-- 좌측 배너 -->
-      <div class="banner justify-content-center align-items-center col-2 height: 100%">     
+      <div class="banner d-flex justify-content-center align-items-center col-2 height: 100%">     
         <div class="banner-container" style="margin:auto height: 100%; display: flex; flex-direction: column; justify-content: center;">
+          <div class="banner-title"><strong>은행찾기</strong></div>
           <form @submit.prevent="searchPlaces">
             <b-form-group label="광역시/도" label-for="province" label-cols-md="auto" class="mb-3">
               <b-form-select id="province" v-model="province" :options="provinces"></b-form-select>
@@ -363,6 +365,11 @@ export default {
 </script>
 
 <style>
+.banner-title{
+  font-size:30px;
+  padding-bottom: 20px;
+  text-align: start;
+}
 
 .banner-container, .map-img {
   display: flex;
@@ -396,16 +403,15 @@ export default {
 
 
 
-.main-container {
+/* .main-container {
   margin: 50px 50px 0;
   border-radius: 6px;
   box-shadow: 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12), 0 8px 10px -5px rgba(0,0,0,.2);
   background: #FFF;
   position: relative;
-  z-index: 3;
-  height: calc(100% - 200px); /* footer-bar.view를 제외한 높이로 설정 (60px는 footer-bar.view의 높이) */
+  height: calc(100% - 200px); 
   overflow-y: auto;
-}
+} */
 
 
 /* MapSearchInput */
@@ -421,7 +427,7 @@ label{
   box-shadow: 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12), 0 8px 10px -5px rgba(0,0,0,.2);
   color: #fff; /* 배너 텍스트 색상 */
   padding: 30px 0px; /* 내부 여백 설정 */
-  border-radius: 6px; 
+  border-radius: 20px; 
   align-items: center;
   /* margin: 40px ; */
   margin: auto;
@@ -433,7 +439,7 @@ label{
   background-color: #fff; /* 버튼 배경색 */
   color: #7ab87d; /* 버튼 텍스트 색상 */
   padding: 8px 16px; /* 버튼 여백 설정 */
-  border-radius: px; /* 모서리를 둥글게 */
+  border-radius: 5px; /* 모서리를 둥글게 */
   border: none; /* 테두리 제거 */
   font-weight: bold;
   cursor: pointer;
@@ -447,14 +453,36 @@ label{
 
 /* KakaoMap */
 #map {
-  /* margin: 2px; */
   margin: auto;
   display: flex;
-  border: solid;
+  border: none; /* 테두리 없애기 */
+  box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+  border-radius: 10px;
   height: 700px;
 }
+
 
 .bank-list{
   margin: auto;
 }
+
+
+/* 배너 */
+.board-title {
+  position: relative;
+  z-index: -2;
+  overflow: hidden;
+}
+
+.map2-img {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width:1200px;
+  object-fit: cover;
+  opacity: 0.5;
+  z-index: -1;
+}
+
 </style>

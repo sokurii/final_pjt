@@ -1,9 +1,10 @@
 <template>
   <div>
-    <div class="board-title d-flex flex-column align-items-center justify-content-center">
-      <div><h1 class="board-title-text"><strong>커뮤니티</strong></h1></div>
-      <div>Lorem, ipsum dolor sit amet consectetur adipisicing elit.<br>Illum recusandae maxime temporibus blanditiis reprehenderit quos cumque nulla unde sunt</div>
-      <!-- <img src="@/assets/document.png"  style="width : 10% ; transform:rotate(20deg);" > -->
+    <div class="board-title d-flex flex-column justify-content-center">
+      <img class="article-img" src="../assets/chat.png" alt="">
+      <div><h1 class="board-title-text text-center"><strong>커뮤니티</strong></h1></div>
+      <div><h5 class="text-center pt-3">나와 비슷한 관심사를 가진 사람들과 금융 정보를 공유해요</h5></div>
+      <div><h5 class="text-center">자유롭게 소통하고, 소소한 금융 꿀팁도 알아가세요!</h5></div>
     </div>
     <div class="create-article-container">
       <div class="article-title text-start">

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2 class="title">오늘의 환율</h2>
+    <h2 class="title pt-4">오늘의 환율</h2>
     <p class="date">{{ today }} 기준</p>
     <p class="note">IDR, JPY는 100 화폐단위당 환율</p>
     <hr>

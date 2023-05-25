@@ -1,12 +1,4 @@
 <template>
-  <!-- <div>
-    <form class="m-1" @submit.prevent="searchProducts">
-      <b-form-group label="은행명" label-for="bank" label-cols-md="auto" class="mb-3">
-        <b-form-select id="bank" v-model="bank" :options="banks"></b-form-select>
-      </b-form-group>
-      <button type="submit" class="btn btn-primary">조회</button>
-    </form>
-  </div> -->
     <div class="left_wrap">
         <!-- 좌측 검색필터 -->
 
@@ -15,13 +7,13 @@
                     <strong class="head_txt">정기적금</strong><br>
                     <span>검색조건을 입력해주세요</span>
                 </p>
-  
+
 
                 <form class="left_menu_inner" @submit.prevent="searchProducts">
 
                   <!-- 1. 예치금액 -->
                   <div class="amount_area">
-                    <label class="input_label">월납입금액</label>
+                    <label class="input_label">예치금액</label>
                     <div class="input_box">
                       <input class="min amount" name="amount" maxlength="10" v-model="payload.depositAmount">
                     </div>
@@ -88,13 +80,16 @@
                       </select>
                     </div>
                   </div>
-                  
-                  <!-- 확인 / 초기화  -->
-                <div class="btn_wrap pt-4 pb-5">
-                    <button type="submit" class="btn btn-primary">조회</button>
-                    <button class="btn_reset">초기화</button>
-                </div>
 
+                  <!-- 확인 / 초기화  -->
+                  <div class="btn_wrap pt-4 pb-2">
+                      <button type="submit" class="btn btn-primary">조회</button>
+                  </div>
+                  <div class="btn_wrap">
+                      <button class="btn btn-secondary">초기화</button>
+                  </div>
+
+                    
                 </form>
                     
   
@@ -111,12 +106,12 @@ export default {
   data() {
     return {
       payload: {
-        depositAmount: '100000',
-        selectedTerm: '12', // 초기 선택된 예치기간\
-        interest: '',
-        selectedPaymentTerm: '전체',
-        selectedRegion: '전체',
-        selectBank: '전체',
+        depositAmount: '1000000',  // 예치금액
+        selectedTerm: '12', // 초기 선택된 예치기간
+        interest: '',  // 이자율(input)
+        selectedPaymentTerm: '전체',  // 지급방식
+        selectedRegion: '전체',  // 지역
+        selectBank: '전체',  // 은행명
         selectedJoinChannel: '전체',
       },
       terms: [
@@ -174,7 +169,7 @@ export default {
         '전체', 
         '온라인', 
         '방문'
-      ]
+      ],
     }
   },
   methods: {
@@ -184,3 +179,81 @@ export default {
   }
 }
 </script>
+
+<style>
+
+/* 화면에 보여지는 영역 */
+
+.input_group {
+  display: flex;
+}
+
+.input_group.all {
+  display: block;
+  padding: 10px 0px;
+}
+
+/* 화면에 보여지는 영역 */
+
+.left_wrap {
+  border-radius: 20px;
+  width: 300px;
+  height: 900px;
+  background-color: #fff;
+}
+
+.tit{
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  background-color: #6da36f;
+  padding: 25px;
+}
+
+
+.left_menu_inner > * {
+  width: 100%;
+  display: block;
+  background-color: #fff;
+  
+}
+
+.input_box, .btn_wrap{
+  margin-bottom: 10px;
+  margin: auto;
+  text-align: center;
+}
+
+.btn{
+  width: 250px;
+  height: 40px;
+}
+
+.input_box>input, select{
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px;
+  width: 250px; 
+  height: 35px;
+  
+}
+
+.input_title>*{
+  padding: 5px 27px;
+  float: left;
+}
+
+.input_label{
+  padding: 5px 27px;
+  float:left
+}
+
+.head_txt{
+  font-size: 24px;
+  color: white;
+}
+span{
+  color: white;
+}
+
+
+</style>

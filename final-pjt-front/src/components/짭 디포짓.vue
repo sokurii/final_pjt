@@ -24,46 +24,60 @@
     </div>
 
 
-    <div  class="fix_body d-flex justify-content-around">
-      <table >
-        <tbody >
-          <tr v-for="product in filteredProducts" :key="product.id" class="body_content d-flex p-3 ">
-            <td >
-              <table>
-                <tr v-for="option in product.depositoptions" :key="option.id">
-                  <td style="width: 100px">{{ option.save_trm }}</td>
-                  <td style="width: 100px">{{ option.intr_rate }}</td>
-                  <td style="width: 80px">{{ option.intr_rate_type_nm }}</td>
-                  <td v-if="option.intr_rate_type_nm === '단리'" style="width: 100px">
-                    {{ formatNumber((payloadD.depositAmount * ( 0.01 * option.intr_rate ) * ( option.save_trm / 12 )).toFixed(0) )}}
-                  </td>
-                  <td v-else style="width: 100px">
-                    {{ formatNumber((payloadD.depositAmount * ((1 + 0.01 * option.intr_rate) ** (option.save_trm / 12)) - payloadD.depositAmount).toFixed(0)) }}
-                  </td>
-                  <td v-if="option.intr_rate_type_nm === '단리'" style="width: 100px">
-                    {{ formatNumber((payloadD.depositAmount * ( 0.01 * option.intr_rate ) * ( option.save_trm / 12 ) * (1 - 0.154)).toFixed(0) )}}
-                  </td>
-                  <td v-else style="width: 100px">
-                    {{ formatNumber(((payloadD.depositAmount * ((1 + 0.01 * option.intr_rate) ** (option.save_trm / 12)) - payloadD.depositAmount) * (1 - 0.154)).toFixed(0) )}}
-                  </td>
-                  
-                  <td style="width: 150px">{{ product.kor_co_nm }}</td>
-                  <td style="width: 200px ">
-                    <b-button v-b-modal="product.fin_prdt_cd" class="bg-transparent text-dark border border-gray w-200" >
-                      {{ product.fin_prdt_nm }}
-                    </b-button>
+    <div class="fix_body d-flex justify-content-around">
+  <table>
+    <tbody>
+      <tr v-for="product in filteredProducts" :key="product.id" class="body_content d-flex p-3">
+        <td>
+          <table>
+            <tr v-for="option in product.depositoptions" :key="option.id">
+              <td style="width: 100px">{{ option.save_trm }}</td>
+              <td style="width: 100px">{{ option.intr_rate }}</td>
+              <td style="width: 80px">{{ option.intr_rate_type_nm }}</td>
+              <td v-if="option.intr_rate_type_nm === '단리'" style="width: 100px">
+                {{ formatNumber((payloadD.depositAmount * (0.01 * option.intr_rate) * (option.save_trm / 12)).toFixed(0)) }}
+              </td>
+              <td v-else style="width: 100px">
+                {{
+                  formatNumber(
+                    (payloadD.depositAmount * ((1 + 0.01 * option.intr_rate) ** (option.save_trm / 12)) -
+                      payloadD.depositAmount
+                    ).toFixed(0))
+                }}
+              </td>
+              <td v-if="option.intr_rate_type_nm === '단리'" style="width: 100px">
+                {{ formatNumber(
+                    (payloadD.depositAmount * (0.01 * option.intr_rate) * (option.save_trm / 12) * (1 - 0.154)).toFixed(0)
+                  ) }}
+              </td>
+              <td v-else style="width: 100px">
+                {{
+                  formatNumber(
+                    ((payloadD.depositAmount * ((1 + 0.01 * option.intr_rate) ** (option.save_trm / 12)) -
+                      payloadD.depositAmount) *
+                      (1 - 0.154)).toFixed(0)
+                  )
+                }}
+              </td>
 
-                    <b-modal :id="product.fin_prdt_cd" title="상품 상세 정보">
-                      <DepositProductDetail :fin_prdt_cd="product.fin_prdt_cd"/>
-                    </b-modal>
-                  </td>            
-                </tr>
-              </table>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+              <td style="width: 150px">{{ product.kor_co_nm }}</td>
+              <td style="width: 200px">
+                <b-button v-b-modal="getModalId(product.id)" class="bg-transparent text-dark border border-gray w-200">
+                  {{ product.fin_prdt_nm }}
+                </b-button>
+
+                <b-modal :id="getModalId(product.id)" title="상품 상세 정보">
+                  <DepositProductDetail :fin_prdt_cd="product.fin_prdt_cd" />
+                </b-modal>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
   </div>
 
 </template>

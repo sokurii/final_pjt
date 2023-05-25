@@ -5,25 +5,21 @@
         <h6>세율은 일반과세(15.4%)를 적용했으며, 실제와는 차이가 있을 수 있습니다.</h6>
       </div>
 
-      <div class="fix_header d-flex justify-content-between p-3">
-        <!-- <table class="main_table"> -->
-          <!-- <colgroup>
-            <col width="100px">
-            <col width="100px">
-            <col width="100px">
-            <col width="200px">
-            <col width="320px">      
-          </colgroup> -->
+      <div class="fix_header">
+        <table>
           <thead>
-          <th style="width: 100px">예치기간(개월)</th>
-          <th style="width: 100px">금리(%)</th>
-          <th style="width: 100px">지급방식</th>
-          <th style="width: 100px">예상세전이자(원)</th>
-          <th style="width: 100px">예상세후이자(원)</th>
-          <th style="width: 200px">은행명</th>
-          <th style="width: 320px">상품명</th>
+            <!-- <tr class="d-flex justify-content-between p-3"> -->
+            <tr class="d-flex justify-content-around p-3">
+              <th style="width: 100px">예치기간</th>
+              <th style="width: 100px">금리</th>
+              <th style="width: 80px">지급방식</th>
+              <th style="width: 100px">세전이자</th>
+              <th style="width: 100px">세후이자</th>
+              <th style="width: 150px">은행명</th>
+              <th style="width: 200px">상품명</th>
+            </tr>
           </thead>
-        <!-- </table> -->
+        </table>
       </div> 
 
       <div class="fix_body d-flex justify-content-between">
@@ -149,6 +145,31 @@ export default {
   /* background-color: #F3F2E9; */
   background-color: #f3d993;
   border-radius: 10px;
+  /* 수정 */
+  display: flex;
+  justify-content: center;
+}
+/* 수정 */
+.fix_header table {
+  width: 100%;
+}
+.fix_header th {
+  text-align: center;
+}
+
+
+.fix_body {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.fix_body table {
+  width: 100%;
+}
+
+.fix_body td {
+  text-align: center;
 }
 
 
