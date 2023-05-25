@@ -35,14 +35,14 @@ import axios from 'axios'
 const API_URL = 'http://127.0.0.1:8000'
 
 export default {
-  name: 'DepositProductDetailView',
+  name: 'DepositProductDetail',
   props: {
     fin_prdt_cd: String,
   },
   data() {
     return {
       product: null,
-      likeStatusD: false,
+      likeStatusD: false, // likeStatusD의 초기값을 false로 설정
     }
   },
   created() {
@@ -61,12 +61,23 @@ export default {
         .catch(err => console.log(err))
     },
 
+    retrieveLikeStatusD() {
+      const likeStatusD = localStorage.getItem(`likeStatusD_${this.fin_prdt_cd}`)
+      if (likeStatusD !== null) {
+        this.likeStatusD = JSON.parse(likeStatusD)
+      }
+    },
+
+    saveLikeStatusD() {
+      localStorage.setItem(`likeStatusD_${this.fin_prdt_cd}`, JSON.stringify(this.likeStatusD))
+    },
+
     likeDeposit() {
       axios({
         method: 'post',
         url: `${API_URL}/finlife/deposit-products/${this.fin_prdt_cd}/likes/`,
         headers: {
-          Authorization: `Token ${ this.$store.state.token }`
+          Authorization: `Token ${this.$store.state.token}`
         },
       })
         .then(() => {
@@ -81,17 +92,6 @@ export default {
           this.saveLikeStatusD() // like 상태 변경 후 저장
         })
         .catch(err => console.log(err))
-    },
-
-    retrieveLikeStatusD() {
-      const likeStatusD = localStorage.getItem('likeStatusD')
-      if (likeStatusD !== null) {
-        this.likeStatusD = JSON.parse(likeStatusD)
-      }
-    },
-
-    saveLikeStatusD() {
-      localStorage.setItem('likeStatusD', JSON.stringify(this.likeStatusD))
     },
 
     goBack() {

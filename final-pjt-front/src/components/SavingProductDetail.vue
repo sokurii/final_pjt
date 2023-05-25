@@ -35,7 +35,7 @@ import axios from 'axios'
 const API_URL = 'http://127.0.0.1:8000'
 
 export default {
-  name: 'SavingProductDetailView',
+  name: 'SavingProductDetail',
   props: {
     fin_prdt_cd: String,
   },
@@ -60,6 +60,17 @@ export default {
         })
         .catch(err => console.log(err))
     },
+
+    retrieveLikeStatusS() {
+      const likeStatusS = localStorage.getItem(`likeStatusS_${this.fin_prdt_cd}`)
+      if (likeStatusS !== null) {
+        this.likeStatusS = JSON.parse(likeStatusS)
+      }
+    },
+
+    saveLikeStatusS() {
+      localStorage.setItem(`likeStatusS_${this.fin_prdt_cd}`, JSON.stringify(this.likeStatusS))
+    },
     
     likeSaving() {
       axios({
@@ -81,17 +92,6 @@ export default {
           this.saveLikeStatusS() // like 상태 변경 후 저장
         })
         .catch(err => console.log(err))
-    },
-
-    retrieveLikeStatusS() {
-      const likeStatusS = localStorage.getItem('likeStatusS')
-      if (likeStatusS !== null) {
-        this.likeStatusS = JSON.parse(likeStatusS)
-      }
-    },
-
-    saveLikeStatusS() {
-      localStorage.setItem('likeStatusS', JSON.stringify(this.likeStatusS))
     },
 
     goBack() {

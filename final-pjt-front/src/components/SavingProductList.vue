@@ -1,8 +1,8 @@
 <template>
   <div class="right_wrap">
     <div class="notice">
-      <li>세율은 일반과세(15.4%)를 적용했으며, 실제와는 차이가 있을 수 있습니다.</li>
-      <li>자유적립식도 정액적립식과 같은 월납입금액으로 가정하고 계산했습니다.</li>
+      <h6>세율은 일반과세(15.4%)를 적용했으며, 실제와는 차이가 있을 수 있습니다.</h6>
+      <h6>자유적립식도 정액적립식과 같은 월납입금액으로 가정하고 계산했습니다.</h6>
     </div>
       <div class="fix_header d-flex justify-content-between p-3">
         <!-- <table class="main_table"> -->
@@ -63,9 +63,9 @@
                   <b-button v-b-modal="product.fin_prdt_cd">{{ product.fin_prdt_nm }}</b-button>
 
                   <b-modal :id="product.fin_prdt_cd" title="상품 상세 정보">
-                    <SavingtProductDetail
-                      :fin_prdt_cd="product.fin_prdt_cd"
-                      :likeStatusD="product.likeStatusD"
+                    <SavingProductDetail
+                      :fin_prdt_cd="product.fin_prdt_cd" 
+                      :likeStatusS="product.likeStatusS" 
                       @like-toggle="toggleLikeStatus(product)"
                     />
                   </b-modal>
@@ -80,12 +80,12 @@
 </template>
 
 <script>
-import SavingtProductDetail from './SavingProductDetail.vue'
+import SavingProductDetail from './SavingProductDetail.vue'
 
 export default {
   name: 'SavingProductList',
   components: {
-    SavingtProductDetail,
+    SavingProductDetail,
   },
   props: {
     payloadS: Object,
@@ -105,23 +105,28 @@ export default {
   },
   created() {
     this.getSavingProducts()
+    this.retrieveLikeStatusS() // 초기 상태에서 likeStatusS 값을 검색
   },
   methods: {
     getSavingProducts() {
       this.$store.dispatch('getSavingProducts')
     },
+    retrieveLikeStatusD() {
+      this.savingProducts.forEach((product) => {
+        const likeStatusS = localStorage.getItem(`likeStatusS_${product.fin_prdt_cd}`)
+        if (likeStatusS !== null) {
+          product.likeStatusS = JSON.parse(likeStatusS)
+        }
+      })
+    },
+
+    saveLikeStatusS(product) {
+      localStorage.setItem(`likeStatusS_${product.fin_prdt_cd}`, JSON.stringify(product.likeStatusS))
+    },
+
     toggleLikeStatus(product) {
       product.likeStatusS = !product.likeStatusS
-      this.saveLikeStatus(product)
-    },
-    saveLikeStatus(product) {
-      localStorage.setItem(`likeStatus_${product.fin_prdt_cd}`, JSON.stringify(product.likeStatus))
-    },
-    retrieveLikeStatus(product) {
-      const likeStatusS = localStorage.getItem(`likeStatus_${product.fin_prdt_cd}`)
-      if (likeStatusS !== null) {
-        product.likeStatusS = JSON.parse(likeStatusS)
-      }
+      this.saveLikeStatusS(product) // like 상태 변경 후 저장
     },
   }
 }

@@ -67,7 +67,11 @@
                   <b-button v-b-modal="product.fin_prdt_cd">{{ product.fin_prdt_nm }}</b-button>
 
                   <b-modal :id="product.fin_prdt_cd" title="상품 상세 정보">
-                    <DepositProductDetail :fin_prdt_cd="product.fin_prdt_cd" :likeStatusD="product.likeStatusD" @like-toggle="toggleLikeStatus(product)"/>
+                    <DepositProductDetail 
+                    :fin_prdt_cd="product.fin_prdt_cd" 
+                    :likeStatusD="product.likeStatusD" 
+                    @like-toggle="toggleLikeStatus(product)"
+                  />
                   </b-modal>
                 </td>
               </tr>
@@ -87,11 +91,6 @@ export default {
   components: {
     DepositProductDetail,
   },
-  data() {
-    return {
-      modalShow: false,
-    }
-  },
   props: {
     payloadD: Object,
   },
@@ -110,23 +109,28 @@ export default {
   },
   created() {
     this.getDepositProducts()
+    this.retrieveLikeStatusD() // 초기 상태에서 likeStatusD 값을 검색
   },
   methods: {
     getDepositProducts() {
       this.$store.dispatch('getDepositProducts')
     },
+    retrieveLikeStatusD() {
+      this.depositProducts.forEach((product) => {
+        const likeStatusD = localStorage.getItem(`likeStatusD_${product.fin_prdt_cd}`)
+        if (likeStatusD !== null) {
+          product.likeStatusD = JSON.parse(likeStatusD)
+        }
+      })
+    },
+
+    saveLikeStatusD(product) {
+      localStorage.setItem(`likeStatusD_${product.fin_prdt_cd}`, JSON.stringify(product.likeStatusD))
+    },
+
     toggleLikeStatus(product) {
       product.likeStatusD = !product.likeStatusD
-      this.saveLikeStatus(product)
-    },
-    saveLikeStatus(product) {
-      localStorage.setItem(`likeStatus_${product.fin_prdt_cd}`, JSON.stringify(product.likeStatus))
-    },
-    retrieveLikeStatus(product) {
-      const likeStatusD = localStorage.getItem(`likeStatus_${product.fin_prdt_cd}`)
-      if (likeStatusD !== null) {
-        product.likeStatusD = JSON.parse(likeStatusD)
-      }
+      this.saveLikeStatusD(product) // like 상태 변경 후 저장
     },
   }
 }
