@@ -13,7 +13,7 @@
                 <div class="name">
                   <!-- <h3 class="title">담곰이</h3> -->
                   <h3 class="title">
-                    고쳐놓으세요.........
+                    {{ username }}
                     <span v-if="!showPopup">{{title}}</span>
                     <input v-if="showPopup" class="input" v-model="title">
                     <button class="btn btn-link" @click="togglePopup('title')">{{ showPopup ? '저장' : '수정'}}</button>
@@ -44,22 +44,12 @@
         <b-tab title="관심상품">
           <div class="row d-flex justify-content-center align-items-center">
             <div class="col-md-6 ml-auto mr-auto ">
-              <div class="profile-tabs ">
-                <!-- 선택 버튼 2개 -->
-                <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
-                  <!-- 게시글 버튼 (보라색) -->
-                  <li class="nav-item">
-                    <a class="nav-link active" href="#work" role="tab" data-toggle="tab">
-                      <i class="material-icons">작성한 게시글</i>Articles
-                    </a>
-                  </li>
-                  <!-- 찜해둔 상품 버튼(보라색) -->
-                  <li class="nav-item">
-                    <a class="nav-link" href="#favorite" role="tab" data-toggle="tab">
-                      <i class="material-icons">찜한 금융상품</i> Favorite
-                    </a>
-                  </li>
-                </ul>
+              <h4>총 {{ profile.likedeposits_count + profile.likesavings_count }}개의 관심상품이 있습니다.</h4>
+              <div v-for="deposit in profile.likedeposits" :key="deposit.id">
+                <p>{{ deposit.fin_prdt_nm }}</p>
+              </div>
+              <div v-for="saving in profile.likesavings" :key="saving.id">
+                <p>{{ saving.fin_prdt_nm }}</p>
               </div>
             </div>
           </div>
@@ -69,25 +59,37 @@
             <div class="tab-pane work active show" id="work">
               <div class="row d-flex justify-content-center align-items-center">
                 <div class="col-md-7 ml-auto mr-auto ">
-                  <h4 class="title">총 n개의 글이 있습니다</h4>
+                  <h4 class="title">총 {{ profile.articles_count }}개의 글이 있습니다</h4>
+                  <div v-if="!profile.articles_count">
+                    게시글을 작성해보세요!
+                  </div>
                   <!-- 여기에 게시글 목록 불러와서 붙이기 !!!! -->
-                  <div class="row collections">
+                  <div v-else class="row collections">
                     <!-- 게시글 1 -->
-                    <div class="col-md-6">
+                    <div v-for="article in profile.article_set" :key="article.id" class="col-md-4">
                       <!-- asset에 있는 사진으로 바꾸고 싶은데 왜 안되냐...  -->
-                      <div class="card card-background" style="background-image: url('./src/assets/article1.png')">
+                      <div class="card card-background m-2" style="background-image: url('http://www.backdownsouth.com/wp-content/uploads/2016/11/sockfancy004.jpg')">
                         <a href="#pablo"></a>
                         <div class="card-body">
-                          <label class="badge">작성 날짜</label>
+                          <label class="badge">{{ article.created_at.slice(0, 19).replace('T', ' ') }}</label>
                           <a href="#pablo">
-                            <h2 class="card-title">게시글 제목</h2>
+                            <h2 class="card-title">
+                              <router-link
+                              :to="{
+                                name: 'DetailArticle', 
+                                params: { id: article.id } 
+                              }"
+                              >
+                                {{ article.title }}
+                              </router-link>
+                            </h2>
                           </a>
                         </div>
                       </div>
                     </div>
 
                     <!-- 게시글 2 -->
-                    <div class="col-md-6">
+                    <!-- <div class="col-md-6">
                       <div class="card card-background" style="background-image: url('http://www.backdownsouth.com/wp-content/uploads/2016/11/sockfancy004.jpg')">
                         <a href="#pablo"></a>
                         <div class="card-body">
@@ -97,7 +99,7 @@
                           </a>
                         </div>
                       </div>
-                    </div>
+                    </div> -->
                   </div>
                 </div>
               </div>
@@ -107,9 +109,59 @@
       </b-tabs>
     </b-card>
     <!-- 팝업창 -->
-    <div>
-      
+    <div class="recommend">
+      <div>
+        <h1>이런 상품은 어때요?</h1>
+      </div>
+      <br>
+      <br>
+      <div class="product-cards row">
+        <!-- 카드 목록 -->
+        <div class="col-4">
+          <b-card-group deck>
+            <b-card
+              header="featured"
+              header-tag="header"
+              footer="Card Footer"
+              footer-tag="footer"
+              title="Title"
+            >
+              <b-card-text>Header and footers using props.</b-card-text>
+              <b-button href="#" variant="primary">Go somewhere</b-button>
+            </b-card>
+          </b-card-group>
+        </div>
+        <div class="col-4">
+          <b-card-group deck>
+            <b-card
+              header="featured"
+              header-tag="header"
+              footer="Card Footer"
+              footer-tag="footer"
+              title="Title"
+            >
+              <b-card-text>Header and footers using props.</b-card-text>
+              <b-button href="#" variant="primary">Go somewhere</b-button>
+            </b-card>
+          </b-card-group>
+        </div>
+        <div class="col-4">
+          <b-card-group deck>
+            <b-card
+              header="featured"
+              header-tag="header"
+              footer="Card Footer"
+              footer-tag="footer"
+              title="Title"
+            >
+              <b-card-text>Header and footers using props.</b-card-text>
+              <b-button href="#" variant="primary">Go somewhere</b-button>
+            </b-card>
+          </b-card-group>
+        </div>
+      </div>
     </div>
+
   </div>
 
 
@@ -124,15 +176,32 @@ export default {
   data(){
     return {
       content: '이 편지는 영국에서 최초로 시작되어...',
-      profile: {},
       gender: null,
       age: null,
       residence: null,
     }
 
   },
+  computed: {
+    username() {
+      return this.$store.state.username
+    },
+    profile() {
+      return this.$store.state.profile
+    }
+  },
+  mounted() {
+    this.getMyProfile()
+  },
   methods:{
+    getMyProfile() {
+      const username = this.username
+      const payload = {
+        username
+      }
 
+      this.$store.dispatch('getMyProfile', payload)
+    }
   }
 };
 </script>
@@ -410,7 +479,7 @@ img.rounded {
     padding: 40px 0;
 }
 
-.card-title{
+.card-title {
     font-size: 2.25rem !important;
     font-weight: 700 !important;
     /* font-family: Roboto Slab,Times New Roman,serif; */
@@ -427,6 +496,7 @@ h4.card-title{
     position: relative;
     padding: 0;
     z-index: 1;
+    width: auto;
     margin-left: 15px;
     margin-right: 15px;
     margin-top: -30px;
@@ -563,6 +633,9 @@ h4.card-title{
     margin-right: 1.5rem;
 }
 
+.product-cards {
+  width: auto;
+}
 
 }
 </style>

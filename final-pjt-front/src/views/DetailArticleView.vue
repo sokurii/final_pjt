@@ -19,7 +19,7 @@
                 <th style="width:10%">작성자</th>
                 <td style="width:30%"> {{ article.username }}</td>
                 <th style="width:10%">작성 날짜</th>
-                <td style="width:40%"> {{ article.created_at }}</td>
+                <td style="width:40%"> {{ article.created_at.slice(0, 19).replace('T', ' ') }}</td>
               </tr>
               <tr class="height=100%" >
                 <td colspan="4" class="p-3 text-start" style="height: 300px">{{ article.content }}</td>

@@ -65,7 +65,7 @@ export default {
   width: 1200px;
   margin: 0 auto;
   display: flex;
-  height: 100vh; /* 화면 전체 높이로 설정 */
+  height: 100vh;
   flex-grow:1;
 }
 

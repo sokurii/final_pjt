@@ -1,20 +1,24 @@
 <template>
-  <div class="exchange-container">
-    <h2>환율 계산기</h2>
-    <div class="m-5">
-      <b-input-group size="lg" prepend="$">
+
+<div class="cal-container m-5 p-5 ">
+    <h2><strong>환율 계산기</strong></h2>
+    <div class="d-flex m-5">
+      <div>
         <b-form-select v-model="exchange1" :options="exchangeName"></b-form-select>
         <b-form-input type="number" v-model="exchangeInput" @input="validateInput"></b-form-input>
-      </b-input-group>
-      <br>
-      <button class="btn btn-primary" @click="change">CHANGE</button>
-      <b-input-group size="lg" append="￦">
-        <b-form-input type="number" v-model="exchangeOutput" disabled></b-form-input>
+      </div>
+      
+      <button class="btn btn-primary" @click="change" style="height:50px">CHANGE</button>
+
+      <div>
         <b-form-select v-model="exchange2" :options="exchangeName"></b-form-select>
-      </b-input-group>
+        <b-form-input type="number" v-model="exchangeOutput" ></b-form-input>
+      </div>
     </div>
-  </div>
+</div>
+
 </template>
+
 
 <script>
 export default {
@@ -52,8 +56,15 @@ export default {
     calculateExchange() {
       const exchange1 = this.exchange1
       const exchange2 = this.exchange2
-      const exchangeRate = this.exchangeValue[exchange1] / this.exchangeValue[exchange2]
-      this.exchangeOutput = this.exchangeInput * exchangeRate
+      let exchangeRate = this.exchangeValue[exchange1] / this.exchangeValue[exchange2]
+
+      if (exchange1 === 'JPY(100) 일본 옌' || exchange1 === 'IDR(100) 인도네시아 루피아') {
+        exchangeRate = exchangeRate * 0.01
+      } 
+      if (exchange2 === 'JPY(100) 일본 옌' || exchange2 === 'IDR(100) 인도네시아 루피아'){
+        exchangeRate = exchangeRate * 100
+      }
+      this.exchangeOutput = parseFloat((this.exchangeInput * exchangeRate).toFixed(2))
     },
     change() {
       const temp = this.exchange1
@@ -67,6 +78,16 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
+.cal-container{
+  background-color: #6da36f;
+  border-radius: 10px;
+  height: 300px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+.cal-container > h2{
+  color: white;
+}
 
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="container">
     <form class="signupform mx-auto" @submit.prevent="signUp">
       <div class="signup-container">
         <!-- login-container 왼쪽 요소 -->
@@ -122,7 +122,18 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
+#container {
+  /* padding : 50px ; */
+  width: 1200px;
+  height: 100vh;
+  margin: 100px auto ;
+  display: flex;
+  flex-grow:1;
+  /* height: calc(100% - 00px); */
+}
+
 .signupform{
   width: 60%;
   height: 70%;
@@ -130,6 +141,8 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+   border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .signup-container{

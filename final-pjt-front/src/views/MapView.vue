@@ -8,23 +8,24 @@
     </div>
 
 
-    <div class="map-box d-flex ">
+    <div class="map-box d-flex">
       <!-- 좌측 배너 -->
-      <div class="banner flex-column justify-content:center align-items:center col-2">
-        <form @submit.prevent="searchPlaces">
-          <b-form-group label="광역시/도" label-for="province" label-cols-md="auto" class="mb-3">
-            <b-form-select id="province" v-model="province" :options="provinces"></b-form-select>
-          </b-form-group>
-          <b-form-group label="시/군/구" label-for="city" label-cols-md="auto" class="mb-3">
-            <b-form-select id="city" v-model="city" :options="cities[province]"></b-form-select>
-          </b-form-group>
-          <b-form-group label="은행명" label-for="bank" label-cols-md="auto" class="mb-3">
-            <b-form-input id="bank" v-model="bank" class="d-inline-block" style="width: 250px; height: 35px;"></b-form-input>
-          </b-form-group>
-          <button type="submit" class="btn btn-primary">이동</button>
-        </form>
-        <!-- <img src="../assets/map.png" alt="" style="max-width: 50%; max-height: 50%;"> -->
-        <img src="../assets/map.png" alt="" style="width: 80%" class="map-img">
+      <div class="banner justify-content-center align-items-center col-2 height: 100%">     
+        <div class="banner-container" style="margin:auto height: 100%; display: flex; flex-direction: column; justify-content: center;">
+          <form @submit.prevent="searchPlaces">
+            <b-form-group label="광역시/도" label-for="province" label-cols-md="auto" class="mb-3">
+              <b-form-select id="province" v-model="province" :options="provinces"></b-form-select>
+            </b-form-group>
+            <b-form-group label="시/군/구" label-for="city" label-cols-md="auto" class="mb-3">
+              <b-form-select id="city" v-model="city" :options="cities[province]"></b-form-select>
+            </b-form-group>
+            <b-form-group label="은행명" label-for="bank" label-cols-md="auto" class="mb-3">
+              <b-form-input id="bank" v-model="bank" class="d-inline-block" style="width: 250px; height: 35px;"></b-form-input>
+            </b-form-group>
+            <button type="submit" class="btn btn-primary w-200">이동</button>
+          </form>
+          <img src="../assets/map.png" alt="" style="width: 100%" class="map-img">
+        </div>
       </div>
       
       <!-- 지도-->
@@ -47,7 +48,7 @@
             </thead>
           <!-- </table> -->
         </div>
-        <div class="fix_body d-flex justify-content-between" style="overflow-y: scroll; max-height: 700px;">
+        <div class="fix_body d-flex justify-content-between" style="overflow-y: scroll; max-height: 640px;">
           <tbody v-if="results">
             <tr v-for="(result, index) in results" :key="index" class="body_content d-flex p-3 mt-1">
               <td style="width: 50px">{{ index + 1}} </td>
@@ -362,6 +363,13 @@ export default {
 </script>
 
 <style>
+
+.banner-container, .map-img {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .map-container{
   /* padding-top: 50px; */
   /* padding-bottom: 10px; */
@@ -418,7 +426,7 @@ label{
   /* margin: 40px ; */
   margin: auto;
   
-  display: flex;
+
 }
 
 .banner button {

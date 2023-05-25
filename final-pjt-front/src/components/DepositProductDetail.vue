@@ -1,9 +1,8 @@
 <template>
   <div>
-    <h1 class="d-flex m-4">상품 상세 정보</h1>
     <div>
-      <b-button v-if="!like" pill variant="success">관심상품 등록</b-button>
-      <b-button v-else pill>관심상품 등록 해제</b-button>
+      <b-button v-if="!likeStatusD" pill variant="success" @click="likeDeposit">관심상품 등록</b-button>
+      <b-button v-else pill @click="likeDeposit">관심상품 등록 해제</b-button>
     </div>
     <div class="d-flex flex-column mb-3">
       <div class="p-2 text-start">
@@ -28,7 +27,6 @@
     <div class="d-flex m-4">
       <h6>* 1 - 제한없음, 2 - 서민 전용, 3 - 일부 제한</h6>
     </div>
-    <button class="btn btn-primary" @click="goBack">뒤로가기</button>
   </div>
 </template>
 
@@ -38,20 +36,24 @@ const API_URL = 'http://127.0.0.1:8000'
 
 export default {
   name: 'DepositProductDetailView',
+  props: {
+    fin_prdt_cd: String,
+  },
   data() {
     return {
       product: null,
-      like: false,
+      likeStatusD: false,
     }
   },
   created() {
     this.getProductDetail()
+    this.retrieveLikeStatusD()
   },
   methods: {
     getProductDetail() {
       axios({
         method: 'get',
-        url: `${API_URL}/finlife/deposit-products/${this.$route.params.fin_prdt_cd}/`,
+        url: `${API_URL}/finlife/deposit-products/${this.fin_prdt_cd}/`,
       })
         .then((res) => {
           this.product = res.data
@@ -60,7 +62,36 @@ export default {
     },
 
     likeDeposit() {
+      axios({
+        method: 'post',
+        url: `${API_URL}/finlife/deposit-products/${this.fin_prdt_cd}/likes/`,
+        headers: {
+          Authorization: `Token ${ this.$store.state.token }`
+        },
+      })
+        .then(() => {
+          if (!this.likeStatusD) {
+            alert('관심상품으로 등록되었습니다.')
+            this.likeStatusD = true
+          } else {
+            alert('관심상품 등록이 해제되었습니다.')
+            this.likeStatusD = false
+          }
 
+          this.saveLikeStatusD() // like 상태 변경 후 저장
+        })
+        .catch(err => console.log(err))
+    },
+
+    retrieveLikeStatusD() {
+      const likeStatusD = localStorage.getItem('likeStatusD')
+      if (likeStatusD !== null) {
+        this.likeStatusD = JSON.parse(likeStatusD)
+      }
+    },
+
+    saveLikeStatusD() {
+      localStorage.setItem('likeStatusD', JSON.stringify(this.likeStatusD))
     },
 
     goBack() {
