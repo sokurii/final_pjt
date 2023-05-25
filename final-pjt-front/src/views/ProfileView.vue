@@ -14,9 +14,9 @@
                   <!-- <h3 class="title">담곰이</h3> -->
                   <h3 class="title">
                     {{ username }}
-                    <span v-if="!showPopup">{{title}}</span>
-                    <input v-if="showPopup" class="input" v-model="title">
-                    <button class="btn btn-link" @click="togglePopup('title')">{{ showPopup ? '저장' : '수정'}}</button>
+                    <!-- <span v-if="!showPopup">{{title}}</span> -->
+                    <!-- <input v-if="showPopup" class="input" v-model="title"> -->
+                    <!-- <button class="btn btn-link" @click="togglePopup('title')">{{ showPopup ? '저장' : '수정'}}</button> -->
                   </h3>
                 </div>
               </div>
@@ -42,31 +42,44 @@
           </div>
         </b-tab>
         <b-tab title="관심상품">
-          <div class="row d-flex justify-content-center align-items-center">
-            <div class="col-md-6 ml-auto mr-auto ">
-              <h4>총 {{ profile.likedeposits_count + profile.likesavings_count }}개의 관심상품이 있습니다.</h4>
+          <h3 style="font-weight: bold;">총 {{ profile.likedeposits_count + profile.likesavings_count }}개의 관심상품이 있습니다.</h3>
+          <hr style="border: none; border-top: 3px solid black;">
+          <div class="row d-flex align-items-stretch">
+            <div class="col-6">
+              <h5 style="font-weight: bold;">정기예금 ({{ profile.likedeposits_count }})</h5>
+              <hr>
               <div v-for="deposit in profile.likedeposits" :key="deposit.id">
-                <p>{{ deposit.fin_prdt_nm }}</p>
-              </div>
-              <div v-for="saving in profile.likesavings" :key="saving.id">
-                <p>{{ saving.fin_prdt_nm }}</p>
+                <h4>{{ deposit.fin_prdt_nm }}</h4>
+                <h6>{{ deposit.kor_co_nm }}</h6>
+                <hr>
               </div>
             </div>
+            <div class="col-6">
+              <h5 style="font-weight: bold;">정기적금 ({{ profile.likesavings_count }})</h5>
+              <hr>
+              <div v-for="saving in profile.likesavings" :key="saving.id">
+                <h4>{{ saving.fin_prdt_nm }}</h4>
+                <h6>{{ saving.kor_co_nm }}</h6>
+                <hr>
+              </div>
+            </div>
+    
           </div>
         </b-tab>
         <b-tab title="내가 쓴 글">
           <div class="tab-content tab-space">
             <div class="tab-pane work active show" id="work">
-              <div class="row d-flex justify-content-center align-items-center">
-                <div class="col-md-7 ml-auto mr-auto ">
-                  <h4 class="title">총 {{ profile.articles_count }}개의 글이 있습니다</h4>
-                  <div v-if="!profile.articles_count">
-                    게시글을 작성해보세요!
-                  </div>
+              <div>
+                <h4 class="title">총 {{ profile.articles_count }}개의 글이 있습니다</h4>
+                  <div class="row d-flex justify-content-center align-items-center">
+                <!-- <div class="col-md-7 ml-auto mr-auto"> -->
+                    <div v-if="!profile.articles_count">
+                      게시글을 작성해보세요!
+                    </div>
                   <!-- 여기에 게시글 목록 불러와서 붙이기 !!!! -->
-                  <div v-else class="row collections">
+                    <div v-else class="row collections">
                     <!-- 게시글 1 -->
-                    <div v-for="article in profile.article_set" :key="article.id" class="col-md-4">
+                    <div v-for="article in profile.article_set" :key="article.id" class="col-6">
                       <!-- asset에 있는 사진으로 바꾸고 싶은데 왜 안되냐...  -->
                       <div class="card card-background m-2" style="background-image: url('http://www.backdownsouth.com/wp-content/uploads/2016/11/sockfancy004.jpg')">
                         <a href="#pablo"></a>
@@ -115,47 +128,19 @@
       </div>
       <br>
       <br>
-      <div class="product-cards row">
+      <div class="product-cards row m-4">
         <!-- 카드 목록 -->
-        <div class="col-4">
+        <div v-for="product in randomProducts" :key="product.id" class="col-4">
           <b-card-group deck>
             <b-card
-              header="featured"
+              :header="product.kor_co_nm"
               header-tag="header"
-              footer="Card Footer"
-              footer-tag="footer"
-              title="Title"
+              :title="product.fin_prdt_nm"
             >
-              <b-card-text>Header and footers using props.</b-card-text>
-              <b-button href="#" variant="primary">Go somewhere</b-button>
-            </b-card>
-          </b-card-group>
-        </div>
-        <div class="col-4">
-          <b-card-group deck>
-            <b-card
-              header="featured"
-              header-tag="header"
-              footer="Card Footer"
-              footer-tag="footer"
-              title="Title"
-            >
-              <b-card-text>Header and footers using props.</b-card-text>
-              <b-button href="#" variant="primary">Go somewhere</b-button>
-            </b-card>
-          </b-card-group>
-        </div>
-        <div class="col-4">
-          <b-card-group deck>
-            <b-card
-              header="featured"
-              header-tag="header"
-              footer="Card Footer"
-              footer-tag="footer"
-              title="Title"
-            >
-              <b-card-text>Header and footers using props.</b-card-text>
-              <b-button href="#" variant="primary">Go somewhere</b-button>
+              <b-card-text>
+                <h6>{{ product.etc_note }}</h6>
+              </b-card-text>
+              <!-- <b-button href="#" variant="primary">Go somewhere</b-button> -->
             </b-card>
           </b-card-group>
         </div>
@@ -188,7 +173,22 @@ export default {
     },
     profile() {
       return this.$store.state.profile
-    }
+    },
+    randomProducts() {
+      const deposits = this.$store.state.depositProducts;
+      const savings = this.$store.state.savingProducts;
+      
+      const mergedArray = deposits.concat(savings);
+      const randomItems = []
+
+      while (randomItems.length < 3 && mergedArray.length > 0) {
+        const randomIndex = Math.floor(Math.random() * mergedArray.length)
+        const randomItem = mergedArray.splice(randomIndex, 1)[0]
+        randomItems.push(randomItem)
+      }
+
+      return randomItems
+    },
   },
   mounted() {
     this.getMyProfile()
@@ -638,4 +638,5 @@ h4.card-title{
 }
 
 }
+
 </style>

@@ -111,7 +111,7 @@ export default {
     getSavingProducts() {
       this.$store.dispatch('getSavingProducts')
     },
-    retrieveLikeStatusD() {
+    retrieveLikeStatusS() {
       this.savingProducts.forEach((product) => {
         const likeStatusS = localStorage.getItem(`likeStatusS_${product.fin_prdt_cd}`)
         if (likeStatusS !== null) {
